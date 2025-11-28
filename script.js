@@ -626,14 +626,28 @@ function startTimer() {
 function updateTimerDisplay() {
     const timerElement = document.getElementById('timer');
     if (timerElement) {
+        const oldTime = parseInt(timerElement.textContent) || 10;
         timerElement.textContent = timeLeft;
         
-        // Update visual warning states
+        // Trigger shake animation only when timer is 3 seconds or less
+        if (timeLeft <= 3 && timeLeft < oldTime && timeLeft > 0) {
+            triggerIconAnimation('timer-icon', 'timer-shake');
+        }
+        
+        // Update visual warning states and icon animation
         const timerItem = timerElement.closest('.score-item-timer');
+        const timerIcon = document.querySelector('.timer-icon');
         if (timerItem) {
             timerItem.classList.remove('warning', 'danger');
+            if (timerIcon) {
+                timerIcon.classList.remove('timer-shake');
+            }
             if (timeLeft <= 3) {
                 timerItem.classList.add('danger');
+                // Keep shaking animation for 3 seconds or less
+                if (timerIcon) {
+                    timerIcon.classList.add('timer-shake');
+                }
             } else if (timeLeft <= 5) {
                 timerItem.classList.add('warning');
             }
@@ -686,6 +700,8 @@ function autoNextQuestion() {
     if (gameState.currentQuestion >= gameState.questions.length) {
         endGame();
     } else {
+        // Trigger question icon animation before updating display
+        triggerIconAnimation('question-icon', 'question-flip');
         loadQuestion();
         updateDisplay();
     }
@@ -852,8 +868,13 @@ function selectChoice(selectedWord, isUserAction = true) {
     if (isCorrect) {
         feedback.textContent = t('correctMsg');
         feedback.className = 'feedback correct';
+        const oldScore = gameState.score;
         gameState.score += 10;
         gameState.correctCount++;
+        // Trigger score icon animation only when score increases
+        if (gameState.score > oldScore) {
+            triggerIconAnimation('coin-icon', 'score-shake');
+        }
         showMessage(t('pointsMsg', { points: 10 }), 'success');
         celebrate(); // Fireworks effect
         playSound('correct'); // Success sound
@@ -907,8 +928,13 @@ function checkAnswer() {
     if (isCorrect) {
         feedback.textContent = t('correctMsg');
         feedback.className = 'feedback correct';
+        const oldScore = gameState.score;
         gameState.score += 10;
         gameState.correctCount++;
+        // Trigger score icon animation only when score increases
+        if (gameState.score > oldScore) {
+            triggerIconAnimation('coin-icon', 'score-shake');
+        }
         showMessage(t('pointsMsg', { points: 10 }), 'success');
         celebrate(); // Fireworks effect
         playSound('correct'); // Success sound
@@ -1003,16 +1029,43 @@ function nextQuestion() {
     // Stop any existing timers
     stopTimer();
     gameState.currentQuestion++;
+    // Trigger question icon animation before updating display
+    triggerIconAnimation('question-icon', 'question-flip');
     loadQuestion();
     updateDisplay();
 }
 
+// Trigger icon animation
+function triggerIconAnimation(iconClass, animationClass) {
+    const icon = document.querySelector(`.${iconClass}`);
+    if (icon) {
+        icon.classList.remove(animationClass);
+        // Force reflow to restart animation
+        void icon.offsetWidth;
+        icon.classList.add(animationClass);
+        // Remove animation class after animation completes
+        setTimeout(() => {
+            icon.classList.remove(animationClass);
+        }, 600);
+    }
+}
+
 // Update display
 function updateDisplay() {
+    const oldCorrectCount = parseInt(document.getElementById('correctCount').textContent) || 0;
+    
     document.getElementById('score').textContent = gameState.score;
     document.getElementById('stageNumber').textContent = gameState.stageNumber;
     document.getElementById('correctCount').textContent = gameState.correctCount;
     document.getElementById('questionNumber').textContent = `${gameState.currentQuestion + 1} / ${gameState.questions.length}`;
+    
+    // Trigger animations when values change
+    // Score animation is triggered directly when score increases in selectChoice() and checkAnswer()
+    if (gameState.correctCount > oldCorrectCount) {
+        triggerIconAnimation('correct-icon', 'correct-jump');
+    }
+    // Question animation is triggered in nextQuestion() and autoNextQuestion()
+    
     // Timer is updated separately via updateTimerDisplay()
 }
 
