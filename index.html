@@ -9,21 +9,59 @@
 <body>
     <div class="container">
         <header style="position: relative;">
-            <div class="language-selector">
+            <h1 id="gameTitle">🎨 그림 맞추기 게임</h1>
+            
+            <!-- Hamburger Menu Button -->
+            <div style="display: flex; justify-content: flex-start; padding-left: 0;">
+                <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            
+            <!-- Menu Panel -->
+            <div class="menu-panel" id="menuPanel">
+                <div class="menu-section">
+                    <h3 class="menu-title" data-i18n="gameMode">Game Mode</h3>
+                    <div class="menu-options">
+                        <button class="menu-option" data-mode="multiple" id="menuModeMultiple" data-i18n="multipleMode">Multiple Choice</button>
+                        <button class="menu-option" data-mode="typing" id="menuModeTyping" data-i18n="typingMode">Typing</button>
+                    </div>
+                </div>
+                <div class="menu-section">
+                    <h3 class="menu-title" data-i18n="language">Language</h3>
+                    <div class="menu-options">
+                        <button class="menu-option" data-lang="en" id="menuLangEn">English</button>
+                        <button class="menu-option" data-lang="ko" id="menuLangKo">한국어</button>
+                    </div>
+                </div>
+                <div class="menu-section">
+                    <h3 class="menu-title" data-i18n="settings">Settings</h3>
+                    <div class="menu-options">
+                        <button class="menu-option menu-option-toggle" id="menuSoundBtn">
+                            <span class="menu-option-icon">🔊</span>
+                            <span class="menu-option-text" data-i18n="sound">Sound</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Desktop Selectors (hidden on mobile) -->
+            <div class="language-selector desktop-only">
                 <button class="lang-btn active" id="languageBtn">Language: English</button>
                 <div class="language-dropdown" id="languageDropdown" style="display: none;">
                     <button class="lang-option" data-lang="en">English</button>
                     <button class="lang-option" data-lang="ko">한국어</button>
                 </div>
             </div>
-            <div class="game-mode-selector">
+            <div class="game-mode-selector desktop-only">
                 <button class="mode-btn active" id="gameModeBtn">Game Mode: Multiple Choice</button>
                 <div class="mode-dropdown" id="modeDropdown" style="display: none;">
                     <button class="mode-option" data-mode="multiple" data-i18n="multipleMode">Multiple Choice</button>
                     <button class="mode-option" data-mode="typing" data-i18n="typingMode">Typing</button>
                 </div>
             </div>
-            <h1 id="gameTitle">🎨 그림 맞추기 게임</h1>
             <div class="score-board">
                 <div class="score-item">
                     <span class="label" data-i18n="score">점수</span>
@@ -102,7 +140,7 @@
             <div class="controls">
                 <button class="btn btn-primary" id="nextBtn" style="display: none;" data-i18n="next">다음 문제</button>
                 <button class="btn btn-reset" id="newGameBtn" data-i18n="newGame">새 게임</button>
-                <button class="btn btn-sound" id="soundBtn" title="사운드 끄기">🔊</button>
+                <button class="btn btn-sound desktop-only" id="soundBtn" title="사운드 끄기">🔊</button>
             </div>
         </main>
     </div>

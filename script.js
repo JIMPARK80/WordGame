@@ -109,14 +109,33 @@ function playClickSound(audioContext) {
 // Toggle sound on/off
 function toggleSound() {
     soundEnabled = !soundEnabled;
-    const soundBtn = document.getElementById('soundBtn');
-    if (soundBtn) {
-        soundBtn.textContent = soundEnabled ? '🔊' : '🔇';
-        soundBtn.title = soundEnabled ? '사운드 끄기' : '사운드 켜기';
-    }
+    updateSoundButtonIcon();
     // Test sound when enabling
     if (soundEnabled) {
         playSound('click');
+    }
+}
+
+// Update sound button icon
+function updateSoundButtonIcon() {
+    const soundBtn = document.getElementById('soundBtn');
+    const menuSoundBtn = document.getElementById('menuSoundBtn');
+    const icon = soundEnabled ? '🔊' : '🔇';
+    const title = soundEnabled 
+        ? (currentLanguage === 'ko' ? '사운드 끄기' : 'Turn Sound Off') 
+        : (currentLanguage === 'ko' ? '사운드 켜기' : 'Turn Sound On');
+    
+    if (soundBtn) {
+        soundBtn.textContent = icon;
+        soundBtn.title = title;
+    }
+    
+    if (menuSoundBtn) {
+        const iconElement = menuSoundBtn.querySelector('.menu-option-icon');
+        if (iconElement) {
+            iconElement.textContent = icon;
+        }
+        menuSoundBtn.classList.toggle('active', !soundEnabled);
     }
 }
 
@@ -149,7 +168,9 @@ const translations = {
         multipleMode: '객관식',
         stageClear: '스테이지 클리어!',
         accuracy: '정확도',
-        nextStage: '다음 스테이지'
+        nextStage: '다음 스테이지',
+        settings: '설정',
+        sound: '사운드'
     },
     en: {
         gameTitle: '🎨 Picture Word Game',
@@ -178,7 +199,9 @@ const translations = {
         multipleMode: 'Multiple Choice',
         stageClear: 'Stage Clear!',
         accuracy: 'Accuracy',
-        nextStage: 'Next Stage'
+        nextStage: 'Next Stage',
+        settings: 'Settings',
+        sound: 'Sound'
     }
 };
 
@@ -205,7 +228,7 @@ function updateUILanguage() {
     const wordInput = document.getElementById('wordInput');
     wordInput.placeholder = t('placeholder');
     
-    // Update game mode button text
+    // Update game mode button text (desktop)
     const gameModeBtn = document.getElementById('gameModeBtn');
     if (gameModeBtn) {
         const modeNames = {
@@ -216,6 +239,21 @@ function updateUILanguage() {
         gameModeBtn.textContent = currentLanguage === 'ko' ? `게임 모드: ${currentModeName}` : `Game Mode: ${currentModeName}`;
     }
     
+    // Update menu panel active states
+    document.querySelectorAll('.menu-option[data-mode]').forEach(opt => {
+        opt.classList.remove('active');
+        if (opt.dataset.mode === gameMode) {
+            opt.classList.add('active');
+        }
+    });
+    
+    document.querySelectorAll('.menu-option[data-lang]').forEach(opt => {
+        opt.classList.remove('active');
+        if (opt.dataset.lang === currentLanguage) {
+            opt.classList.add('active');
+        }
+    });
+    
     // Update score labels
     document.querySelectorAll('.score-item .label').forEach((el, index) => {
         const keys = ['score', 'correct', 'question'];
@@ -223,6 +261,9 @@ function updateUILanguage() {
             el.textContent = t(keys[index]);
         }
     });
+    
+    // Update sound button
+    updateSoundButtonIcon();
 }
 
 // Toggle language dropdown
@@ -236,16 +277,29 @@ function toggleLanguageDropdown() {
 function changeLanguage(lang) {
     currentLanguage = lang;
     
-    // Update language button text
+    // Update language button text (desktop)
     const languageBtn = document.getElementById('languageBtn');
-    const langNames = {
-        'en': 'English',
-        'ko': '한국어'
-    };
-    languageBtn.textContent = `Language: ${langNames[lang]}`;
+    if (languageBtn) {
+        const langNames = {
+            'en': 'English',
+            'ko': '한국어'
+        };
+        languageBtn.textContent = `Language: ${langNames[lang]}`;
+    }
     
-    // Close dropdown
-    document.getElementById('languageDropdown').style.display = 'none';
+    // Close dropdown (desktop)
+    const languageDropdown = document.getElementById('languageDropdown');
+    if (languageDropdown) {
+        languageDropdown.style.display = 'none';
+    }
+    
+    // Update menu panel active state
+    document.querySelectorAll('.menu-option[data-lang]').forEach(opt => {
+        opt.classList.remove('active');
+        if (opt.dataset.lang === lang) {
+            opt.classList.add('active');
+        }
+    });
     
     // Update UI
     updateUILanguage();
@@ -267,21 +321,34 @@ function toggleGameModeDropdown() {
 function changeGameMode(mode) {
     gameMode = mode;
     
-    // Update mode button text
+    // Update mode button text (desktop)
     const gameModeBtn = document.getElementById('gameModeBtn');
-    const modeNames = {
-        'multiple': 'Multiple Choice',
-        'typing': 'Typing'
-    };
-    const modeNamesKo = {
-        'multiple': '객관식',
-        'typing': '타이핑'
-    };
-    const displayName = currentLanguage === 'ko' ? modeNamesKo[mode] : modeNames[mode];
-    gameModeBtn.textContent = currentLanguage === 'ko' ? `게임 모드: ${displayName}` : `Game Mode: ${displayName}`;
+    if (gameModeBtn) {
+        const modeNames = {
+            'multiple': 'Multiple Choice',
+            'typing': 'Typing'
+        };
+        const modeNamesKo = {
+            'multiple': '객관식',
+            'typing': '타이핑'
+        };
+        const displayName = currentLanguage === 'ko' ? modeNamesKo[mode] : modeNames[mode];
+        gameModeBtn.textContent = currentLanguage === 'ko' ? `게임 모드: ${displayName}` : `Game Mode: ${displayName}`;
+    }
     
-    // Close dropdown
-    document.getElementById('modeDropdown').style.display = 'none';
+    // Close dropdown (desktop)
+    const modeDropdown = document.getElementById('modeDropdown');
+    if (modeDropdown) {
+        modeDropdown.style.display = 'none';
+    }
+    
+    // Update menu panel active state
+    document.querySelectorAll('.menu-option[data-mode]').forEach(opt => {
+        opt.classList.remove('active');
+        if (opt.dataset.mode === mode) {
+            opt.classList.add('active');
+        }
+    });
     
     // Show/hide appropriate UI
     const typingArea = document.getElementById('typingArea');
@@ -654,8 +721,60 @@ document.getElementById('stageClearNextStageBtn').addEventListener('click', () =
     initGame();
 });
 
-// Language selector
-document.getElementById('languageBtn').addEventListener('click', toggleLanguageDropdown);
+// Hamburger menu toggle
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const menuPanel = document.getElementById('menuPanel');
+
+if (hamburgerBtn && menuPanel) {
+    hamburgerBtn.addEventListener('click', () => {
+        hamburgerBtn.classList.toggle('active');
+        menuPanel.classList.toggle('active');
+        playSound('click');
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (menuPanel.classList.contains('active') && 
+            !menuPanel.contains(e.target) && 
+            !hamburgerBtn.contains(e.target)) {
+            hamburgerBtn.classList.remove('active');
+            menuPanel.classList.remove('active');
+        }
+    });
+}
+
+// Menu panel options
+document.querySelectorAll('.menu-option[data-mode]').forEach(option => {
+    option.addEventListener('click', (e) => {
+        const mode = e.target.dataset.mode;
+        changeGameMode(mode);
+        // Close menu
+        if (hamburgerBtn && menuPanel) {
+            hamburgerBtn.classList.remove('active');
+            menuPanel.classList.remove('active');
+        }
+        playSound('click');
+    });
+});
+
+document.querySelectorAll('.menu-option[data-lang]').forEach(option => {
+    option.addEventListener('click', (e) => {
+        const lang = e.target.dataset.lang;
+        changeLanguage(lang);
+        // Close menu
+        if (hamburgerBtn && menuPanel) {
+            hamburgerBtn.classList.remove('active');
+            menuPanel.classList.remove('active');
+        }
+        playSound('click');
+    });
+});
+
+// Language selector (desktop)
+const languageBtn = document.getElementById('languageBtn');
+if (languageBtn) {
+    languageBtn.addEventListener('click', toggleLanguageDropdown);
+}
 
 // Language options
 document.querySelectorAll('.lang-option').forEach(option => {
@@ -694,8 +813,22 @@ document.querySelectorAll('.mode-option').forEach(option => {
 });
 
 
-// Sound toggle button
-document.getElementById('soundBtn').addEventListener('click', toggleSound);
+// Sound toggle button (desktop)
+const soundBtn = document.getElementById('soundBtn');
+if (soundBtn) {
+    soundBtn.addEventListener('click', toggleSound);
+}
+
+// Sound toggle button (menu)
+const menuSoundBtn = document.getElementById('menuSoundBtn');
+if (menuSoundBtn) {
+    menuSoundBtn.addEventListener('click', () => {
+        toggleSound();
+        // Update menu button icon
+        updateSoundButtonIcon();
+        playSound('click');
+    });
+}
 
 // Enter key support
 document.getElementById('wordInput').addEventListener('keypress', (e) => {
@@ -717,6 +850,7 @@ loadWordsDatabase().then(() => {
     // Initialize game mode UI (default: multiple choice)
     changeGameMode('multiple');
     updateUILanguage();
+    changeLanguage(currentLanguage); // Initialize active states in menu
     initGame();
 }).catch(error => {
     console.error('Failed to initialize game:', error);

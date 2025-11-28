@@ -26,8 +26,147 @@ body {
 header {
     text-align: center;
     margin-bottom: 30px;
-    padding-top: 50px;
+    padding-top: 20px;
     position: relative;
+}
+
+/* Hamburger Menu */
+.hamburger-btn {
+    position: relative;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    z-index: 1001;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.hamburger-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.hamburger-btn span {
+    width: 24px;
+    height: 3px;
+    background: white;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    display: block;
+}
+
+.hamburger-btn.active span:nth-child(1) {
+    transform: rotate(45deg) translate(7px, 7px);
+}
+
+.hamburger-btn.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-btn.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+.menu-panel {
+    position: fixed;
+    top: 70px;
+    left: -300px;
+    width: 280px;
+    height: calc(100vh - 70px);
+    background: white;
+    box-shadow: 2px 0 20px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    transition: left 0.3s ease;
+    padding: 20px;
+    padding-top: 40px;
+    overflow-y: auto;
+}
+
+.menu-panel.active {
+    left: 0px;
+    /* 메뉴 패널이 열릴 때의 위치 조절:
+       - left: 0 (완전히 왼쪽에 붙음)
+       - left: 10px (왼쪽에 10px 여백)
+       - left: -20px (약간 안쪽으로)
+    */
+    top: 50px;
+    margin-top: 70px;
+}
+
+.menu-section {
+    margin-bottom: 30px;
+    margin-top: 70px;
+}
+
+.menu-section:first-child {
+    margin-top: 0;
+}
+
+.menu-title {
+    font-size: 1.1em;
+    color: #667eea;
+    margin-bottom: 15px;
+    font-weight: 600;
+    text-align: left;
+}
+
+.menu-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.menu-option {
+    padding: 12px 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    background: white;
+    color: #667eea;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.95em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.menu-option:hover {
+    background: #f0f0f0;
+    border-color: #667eea;
+}
+
+.menu-option.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-color: #667eea;
+}
+
+.menu-option-toggle {
+    justify-content: space-between;
+}
+
+.menu-option-icon {
+    font-size: 1.2em;
+}
+
+.menu-option-text {
+    flex: 1;
+}
+
+.desktop-only {
+    display: block;
 }
 
 .language-selector {
@@ -199,7 +338,7 @@ header {
 
 header h1 {
     color: #667eea;
-    font-size: 2.5em;
+    font-size: 5.0em;
     margin-bottom: 20px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -224,7 +363,7 @@ header h1 {
 
 .score-item .label {
     display: block;
-    font-size: 0.85em;
+    font-size: 1.0em;
     opacity: 0.9;
     margin-bottom: 5px;
 }
@@ -597,21 +736,58 @@ header h1 {
 
 @media (max-width: 600px) {
     .container {
-        padding: 20px;
+        padding: 15px;
+    }
+
+    .desktop-only {
+        display: none;
+    }
+    
+    .hamburger-btn {
+        display: flex;
+    }
+
+    header {
+        padding-top: 20px;
+        margin-bottom: 20px;
     }
 
     header h1 {
-        font-size: 2em;
+        font-size: 1.8em;
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+    
+    .hamburger-btn {
+        margin-top: 10px;
     }
 
     .score-board {
-        flex-direction: column;
-        gap: 10px;
+        flex-direction: row;
+        gap: 6px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .score-item {
+        padding: 10px 8px;
+        font-size: 0.9em;
+        flex: 1;
+        border-radius: 10px;
+    }
+
+    .score-item .label {
+        font-size: 0.95em;
+        margin-bottom: 4px;
+    }
+
+    .score-item .value {
+        font-size: 1.5em;
     }
 
     .image-display {
-        padding: 40px 20px;
-        min-height: 250px;
+        padding: 30px 15px;
+        min-height: 200px;
     }
 
     .image-display .emoji {
@@ -645,7 +821,8 @@ header h1 {
     }
 
     .choice-buttons {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
     }
 
     .word-input {
