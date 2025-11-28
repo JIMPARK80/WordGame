@@ -1239,7 +1239,14 @@ document.getElementById('startGameBtn').addEventListener('click', () => {
 // Show options modal
 function showOptionsModal() {
     const optionsModal = document.getElementById('optionsModal');
+    const gameArea = document.getElementById('gameArea');
+    
     if (optionsModal) {
+        // Pause game if game area is visible (game is in progress)
+        if (gameArea && gameArea.style.display !== 'none' && gameArea.style.display !== '') {
+            stopTimer(); // Pause the timer
+        }
+        
         optionsModal.style.display = 'flex';
         // Update active states in modal
         updateModalActiveStates();
@@ -1249,8 +1256,23 @@ function showOptionsModal() {
 // Hide options modal
 function hideOptionsModal() {
     const optionsModal = document.getElementById('optionsModal');
+    const gameArea = document.getElementById('gameArea');
+    
     if (optionsModal) {
         optionsModal.style.display = 'none';
+        
+        // Resume game if game area is visible (game is in progress)
+        if (gameArea && gameArea.style.display !== 'none' && gameArea.style.display !== '') {
+            // Check if there's a current question and timer should be running
+            if (gameState.questions.length > 0 && gameState.currentQuestion < gameState.questions.length) {
+                const feedback = document.getElementById('feedback');
+                const nextBtn = document.getElementById('nextBtn');
+                // Only restart timer if question is active (not showing feedback)
+                if (feedback && !feedback.textContent && nextBtn && nextBtn.style.display === 'none') {
+                    startTimer(); // Resume the timer
+                }
+            }
+        }
     }
 }
 

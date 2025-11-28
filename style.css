@@ -248,9 +248,9 @@ header {
 }
 
 .menu-title {
-    font-size: 1.1em;
+    font-size: 1.0em;
     color: var(--color-primary);
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
     font-weight: 600;
     text-align: left;
 }
@@ -258,11 +258,11 @@ header {
 .menu-options {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
 }
 
 .menu-option {
-    padding: var(--spacing-sm) var(--spacing-lg);
+    padding: 10px var(--spacing-md);
     border: 2px solid #e0e0e0;
     border-radius: 10px;
     background: white;
@@ -271,10 +271,10 @@ header {
     transition: all var(--transition-fast);
     text-align: left;
     font-weight: 600;
-    font-size: 0.95em;
+    font-size: 0.9em;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
 }
 
 .menu-option:hover {
@@ -534,7 +534,7 @@ header h1 {
 }
 
 .score-item-coin {
-    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+    background: linear-gradient(135deg, #FFD860 0%, #FFC850 100%);
     padding: var(--spacing-md) var(--spacing-lg);
 }
 
@@ -823,20 +823,20 @@ header h1 {
 .choice-btn {
     padding: var(--spacing-lg);
     font-size: 1.5em;
-    font-weight: 600;
-    border: 3px solid var(--color-primary);
+    font-weight: 700;
+    border: 3px solid #7C8FFF;
     border-radius: var(--radius-lg);
-    background: white;
-    color: var(--color-primary);
+    background: #C9D8FF;
+    color: #333;
     cursor: pointer;
     transition: all var(--transition-normal);
-    box-shadow: 0 4px var(--spacing-md) rgba(102, 126, 234, 0.2);
+    box-shadow: 0 4px var(--spacing-md) rgba(124, 143, 255, 0.2);
 }
 
 .choice-btn:hover:not(:disabled) {
     transform: translateY(-3px);
-    box-shadow: 0 6px var(--spacing-lg) rgba(102, 126, 234, 0.4);
-    background: #f8f9fa;
+    box-shadow: 0 6px var(--spacing-lg) rgba(124, 143, 255, 0.4);
+    background: #B8CCFF;
 }
 
 .choice-btn:active:not(:disabled) {
@@ -849,15 +849,17 @@ header h1 {
 }
 
 .choice-btn.correct {
-    background: var(--gradient-success);
-    color: white;
-    border-color: var(--color-success);
+    background: #A8E6A3;
+    color: #2d5016;
+    border-color: #8FD988;
+    box-shadow: 0 4px var(--spacing-md) rgba(168, 230, 163, 0.3);
 }
 
 .choice-btn.incorrect {
-    background: var(--gradient-danger);
-    color: white;
-    border-color: var(--color-danger);
+    background: #FF9C9C;
+    color: #8B1A1A;
+    border-color: #FF7A7A;
+    box-shadow: 0 4px var(--spacing-md) rgba(255, 156, 156, 0.3);
 }
 
 .word-input {
@@ -958,15 +960,15 @@ header h1 {
 }
 
 .feedback.correct {
-    background: #d4edda;
-    color: #155724;
-    border: 2px solid #c3e6cb;
+    background: #A8E6A3;
+    color: #2d5016;
+    border: 2px solid #8FD988;
 }
 
 .feedback.incorrect {
-    background: #f8d7da;
-    color: #721c24;
-    border: 2px solid #f5c6cb;
+    background: #FF9C9C;
+    color: #8B1A1A;
+    border: 2px solid #FF7A7A;
 }
 
 .feedback.empty {
@@ -1161,9 +1163,9 @@ header h1 {
     background: white;
     border-radius: var(--radius-xl);
     padding: 0;
-    max-width: 500px;
-    width: 90%;
-    max-height: 90vh;
+    max-width: 400px;
+    width: 85%;
+    max-height: 80vh;
     box-shadow: var(--shadow-xl);
     animation: scaleIn var(--transition-normal);
     overflow: hidden;
@@ -1175,14 +1177,14 @@ header h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 25px var(--spacing-xl);
+    padding: 12px var(--spacing-lg);
     border-bottom: 2px solid #f0f0f0;
     background: var(--gradient-primary);
 }
 
 .options-modal-title {
     color: white;
-    font-size: 2.0em;
+    font-size: 1.4em;
     font-weight: 700;
     margin: 0;
 }
@@ -1191,9 +1193,9 @@ header h1 {
     background: rgba(255, 255, 255, 0.2);
     border: none;
     color: white;
-    font-size: 3.0em;
-    width: 40px;
-    height: 40px;
+    font-size: 2.5em;
+    width: 35px;
+    height: 35px;
     border-radius: var(--radius-full);
     cursor: pointer;
     display: flex;
@@ -1234,17 +1236,17 @@ header h1 {
 }
 
 .options-modal-body {
-    padding: var(--spacing-xl);
+    padding: var(--spacing-md);
     overflow-y: auto;
     flex: 1;
 }
 
 .options-modal-body .menu-section {
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-md);
     margin-top: 0;
-    font-size: 1.5em;
-    padding: var(--spacing-lg);
-    border-radius: var(--radius-lg);
+    font-size: 1.1em;
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-md);
 }
 
 .options-modal-body .menu-section:nth-child(1) {
@@ -1274,20 +1276,20 @@ header h1 {
 
 @media (max-width: 600px) {
     .options-modal-content {
-        width: 95%;
-        max-height: 85vh;
+        width: 90%;
+        max-height: 70vh;
     }
 
     .options-modal-header {
-        padding: 20px;
+        padding: 10px;
     }
 
     .options-modal-title {
-        font-size: 2.0em;
+        font-size: 1.2em;
     }
 
     .options-modal-body {
-        padding: 20px;
+        padding: 12px;
     }
 }
 
