@@ -5,7 +5,8 @@ let gameState = {
     correctCount: 0,
     questions: [],
     currentAnswer: '',
-    hintShown: false
+    hintShown: false,
+    stageNumber: 1
 };
 
 // Timer state
@@ -142,6 +143,7 @@ const translations = {
         score: '점수',
         correct: '정답',
         question: '문제',
+        stage: '스테이지',
         placeholder: '그림에 맞는 단어를 입력하세요...',
         submit: '정답 확인',
         next: '다음 문제',
@@ -163,8 +165,10 @@ const translations = {
         typingMode: '타이핑',
         multipleMode: '객관식',
         stageClear: '스테이지 클리어!',
+        stageAgain: '스테이지 다시!',
         accuracy: '정확도',
         nextStage: '다음 스테이지',
+        tryAgain: '다시 시도',
         settings: '설정',
         sound: '사운드',
         time: '시간',
@@ -175,6 +179,7 @@ const translations = {
         score: 'Score',
         correct: 'Correct',
         question: 'Question',
+        stage: 'Stage',
         placeholder: 'Enter the word that matches the picture...',
         submit: 'Check Answer',
         next: 'Next Question',
@@ -196,8 +201,10 @@ const translations = {
         typingMode: 'Typing',
         multipleMode: 'Multiple Choice',
         stageClear: 'Stage Clear!',
+        stageAgain: 'Stage Again!',
         accuracy: 'Accuracy',
         nextStage: 'Next Stage',
+        tryAgain: 'Try Again',
         settings: 'Settings',
         sound: 'Sound',
         time: 'Time',
@@ -245,11 +252,11 @@ function updateUILanguage() {
         }
     });
     
-    // Update score labels
-    document.querySelectorAll('.score-item .label').forEach((el, index) => {
-        const keys = ['score', 'correct', 'question'];
-        if (keys[index]) {
-            el.textContent = t(keys[index]);
+    // Update score labels - match by data-i18n attribute instead of index
+    document.querySelectorAll('.score-item .label[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[currentLanguage] && translations[currentLanguage][key]) {
+            el.textContent = t(key);
         }
     });
     
@@ -399,8 +406,9 @@ async function initGame() {
     const shuffled = [...pictureDatabase].sort(() => Math.random() - 0.5);
     gameState.questions = shuffled.slice(0, 10);
     gameState.currentQuestion = 0;
-    gameState.score = 0;
-    gameState.correctCount = 0;
+    // Don't reset score and stage number - keep them for next stage
+    // gameState.score = 0; // Keep score across stages
+    gameState.correctCount = 0; // Reset correct count for new stage
     
     loadQuestion();
     updateDisplay();
@@ -727,6 +735,7 @@ function nextQuestion() {
 // Update display
 function updateDisplay() {
     document.getElementById('score').textContent = gameState.score;
+    document.getElementById('stageNumber').textContent = gameState.stageNumber;
     document.getElementById('correctCount').textContent = gameState.correctCount;
     document.getElementById('questionNumber').textContent = `${gameState.currentQuestion + 1} / ${gameState.questions.length}`;
     // Timer is updated separately via updateTimerDisplay()
@@ -762,12 +771,27 @@ function endGame() {
         ? Math.round((gameState.correctCount / gameState.questions.length) * 100) 
         : 0;
     
+    // Check if all questions were answered correctly (10/10)
+    const isPerfectScore = gameState.correctCount === gameState.questions.length;
+    
+    // Increment stage number if perfect score
+    if (isPerfectScore) {
+        gameState.stageNumber++;
+    }
+    
     // Show Stage Clear screen
     gameArea.style.display = 'none';
     stageClearScreen.style.display = 'flex';
     
-    // Update Stage Clear screen content
-    document.getElementById('stageClearTitle').textContent = t('stageClear');
+    // Update Stage Clear screen content based on score
+    if (isPerfectScore) {
+        // All correct - Stage Clear!
+        document.getElementById('stageClearTitle').textContent = t('stageClear');
+    } else {
+        // Not all correct - Stage Again!
+        document.getElementById('stageClearTitle').textContent = t('stageAgain');
+    }
+    
     document.getElementById('finalScore').textContent = gameState.score;
     document.getElementById('finalCorrect').textContent = `${gameState.correctCount} / ${gameState.questions.length}`;
     document.getElementById('finalAccuracy').textContent = `${accuracy}%`;
@@ -775,17 +799,23 @@ function endGame() {
     // Update accuracy label
     document.querySelector('.stat-item:last-child .stat-label').textContent = t('accuracy');
     
-    // Update Next Stage button text
+    // Update button text based on score
     const nextStageBtn = document.getElementById('stageClearNextStageBtn');
     if (nextStageBtn) {
-        nextStageBtn.textContent = t('nextStage');
+        if (isPerfectScore) {
+            nextStageBtn.textContent = t('nextStage');
+        } else {
+            nextStageBtn.textContent = t('tryAgain');
+        }
     }
     
-    // Celebrate with confetti
-    celebrate();
-    
-    // Play success sound
-    playSound('correct');
+    // Celebrate with confetti only if perfect score
+    if (isPerfectScore) {
+        celebrate();
+        playSound('correct');
+    } else {
+        playSound('incorrect');
+    }
 }
 
 // Show message
@@ -809,10 +839,17 @@ function showMessage(text, type) {
 // Event listeners
 document.getElementById('submitBtn').addEventListener('click', checkAnswer);
 document.getElementById('nextBtn').addEventListener('click', nextQuestion);
-document.getElementById('newGameBtn').addEventListener('click', initGame);
+document.getElementById('newGameBtn').addEventListener('click', () => {
+    // Reset stage number and score for new game
+    gameState.stageNumber = 1;
+    gameState.score = 0;
+    initGame();
+});
 document.getElementById('stageClearNextStageBtn').addEventListener('click', () => {
     document.getElementById('stageClearScreen').style.display = 'none';
     document.getElementById('gameArea').style.display = 'block';
+    // Stage number is already incremented in endGame() if perfect score
+    // For "Try Again", stage number stays the same
     initGame();
 });
 
