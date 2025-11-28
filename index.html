@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Game - 그림 맞추기</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="language-selector">
+                <button class="lang-btn active" id="langKo" data-lang="ko">한국어</button>
+                <button class="lang-btn" id="langEn" data-lang="en">English</button>
+            </div>
+            <div class="game-mode-selector">
+                <button class="mode-btn active" id="modeTyping" data-mode="typing" data-i18n="typingMode">타이핑</button>
+                <button class="mode-btn" id="modeMultiple" data-mode="multiple" data-i18n="multipleMode">객관식</button>
+            </div>
+            <h1 id="gameTitle">🎨 그림 맞추기 게임</h1>
+            <div class="score-board">
+                <div class="score-item">
+                    <span class="label" data-i18n="score">점수</span>
+                    <span class="value" id="score">0</span>
+                </div>
+                <div class="score-item">
+                    <span class="label" data-i18n="correct">정답</span>
+                    <span class="value" id="correctCount">0</span>
+                </div>
+                <div class="score-item">
+                    <span class="label" data-i18n="question">문제</span>
+                    <span class="value" id="questionNumber">1</span>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="game-area">
+                <div class="image-container">
+                    <div class="image-display" id="imageDisplay">
+                        <!-- Picture will be displayed here -->
+                    </div>
+                </div>
+
+                <!-- Typing Mode -->
+                <div class="input-area" id="typingArea">
+                    <input 
+                        type="text" 
+                        id="wordInput" 
+                        class="word-input" 
+                        data-placeholder-ko="그림에 맞는 단어를 입력하세요..."
+                        data-placeholder-en="Enter the word that matches the picture..."
+                        placeholder="그림에 맞는 단어를 입력하세요..."
+                        autocomplete="off"
+                    >
+                    <button class="btn btn-submit" id="submitBtn" data-i18n="submit">정답 확인</button>
+                </div>
+
+                <!-- Multiple Choice Mode -->
+                <div class="multiple-choice-area" id="multipleChoiceArea" style="display: none;">
+                    <div class="choice-buttons" id="choiceButtons">
+                        <!-- Choice buttons will be generated here -->
+                    </div>
+                </div>
+
+                <div class="feedback" id="feedback"></div>
+
+                <div class="hint-area" id="hintArea" style="display: none;">
+                    <p class="hint-text" id="hintText"></p>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button class="btn btn-primary" id="nextBtn" style="display: none;" data-i18n="next">다음 문제</button>
+                <button class="btn btn-secondary" id="hintBtn" data-i18n="hint">힌트 보기</button>
+                <button class="btn btn-reset" id="newGameBtn" data-i18n="newGame">새 게임</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
