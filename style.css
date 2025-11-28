@@ -248,7 +248,7 @@ header {
 }
 
 .menu-title {
-    font-size: 1.0em;
+    font-size: 1.2em;
     color: var(--color-primary);
     margin-bottom: var(--spacing-sm);
     font-weight: 600;
@@ -271,7 +271,7 @@ header {
     transition: all var(--transition-fast);
     text-align: left;
     font-weight: 600;
-    font-size: 0.9em;
+    font-size: 1.08em;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -1184,7 +1184,7 @@ header h1 {
 
 .options-modal-title {
     color: white;
-    font-size: 1.4em;
+    font-size: 1.68em;
     font-weight: 700;
     margin: 0;
 }
@@ -1244,7 +1244,7 @@ header h1 {
 .options-modal-body .menu-section {
     margin-bottom: var(--spacing-md);
     margin-top: 0;
-    font-size: 1.1em;
+    font-size: 1.32em;
     padding: var(--spacing-sm);
     border-radius: var(--radius-md);
 }
@@ -1285,7 +1285,7 @@ header h1 {
     }
 
     .options-modal-title {
-        font-size: 1.2em;
+        font-size: 1.44em;
     }
 
     .options-modal-body {
