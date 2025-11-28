@@ -8,6 +8,11 @@ let gameState = {
     hintShown: false
 };
 
+// Timer state
+let timerInterval = null;
+let timeLeft = 10;
+let autoNextTimeout = null;
+
 // Current language (default: English)
 let currentLanguage = 'en';
 
@@ -161,7 +166,9 @@ const translations = {
         accuracy: '정확도',
         nextStage: '다음 스테이지',
         settings: '설정',
-        sound: '사운드'
+        sound: '사운드',
+        time: '시간',
+        timeUp: '시간 초과!'
     },
     en: {
         gameTitle: '🎨 Picture Word Game',
@@ -192,7 +199,9 @@ const translations = {
         accuracy: 'Accuracy',
         nextStage: 'Next Stage',
         settings: 'Settings',
-        sound: 'Sound'
+        sound: 'Sound',
+        time: 'Time',
+        timeUp: 'Time Up!'
     }
 };
 
@@ -397,12 +406,113 @@ async function initGame() {
     updateDisplay();
 }
 
+// Stop timer
+function stopTimer() {
+    if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+    }
+    if (autoNextTimeout) {
+        clearTimeout(autoNextTimeout);
+        autoNextTimeout = null;
+    }
+}
+
+// Start timer
+function startTimer() {
+    stopTimer(); // Clear any existing timer
+    timeLeft = 10;
+    updateTimerDisplay();
+    
+    timerInterval = setInterval(() => {
+        timeLeft--;
+        updateTimerDisplay();
+        
+        if (timeLeft <= 0) {
+            stopTimer();
+            handleTimeUp();
+        }
+    }, 1000);
+}
+
+// Update timer display
+function updateTimerDisplay() {
+    const timerElement = document.getElementById('timer');
+    if (timerElement) {
+        timerElement.textContent = timeLeft;
+        
+        // Update visual warning states
+        const timerItem = timerElement.closest('.score-item-timer');
+        if (timerItem) {
+            timerItem.classList.remove('warning', 'danger');
+            if (timeLeft <= 3) {
+                timerItem.classList.add('danger');
+            } else if (timeLeft <= 5) {
+                timerItem.classList.add('warning');
+            }
+        }
+    }
+}
+
+// Handle time up
+function handleTimeUp() {
+    showMessage(t('timeUp'), 'error');
+    playSound('incorrect');
+    
+    // Auto-select wrong answer
+    if (gameMode === 'multiple') {
+        // Find a wrong choice button and click it
+        const choiceButtons = document.querySelectorAll('.choice-btn');
+        const wrongButtons = Array.from(choiceButtons).filter(btn => 
+            btn.textContent.trim() !== gameState.currentAnswer
+        );
+        if (wrongButtons.length > 0) {
+            const randomWrongButton = wrongButtons[Math.floor(Math.random() * wrongButtons.length)];
+            // Simulate click on wrong answer
+            selectChoice(randomWrongButton.textContent.trim(), false);
+        }
+    } else {
+        // Typing mode - mark as wrong
+        const feedback = document.getElementById('feedback');
+        feedback.textContent = t('wrongMsg', { word: gameState.currentAnswer });
+        feedback.className = 'feedback incorrect';
+        showMessage(t('wrongMsg2'), 'error');
+        
+        // Disable input
+        const wordInput = document.getElementById('wordInput');
+        const submitBtn = document.getElementById('submitBtn');
+        if (wordInput) wordInput.disabled = true;
+        if (submitBtn) submitBtn.disabled = true;
+    }
+    
+    // Auto-advance to next question after 3 seconds (only if not already handled)
+    if (!autoNextTimeout) {
+        autoNextTimeout = setTimeout(() => {
+            autoNextQuestion();
+        }, 3000);
+    }
+}
+
+// Auto-advance to next question
+function autoNextQuestion() {
+    gameState.currentQuestion++;
+    if (gameState.currentQuestion >= gameState.questions.length) {
+        endGame();
+    } else {
+        loadQuestion();
+        updateDisplay();
+    }
+}
+
 // Load current question
 function loadQuestion() {
     if (gameState.currentQuestion >= gameState.questions.length) {
         endGame();
         return;
     }
+    
+    // Stop any existing timer
+    stopTimer();
     
     const question = gameState.questions[gameState.currentQuestion];
     // Get word and hint for current language
@@ -436,6 +546,9 @@ function loadQuestion() {
     
     // Hide next button
     document.getElementById('nextBtn').style.display = 'none';
+    
+    // Start timer
+    startTimer();
     
     // Load based on game mode
     if (gameMode === 'typing') {
@@ -500,7 +613,12 @@ function celebrate() {
 }
 
 // Select choice (multiple choice mode)
-function selectChoice(selectedWord) {
+function selectChoice(selectedWord, isUserAction = true) {
+    // Stop timer if user manually selected
+    if (isUserAction) {
+        stopTimer();
+    }
+    
     const choiceButtons = document.querySelectorAll('.choice-btn');
     const feedback = document.getElementById('feedback');
     const nextBtn = document.getElementById('nextBtn');
@@ -538,11 +656,18 @@ function selectChoice(selectedWord) {
     }
     
     updateDisplay();
-    nextBtn.style.display = 'block';
+    
+    // Auto-advance to next question after 3 seconds (both correct and incorrect)
+    autoNextTimeout = setTimeout(() => {
+        autoNextQuestion();
+    }, 3000);
 }
 
 // Check answer (typing mode)
 function checkAnswer() {
+    // Stop timer
+    stopTimer();
+    
     const wordInput = document.getElementById('wordInput');
     const userAnswer = wordInput.value.trim();
     const feedback = document.getElementById('feedback');
@@ -577,7 +702,11 @@ function checkAnswer() {
     }
     
     updateDisplay();
-    nextBtn.style.display = 'block';
+    
+    // Auto-advance to next question after 3 seconds (both correct and incorrect)
+    autoNextTimeout = setTimeout(() => {
+        autoNextQuestion();
+    }, 3000);
 }
 
 // Show hint (manual - now hints are shown automatically, but keep function for compatibility)
@@ -588,6 +717,8 @@ function showHint() {
 
 // Next question
 function nextQuestion() {
+    // Stop any existing timers
+    stopTimer();
     gameState.currentQuestion++;
     loadQuestion();
     updateDisplay();
@@ -598,10 +729,13 @@ function updateDisplay() {
     document.getElementById('score').textContent = gameState.score;
     document.getElementById('correctCount').textContent = gameState.correctCount;
     document.getElementById('questionNumber').textContent = `${gameState.currentQuestion + 1} / ${gameState.questions.length}`;
+    // Timer is updated separately via updateTimerDisplay()
 }
 
 // End game
 function endGame() {
+    // Stop timer
+    stopTimer();
     const imageDisplay = document.getElementById('imageDisplay');
     const wordInput = document.getElementById('wordInput');
     const submitBtn = document.getElementById('submitBtn');

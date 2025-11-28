@@ -428,6 +428,29 @@ header h1 {
     font-weight: bold;
 }
 
+.score-item-timer .value {
+    color: #ff6b6b;
+    animation: pulse 1s ease infinite;
+}
+
+.score-item-timer .value.warning {
+    color: #ffa500;
+}
+
+.score-item-timer .value.danger {
+    color: #ff0000;
+    animation: pulse 0.5s ease infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
 .game-area {
     margin-bottom: 30px;
 }
