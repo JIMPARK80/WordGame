@@ -118,17 +118,8 @@ function toggleSound() {
 
 // Update sound button icon
 function updateSoundButtonIcon() {
-    const soundBtn = document.getElementById('soundBtn');
     const menuSoundBtn = document.getElementById('menuSoundBtn');
     const icon = soundEnabled ? '🔊' : '🔇';
-    const title = soundEnabled 
-        ? (currentLanguage === 'ko' ? '사운드 끄기' : 'Turn Sound Off') 
-        : (currentLanguage === 'ko' ? '사운드 켜기' : 'Turn Sound On');
-    
-    if (soundBtn) {
-        soundBtn.textContent = icon;
-        soundBtn.title = title;
-    }
     
     if (menuSoundBtn) {
         const iconElement = menuSoundBtn.querySelector('.menu-option-icon');
@@ -228,16 +219,7 @@ function updateUILanguage() {
     const wordInput = document.getElementById('wordInput');
     wordInput.placeholder = t('placeholder');
     
-    // Update game mode button text (desktop)
-    const gameModeBtn = document.getElementById('gameModeBtn');
-    if (gameModeBtn) {
-        const modeNames = {
-            'multiple': { 'en': 'Multiple Choice', 'ko': '객관식' },
-            'typing': { 'en': 'Typing', 'ko': '타이핑' }
-        };
-        const currentModeName = modeNames[gameMode][currentLanguage];
-        gameModeBtn.textContent = currentLanguage === 'ko' ? `게임 모드: ${currentModeName}` : `Game Mode: ${currentModeName}`;
-    }
+    // Update game mode button text (desktop - removed, using menu panel now)
     
     // Update menu panel active states
     document.querySelectorAll('.menu-option[data-mode]').forEach(opt => {
@@ -277,15 +259,7 @@ function toggleLanguageDropdown() {
 function changeLanguage(lang) {
     currentLanguage = lang;
     
-    // Update language button text (desktop)
-    const languageBtn = document.getElementById('languageBtn');
-    if (languageBtn) {
-        const langNames = {
-            'en': 'English',
-            'ko': '한국어'
-        };
-        languageBtn.textContent = `Language: ${langNames[lang]}`;
-    }
+    // Update language button text (desktop - removed, using menu panel now)
     
     // Close dropdown (desktop)
     const languageDropdown = document.getElementById('languageDropdown');
@@ -321,20 +295,7 @@ function toggleGameModeDropdown() {
 function changeGameMode(mode) {
     gameMode = mode;
     
-    // Update mode button text (desktop)
-    const gameModeBtn = document.getElementById('gameModeBtn');
-    if (gameModeBtn) {
-        const modeNames = {
-            'multiple': 'Multiple Choice',
-            'typing': 'Typing'
-        };
-        const modeNamesKo = {
-            'multiple': '객관식',
-            'typing': '타이핑'
-        };
-        const displayName = currentLanguage === 'ko' ? modeNamesKo[mode] : modeNames[mode];
-        gameModeBtn.textContent = currentLanguage === 'ko' ? `게임 모드: ${displayName}` : `Game Mode: ${displayName}`;
-    }
+    // Update mode button text (desktop - removed, using menu panel now)
     
     // Close dropdown (desktop)
     const modeDropdown = document.getElementById('modeDropdown');
@@ -721,24 +682,42 @@ document.getElementById('stageClearNextStageBtn').addEventListener('click', () =
     initGame();
 });
 
-// Hamburger menu toggle
+// Settings menu toggle (Desktop)
+const settingsBtn = document.getElementById('settingsBtn');
 const hamburgerBtn = document.getElementById('hamburgerBtn');
 const menuPanel = document.getElementById('menuPanel');
 
+// Desktop settings button
+if (settingsBtn && menuPanel) {
+    settingsBtn.addEventListener('click', () => {
+        settingsBtn.classList.toggle('active');
+        menuPanel.classList.toggle('active');
+        playSound('click');
+    });
+}
+
+// Hamburger menu toggle (Mobile)
 if (hamburgerBtn && menuPanel) {
     hamburgerBtn.addEventListener('click', () => {
         hamburgerBtn.classList.toggle('active');
         menuPanel.classList.toggle('active');
         playSound('click');
     });
-    
-    // Close menu when clicking outside
+}
+
+// Close menu when clicking outside
+if (menuPanel) {
     document.addEventListener('click', (e) => {
-        if (menuPanel.classList.contains('active') && 
-            !menuPanel.contains(e.target) && 
-            !hamburgerBtn.contains(e.target)) {
-            hamburgerBtn.classList.remove('active');
-            menuPanel.classList.remove('active');
+        if (menuPanel.classList.contains('active')) {
+            const isClickInsideMenu = menuPanel.contains(e.target);
+            const isClickOnSettingsBtn = settingsBtn && settingsBtn.contains(e.target);
+            const isClickOnHamburgerBtn = hamburgerBtn && hamburgerBtn.contains(e.target);
+            
+            if (!isClickInsideMenu && !isClickOnSettingsBtn && !isClickOnHamburgerBtn) {
+                menuPanel.classList.remove('active');
+                if (settingsBtn) settingsBtn.classList.remove('active');
+                if (hamburgerBtn) hamburgerBtn.classList.remove('active');
+            }
         }
     });
 }
@@ -770,54 +749,8 @@ document.querySelectorAll('.menu-option[data-lang]').forEach(option => {
     });
 });
 
-// Language selector (desktop)
-const languageBtn = document.getElementById('languageBtn');
-if (languageBtn) {
-    languageBtn.addEventListener('click', toggleLanguageDropdown);
-}
+// Desktop dropdowns removed - using menu panel now
 
-// Language options
-document.querySelectorAll('.lang-option').forEach(option => {
-    option.addEventListener('click', (e) => {
-        const lang = e.target.dataset.lang;
-        changeLanguage(lang);
-        playSound('click');
-    });
-});
-
-// Close dropdowns when clicking outside
-document.addEventListener('click', (e) => {
-    const languageSelector = document.querySelector('.language-selector');
-    const languageDropdown = document.getElementById('languageDropdown');
-    if (!languageSelector.contains(e.target) && languageDropdown.style.display !== 'none') {
-        languageDropdown.style.display = 'none';
-    }
-    
-    const gameModeSelector = document.querySelector('.game-mode-selector');
-    const modeDropdown = document.getElementById('modeDropdown');
-    if (!gameModeSelector.contains(e.target) && modeDropdown.style.display !== 'none') {
-        modeDropdown.style.display = 'none';
-    }
-});
-
-// Game mode selector
-document.getElementById('gameModeBtn').addEventListener('click', toggleGameModeDropdown);
-
-// Game mode options
-document.querySelectorAll('.mode-option').forEach(option => {
-    option.addEventListener('click', (e) => {
-        const mode = e.target.dataset.mode;
-        changeGameMode(mode);
-        playSound('click');
-    });
-});
-
-
-// Sound toggle button (desktop)
-const soundBtn = document.getElementById('soundBtn');
-if (soundBtn) {
-    soundBtn.addEventListener('click', toggleSound);
-}
 
 // Sound toggle button (menu)
 const menuSoundBtn = document.getElementById('menuSoundBtn');

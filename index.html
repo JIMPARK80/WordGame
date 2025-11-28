@@ -11,7 +11,14 @@
         <header style="position: relative;">
             <h1 id="gameTitle">🎨 그림 맞추기 게임</h1>
             
-            <!-- Hamburger Menu Button -->
+            <!-- Settings Menu Button (Desktop) -->
+            <div class="settings-menu-wrapper">
+                <button class="settings-btn desktop-only" id="settingsBtn" aria-label="Settings">
+                    ⚙️
+                </button>
+            </div>
+            
+            <!-- Hamburger Menu Button (Mobile) -->
             <div style="display: flex; justify-content: flex-start; padding-left: 0;">
                 <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu">
                     <span></span>
@@ -47,21 +54,6 @@
                 </div>
             </div>
             
-            <!-- Desktop Selectors (hidden on mobile) -->
-            <div class="language-selector desktop-only">
-                <button class="lang-btn active" id="languageBtn">Language: English</button>
-                <div class="language-dropdown" id="languageDropdown" style="display: none;">
-                    <button class="lang-option" data-lang="en">English</button>
-                    <button class="lang-option" data-lang="ko">한국어</button>
-                </div>
-            </div>
-            <div class="game-mode-selector desktop-only">
-                <button class="mode-btn active" id="gameModeBtn">Game Mode: Multiple Choice</button>
-                <div class="mode-dropdown" id="modeDropdown" style="display: none;">
-                    <button class="mode-option" data-mode="multiple" data-i18n="multipleMode">Multiple Choice</button>
-                    <button class="mode-option" data-mode="typing" data-i18n="typingMode">Typing</button>
-                </div>
-            </div>
             <div class="score-board">
                 <div class="score-item">
                     <span class="label" data-i18n="score">점수</span>
@@ -138,9 +130,8 @@
             </div>
 
             <div class="controls">
-                <button class="btn btn-primary" id="nextBtn" style="display: none;" data-i18n="next">다음 문제</button>
-                <button class="btn btn-reset" id="newGameBtn" data-i18n="newGame">새 게임</button>
-                <button class="btn btn-sound desktop-only" id="soundBtn" title="사운드 끄기">🔊</button>
+                <button class="btn btn-primary btn-next" id="nextBtn" style="display: none;" data-i18n="next">다음 문제</button>
+                <button class="btn btn-reset btn-new-game" id="newGameBtn" data-i18n="newGame">새 게임</button>
             </div>
         </main>
     </div>
