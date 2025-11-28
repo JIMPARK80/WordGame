@@ -29,6 +29,7 @@
             
             <!-- Menu Panel -->
             <div class="menu-panel" id="menuPanel">
+                <button class="menu-panel-close" id="menuPanelClose" aria-label="Close">×</button>
                 <div class="menu-section">
                     <h3 class="menu-title" data-i18n="gameMode">Game Mode</h3>
                     <div class="menu-options">
@@ -83,6 +84,65 @@
         </header>
 
         <main>
+            <!-- Start Screen -->
+            <div class="start-screen" id="startScreen">
+                <div class="start-screen-content">
+                    <h1 class="start-screen-title">🎨 Picture Word Game</h1>
+                    <div class="start-screen-buttons">
+                        <button class="btn btn-primary btn-start" id="startGameBtn" data-i18n="startGame">게임 시작</button>
+                        <button class="btn btn-secondary btn-options" id="startScreenOptionsBtn" data-i18n="options">옵션</button>
+                        <button class="btn btn-danger btn-exit" id="exitGameBtn" data-i18n="exitGame">게임 종료</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Options Modal (Start Screen) -->
+            <div class="options-modal" id="optionsModal" style="display: none;">
+                <div class="options-modal-content">
+                    <div class="options-modal-header">
+                        <h2 class="options-modal-title" data-i18n="options">옵션</h2>
+                        <button class="options-modal-close" id="optionsModalClose" aria-label="Close">×</button>
+                    </div>
+                    <div class="options-modal-body">
+                        <div class="menu-section">
+                            <h3 class="menu-title" data-i18n="gameMode">Game Mode</h3>
+                            <div class="menu-options">
+                                <button class="menu-option" data-mode="multiple" id="modalModeMultiple" data-i18n="multipleMode">Multiple Choice</button>
+                                <button class="menu-option" data-mode="typing" id="modalModeTyping" data-i18n="typingMode">Typing</button>
+                            </div>
+                        </div>
+                        <div class="menu-section">
+                            <h3 class="menu-title" data-i18n="language">Language</h3>
+                            <div class="menu-options">
+                                <button class="menu-option" data-lang="en" id="modalLangEn">English</button>
+                                <button class="menu-option" data-lang="ko" id="modalLangKo">한국어</button>
+                            </div>
+                        </div>
+                        <div class="menu-section">
+                            <h3 class="menu-title" data-i18n="settings">Settings</h3>
+                            <div class="menu-options">
+                                <button class="menu-option menu-option-toggle" id="modalSoundBtn">
+                                    <span class="menu-option-icon">🔊</span>
+                                    <span class="menu-option-text" data-i18n="sound">Sound</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="menu-section">
+                            <div class="menu-options">
+                                <button class="menu-option menu-option-back" id="modalBackToGameBtn" data-i18n="backToGame">
+                                    <span class="menu-option-icon">🎮</span>
+                                    <span class="menu-option-text" data-i18n="backToGame">게임 화면으로</span>
+                                </button>
+                                <button class="menu-option menu-option-back" id="modalBackToStartBtn" data-i18n="backToStart">
+                                    <span class="menu-option-icon">🏠</span>
+                                    <span class="menu-option-text" data-i18n="backToStart">시작 화면으로</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Stage Clear Screen -->
             <div class="stage-clear-screen" id="stageClearScreen" style="display: none;">
                 <div class="stage-clear-content">

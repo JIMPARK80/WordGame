@@ -9,21 +9,21 @@
 - **드롭다운 옵션**: `0.9em` (약 14.4px) - [수정 위치: `style.css:223` (언어), `style.css:301` (게임 모드)](style.css#L223)
 
 ### 스코어보드 (Score Board)
-- **스코어 아이템 전체**: 기본 크기 - [수정 위치: `style.css:341`](style.css#L341)
-- **라벨 (Score, Correct, Question)**: `0.85em` (약 13.6px) - [수정 위치: `style.css:353`](style.css#L353)
-- **값 (숫자)**: `1.8em` (약 28.8px) - [수정 위치: `style.css:360`](style.css#L360)
+- **스코어 아이템 전체**: 기본 크기 - [수정 위치: `style.css:422`](style.css#L422)
+- **라벨 (Score, Correct, Question)**: `1.5em` (약 24px) - [수정 위치: `style.css:426`](style.css#L426)
+- **값 (숫자)**: `1.8em` (약 28.8px) - [수정 위치: `style.css:433`](style.css#L433)
 
 ### 이미지 영역 (Image Display)
 - **이모지**: `12em` (약 192px) - 매우 큼! - [수정 위치: `style.css:390`](style.css#L390)
 
 ### 입력 영역 (Input Area)
 - **입력 필드 (word-input)**: `1.2em` (약 19.2px) - [수정 위치: `style.css:486`](style.css#L486)
-- **선택지 버튼 (choice-btn)**: `1.2em` (약 19.2px) - [수정 위치: `style.css:445`](style.css#L445)
+- **선택지 버튼 (choice-btn)**: `1.5em` (약 24px) - [수정 위치: `style.css:541`](style.css#L541)
 - **제출 버튼**: `1.2em` (약 19.2px) - [수정 위치: `style.css:505` (일반 버튼)](style.css#L505)
 
 ### 피드백 (Feedback)
-- **피드백 메시지**: `1.3em` (약 20.8px) - [수정 위치: `style.css:559`](style.css#L559)
-- **힌트 텍스트**: `1.1em` (약 17.6px) - [수정 위치: `style.css:598`](style.css#L598)
+- **피드백 메시지**: `1.5em` (약 24px) - [수정 위치: `style.css:660`](style.css#L660)
+- **힌트 텍스트**: `1.5em` (약 24px) - [수정 위치: `style.css:701`](style.css#L701)
 
 ### 버튼 (Buttons)
 - **일반 버튼**: `1.2em` (약 19.2px) - [수정 위치: `style.css:505`](style.css#L505)

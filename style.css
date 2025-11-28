@@ -119,11 +119,38 @@ header {
     height: calc(100vh - 70px);
     background: white;
     box-shadow: 2px 0 20px rgba(0, 0, 0, 0.2);
-    z-index: 999;
-    transition: left 0.3s ease;
+    z-index: 3001;
+    transition: left 0.3s ease, right 0.3s ease;
     padding: 20px;
-    padding-top: 40px;
+    padding-top: 50px;
     overflow-y: auto;
+}
+
+.menu-panel-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(102, 126, 234, 0.1);
+    border: none;
+    color: #667eea;
+    font-size: 2em;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    line-height: 1;
+    padding: 0;
+    z-index: 10;
+}
+
+.menu-panel-close:hover {
+    background: rgba(102, 126, 234, 0.2);
+    transform: rotate(90deg);
+    color: #764ba2;
 }
 
 /* Desktop menu panel - slide from right */
@@ -215,6 +242,30 @@ header {
 
 .menu-option-text {
     flex: 1;
+}
+
+.menu-option-back {
+    background: linear-gradient(135deg, #51cf66 0%, #40c057 100%);
+    color: white;
+    border-color: #51cf66;
+}
+
+.menu-option-back:hover {
+    background: linear-gradient(135deg, #40c057 0%, #51cf66 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(81, 207, 102, 0.4);
+}
+
+/* 게임 화면으로 버튼 - 파란색 */
+#modalBackToGameBtn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-color: #667eea;
+    margin-bottom: 10px;
+}
+
+#modalBackToGameBtn:hover {
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
 }
 
 .desktop-only {
@@ -425,7 +476,7 @@ header h1 {
 
 .score-item .label {
     display: block;
-    font-size: 1.0em;
+    font-size: 1.5em;
     opacity: 0.9;
     margin-bottom: 5px;
 }
@@ -540,7 +591,7 @@ header h1 {
 
 .choice-btn {
     padding: 20px;
-    font-size: 1.2em;
+    font-size: 1.5em;
     font-weight: 600;
     border: 3px solid #667eea;
     border-radius: 15px;
@@ -645,7 +696,7 @@ header h1 {
 
 .btn-new-game {
     width: 100%;
-    font-size: 1.3em;
+    font-size: 1.8em;
     padding: 18px 30px;
     font-weight: 700;
 }
@@ -661,7 +712,7 @@ header h1 {
     text-align: center;
     padding: 15px;
     border-radius: 12px;
-    font-size: 1.3em;
+    font-size: 1.5em;
     font-weight: 600;
     margin-bottom: 15px;
     margin-top: 10px;
@@ -700,7 +751,7 @@ header h1 {
 
 .hint-text {
     color: #856404;
-    font-size: 1.1em;
+    font-size: 1.5em;
     text-align: center;
 }
 
@@ -711,6 +762,291 @@ header h1 {
     flex-wrap: wrap;
     margin-top: 20px;
     padding-top: 15px;
+}
+
+/* Start Screen */
+.start-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3000;
+    animation: fadeIn 0.5s ease;
+}
+
+.start-screen-content {
+    background: rgb(254, 255, 218);
+    border-radius: 30px;
+    padding: 60px 50px;
+    text-align: center;
+    max-width: 700px;
+    width: 100%;
+    overflow-y: auto;
+    max-height: 90vh;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    animation: scaleIn 0.5s ease;
+}
+
+.start-screen-title {
+    color: #667eea;
+    font-size: 3.0em;
+    margin-bottom: 50px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.start-screen-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.btn-start {
+    width: 80%;
+    font-size: 2em;
+    padding: 20px 30px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-start:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+.btn-options {
+    width: 80%;
+    font-size: 2em;
+    padding: 18px 30px;
+    font-weight: 600;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4);
+}
+
+.btn-options:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(245, 87, 108, 0.6);
+}
+
+.btn-exit {
+    width: 80%;
+    font-size: 2.0em;
+    padding: 16px 30px;
+    font-weight: 600;
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+}
+
+.btn-exit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+}
+
+@media (max-width: 600px) {
+    .start-screen-content {
+        padding: 40px 30px;
+        max-width: 90%;
+    }
+
+    .start-screen-title {
+        font-size: 2.5em;
+        margin-bottom: 40px;
+    }
+
+    .start-screen-buttons {
+        gap: 15px;
+    }
+
+    .btn-start {
+        font-size: 1.3em;
+        padding: 18px 25px;
+    }
+
+    .btn-options {
+        font-size: 1.2em;
+        padding: 16px 25px;
+    }
+
+    .btn-exit {
+        font-size: 1.1em;
+        padding: 14px 25px;
+    }
+}
+
+/* Options Modal (Start Screen) */
+.options-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(102, 126, 234, 0.1) !important;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3002;
+    animation: fadeIn 0.3s ease;
+}
+
+.options-modal-content {
+    background: white;
+    border-radius: 20px;
+    padding: 0;
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    animation: scaleIn 0.3s ease;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.options-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 30px;
+    border-bottom: 2px solid #f0f0f0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.options-modal-title {
+    color: white;
+    font-size: 2.0em;
+    font-weight: 700;
+    margin: 0;
+}
+
+.options-modal-close {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    font-size: 3.0em;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    line-height: 1;
+    padding: 0;
+    position: relative;
+}
+
+.options-modal-close:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+}
+
+.options-modal-close:active {
+    transform: rotate(90deg) scale(0.95);
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.options-modal-close::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: scale(0);
+}
+
+.options-modal-close:hover::before {
+    opacity: 1;
+    transform: scale(1.5);
+}
+
+.options-modal-body {
+    padding: 30px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.options-modal-body .menu-section {
+    margin-bottom: 30px;
+    margin-top: 0;
+    font-size: 1.5em;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+/* Game Mode 섹션 - 보라색 */
+.options-modal-body .menu-section:nth-child(1) {
+    background: rgba(102, 126, 234, 0.1);
+    border: 2px solid rgba(102, 126, 234, 0.2);
+}
+
+/* Language 섹션 - 파란색 */
+.options-modal-body .menu-section:nth-child(2) {
+    background: rgba(81, 207, 102, 0.1);
+    border: 2px solid rgba(81, 207, 102, 0.2);
+}
+
+/* Settings 섹션 - 분홍색 */
+.options-modal-body .menu-section:nth-child(3) {
+    background: rgba(245, 87, 108, 0.1);
+    border: 2px solid rgba(245, 87, 108, 0.2);
+}
+
+/* Back to Start 섹션 - 노란색 */
+.options-modal-body .menu-section:nth-child(4) {
+    background: rgba(255, 217, 61, 0.1);
+    border: 2px solid rgba(255, 217, 61, 0.2);
+    margin-bottom: 0;
+}
+
+.options-modal-body .menu-section:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 600px) {
+    .options-modal-content {
+        width: 95%;
+        max-height: 85vh;
+    }
+
+    .options-modal-header {
+        padding: 20px;
+    }
+
+    .options-modal-title {
+        font-size: 2.0em;
+    }
+
+    .options-modal-body {
+        padding: 20px;
+    }
 }
 
 /* Stage Clear Screen */

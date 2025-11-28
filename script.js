@@ -125,14 +125,34 @@ function toggleSound() {
 // Update sound button icon
 function updateSoundButtonIcon() {
     const menuSoundBtn = document.getElementById('menuSoundBtn');
+    const modalSoundBtn = document.getElementById('modalSoundBtn');
     const icon = soundEnabled ? '🔊' : '🔇';
+    const soundText = soundEnabled ? t('soundOn') : t('soundOff');
     
+    // Update in-game menu sound button
     if (menuSoundBtn) {
         const iconElement = menuSoundBtn.querySelector('.menu-option-icon');
         if (iconElement) {
             iconElement.textContent = icon;
         }
-        menuSoundBtn.classList.toggle('active', !soundEnabled);
+        const textElement = menuSoundBtn.querySelector('.menu-option-text');
+        if (textElement) {
+            textElement.textContent = soundText;
+        }
+        menuSoundBtn.classList.toggle('active', soundEnabled);
+    }
+    
+    // Update modal sound button
+    if (modalSoundBtn) {
+        const iconElement = modalSoundBtn.querySelector('.menu-option-icon');
+        if (iconElement) {
+            iconElement.textContent = icon;
+        }
+        const textElement = modalSoundBtn.querySelector('.menu-option-text');
+        if (textElement) {
+            textElement.textContent = soundText;
+        }
+        modalSoundBtn.classList.toggle('active', soundEnabled);
     }
 }
 
@@ -171,8 +191,15 @@ const translations = {
         tryAgain: '다시 시도',
         settings: '설정',
         sound: '사운드',
+        soundOn: '사운드 켜기',
+        soundOff: '사운드 끄기',
         time: '시간',
-        timeUp: '시간 초과!'
+        timeUp: '시간 초과!',
+        startGame: '게임 시작',
+        options: '옵션',
+        exitGame: '게임 종료',
+        backToStart: '시작 화면으로',
+        backToGame: '게임 화면으로'
     },
     en: {
         gameTitle: '🎨 Picture Word Game',
@@ -207,8 +234,15 @@ const translations = {
         tryAgain: 'Try Again',
         settings: 'Settings',
         sound: 'Sound',
+        soundOn: 'Sound ON',
+        soundOff: 'Sound OFF',
         time: 'Time',
-        timeUp: 'Time Up!'
+        timeUp: 'Time Up!',
+        startGame: 'Start Game',
+        options: 'Options',
+        exitGame: 'Exit Game',
+        backToStart: 'Back to Start',
+        backToGame: 'Back to Game'
     }
 };
 
@@ -392,9 +426,13 @@ async function initGame() {
         return;
     }
     
-    // Hide stage clear screen if visible
+    // Hide start screen and stage clear screen if visible
+    const startScreen = document.getElementById('startScreen');
     const stageClearScreen = document.getElementById('stageClearScreen');
     const gameArea = document.getElementById('gameArea');
+    if (startScreen) {
+        startScreen.style.display = 'none';
+    }
     if (stageClearScreen) {
         stageClearScreen.style.display = 'none';
     }
@@ -836,6 +874,65 @@ function showMessage(text, type) {
     }, 2000);
 }
 
+// Show start screen
+function showStartScreen() {
+    const startScreen = document.getElementById('startScreen');
+    const gameArea = document.getElementById('gameArea');
+    const stageClearScreen = document.getElementById('stageClearScreen');
+    
+    if (startScreen) {
+        startScreen.style.display = 'flex';
+    }
+    if (gameArea) {
+        gameArea.style.display = 'none';
+    }
+    if (stageClearScreen) {
+        stageClearScreen.style.display = 'none';
+    }
+    
+    // Stop any running timers
+    stopTimer();
+}
+
+// Show game area (back to game)
+function showGameArea() {
+    const startScreen = document.getElementById('startScreen');
+    const gameArea = document.getElementById('gameArea');
+    const stageClearScreen = document.getElementById('stageClearScreen');
+    const optionsModal = document.getElementById('optionsModal');
+    
+    if (startScreen) {
+        startScreen.style.display = 'none';
+    }
+    if (gameArea) {
+        gameArea.style.display = 'block';
+    }
+    if (stageClearScreen) {
+        stageClearScreen.style.display = 'none';
+    }
+    if (optionsModal) {
+        optionsModal.style.display = 'none';
+    }
+}
+
+// Exit game
+function exitGame() {
+    if (confirm(currentLanguage === 'ko' ? '게임을 종료하시겠습니까?' : 'Are you sure you want to exit the game?')) {
+        playSound('click');
+        // Try to close the window
+        window.close();
+        
+        // Check if window.close() worked after a short delay
+        // (Most browsers block window.close() unless the window was opened by JavaScript)
+        setTimeout(() => {
+            // If window is still open, show message
+            if (!document.hidden) {
+                alert(currentLanguage === 'ko' ? '게임을 종료하려면 브라우저 탭을 닫아주세요.' : 'Please close the browser tab to exit the game.');
+            }
+        }, 100);
+    }
+}
+
 // Event listeners
 document.getElementById('submitBtn').addEventListener('click', checkAnswer);
 document.getElementById('nextBtn').addEventListener('click', nextQuestion);
@@ -843,7 +940,110 @@ document.getElementById('newGameBtn').addEventListener('click', () => {
     // Reset stage number and score for new game
     gameState.stageNumber = 1;
     gameState.score = 0;
+    showStartScreen();
+});
+
+// Start screen event listeners
+document.getElementById('startGameBtn').addEventListener('click', () => {
+    // Reset stage number and score for new game
+    gameState.stageNumber = 1;
+    gameState.score = 0;
     initGame();
+    playSound('click');
+});
+
+// Show options modal
+function showOptionsModal() {
+    const optionsModal = document.getElementById('optionsModal');
+    if (optionsModal) {
+        optionsModal.style.display = 'flex';
+        // Update active states in modal
+        updateModalActiveStates();
+    }
+}
+
+// Hide options modal
+function hideOptionsModal() {
+    const optionsModal = document.getElementById('optionsModal');
+    if (optionsModal) {
+        optionsModal.style.display = 'none';
+    }
+}
+
+// Close menu panel
+function closeMenuPanel() {
+    const menuPanel = document.getElementById('menuPanel');
+    const settingsBtn = document.getElementById('settingsBtn');
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    
+    if (menuPanel) {
+        menuPanel.classList.remove('active');
+    }
+    if (settingsBtn) {
+        settingsBtn.classList.remove('active');
+    }
+    if (hamburgerBtn) {
+        hamburgerBtn.classList.remove('active');
+    }
+}
+
+// Update active states in modal
+function updateModalActiveStates() {
+    // Update game mode active state
+    document.querySelectorAll('#optionsModal .menu-option[data-mode]').forEach(opt => {
+        opt.classList.remove('active');
+        if (opt.dataset.mode === gameMode) {
+            opt.classList.add('active');
+        }
+    });
+    
+    // Update language active state
+    document.querySelectorAll('#optionsModal .menu-option[data-lang]').forEach(opt => {
+        opt.classList.remove('active');
+        if (opt.dataset.lang === currentLanguage) {
+            opt.classList.add('active');
+        }
+    });
+    
+    // Update sound button (use updateSoundButtonIcon for consistency)
+    updateSoundButtonIcon();
+}
+
+document.getElementById('startScreenOptionsBtn').addEventListener('click', () => {
+    showOptionsModal();
+    playSound('click');
+});
+
+// Close options modal
+document.getElementById('optionsModalClose').addEventListener('click', () => {
+    hideOptionsModal();
+    playSound('click');
+});
+
+// Back to game button
+document.getElementById('modalBackToGameBtn').addEventListener('click', () => {
+    hideOptionsModal();
+    showGameArea();
+    playSound('click');
+});
+
+// Back to start screen button
+document.getElementById('modalBackToStartBtn').addEventListener('click', () => {
+    hideOptionsModal();
+    showStartScreen();
+    playSound('click');
+});
+
+// Close modal when clicking outside
+document.getElementById('optionsModal').addEventListener('click', (e) => {
+    if (e.target.id === 'optionsModal') {
+        hideOptionsModal();
+    }
+});
+
+document.getElementById('exitGameBtn').addEventListener('click', () => {
+    exitGame();
+    playSound('click');
 });
 document.getElementById('stageClearNextStageBtn').addEventListener('click', () => {
     document.getElementById('stageClearScreen').style.display = 'none';
@@ -857,21 +1057,34 @@ document.getElementById('stageClearNextStageBtn').addEventListener('click', () =
 const settingsBtn = document.getElementById('settingsBtn');
 const hamburgerBtn = document.getElementById('hamburgerBtn');
 const menuPanel = document.getElementById('menuPanel');
+const menuPanelClose = document.getElementById('menuPanelClose');
 
-// Desktop settings button
-if (settingsBtn && menuPanel) {
-    settingsBtn.addEventListener('click', () => {
-        settingsBtn.classList.toggle('active');
-        menuPanel.classList.toggle('active');
+// Menu panel close button
+if (menuPanelClose) {
+    menuPanelClose.addEventListener('click', () => {
+        closeMenuPanel();
         playSound('click');
     });
 }
 
-// Hamburger menu toggle (Mobile)
-if (hamburgerBtn && menuPanel) {
+// Desktop settings button - open options modal
+if (settingsBtn) {
+    settingsBtn.addEventListener('click', () => {
+        // Close menu panel if open
+        closeMenuPanel();
+        // Open options modal
+        showOptionsModal();
+        playSound('click');
+    });
+}
+
+// Hamburger menu toggle (Mobile) - open options modal
+if (hamburgerBtn) {
     hamburgerBtn.addEventListener('click', () => {
-        hamburgerBtn.classList.toggle('active');
-        menuPanel.classList.toggle('active');
+        // Close menu panel if open
+        closeMenuPanel();
+        // Open options modal
+        showOptionsModal();
         playSound('click');
     });
 }
@@ -883,42 +1096,64 @@ if (menuPanel) {
             const isClickInsideMenu = menuPanel.contains(e.target);
             const isClickOnSettingsBtn = settingsBtn && settingsBtn.contains(e.target);
             const isClickOnHamburgerBtn = hamburgerBtn && hamburgerBtn.contains(e.target);
+            const isClickOnStartScreenOptionsBtn = document.getElementById('startScreenOptionsBtn') && document.getElementById('startScreenOptionsBtn').contains(e.target);
             
-            if (!isClickInsideMenu && !isClickOnSettingsBtn && !isClickOnHamburgerBtn) {
-                menuPanel.classList.remove('active');
-                if (settingsBtn) settingsBtn.classList.remove('active');
-                if (hamburgerBtn) hamburgerBtn.classList.remove('active');
+            if (!isClickInsideMenu && !isClickOnSettingsBtn && !isClickOnHamburgerBtn && !isClickOnStartScreenOptionsBtn) {
+                closeMenuPanel();
             }
         }
     });
 }
 
-// Menu panel options
-document.querySelectorAll('.menu-option[data-mode]').forEach(option => {
+// Menu panel options (in-game menu)
+document.querySelectorAll('#menuPanel .menu-option[data-mode]').forEach(option => {
     option.addEventListener('click', (e) => {
         const mode = e.target.dataset.mode;
         changeGameMode(mode);
         // Close menu
-        if (hamburgerBtn && menuPanel) {
-            hamburgerBtn.classList.remove('active');
-            menuPanel.classList.remove('active');
-        }
+        closeMenuPanel();
         playSound('click');
     });
 });
 
-document.querySelectorAll('.menu-option[data-lang]').forEach(option => {
+document.querySelectorAll('#menuPanel .menu-option[data-lang]').forEach(option => {
     option.addEventListener('click', (e) => {
         const lang = e.target.dataset.lang;
         changeLanguage(lang);
         // Close menu
-        if (hamburgerBtn && menuPanel) {
-            hamburgerBtn.classList.remove('active');
-            menuPanel.classList.remove('active');
-        }
+        closeMenuPanel();
         playSound('click');
     });
 });
+
+// Options modal options (start screen)
+document.querySelectorAll('#optionsModal .menu-option[data-mode]').forEach(option => {
+    option.addEventListener('click', (e) => {
+        const mode = e.target.dataset.mode;
+        changeGameMode(mode);
+        updateModalActiveStates();
+        playSound('click');
+    });
+});
+
+document.querySelectorAll('#optionsModal .menu-option[data-lang]').forEach(option => {
+    option.addEventListener('click', (e) => {
+        const lang = e.target.dataset.lang;
+        changeLanguage(lang);
+        updateModalActiveStates();
+        playSound('click');
+    });
+});
+
+// Modal sound button
+const modalSoundBtn = document.getElementById('modalSoundBtn');
+if (modalSoundBtn) {
+    modalSoundBtn.addEventListener('click', () => {
+        toggleSound();
+        updateModalActiveStates();
+        playSound('click');
+    });
+}
 
 // Desktop dropdowns removed - using menu panel now
 
@@ -955,7 +1190,10 @@ loadWordsDatabase().then(() => {
     changeGameMode('multiple');
     updateUILanguage();
     changeLanguage(currentLanguage); // Initialize active states in menu
-    initGame();
+    // Show start screen instead of starting game immediately
+    showStartScreen();
+    // Initialize modal active states
+    updateModalActiveStates();
 }).catch(error => {
     console.error('Failed to initialize game:', error);
     showMessage(t('loadError'), 'error');
