@@ -23,6 +23,143 @@ let gameMode = 'multiple'; // 'typing' or 'multiple'
 // Picture-words database (loaded from JSON)
 let pictureDatabase = [];
 
+// Emoji auto-generation mapping (단어 의미에 따른 이모지 자동 매칭)
+const emojiMapping = {
+    // 동물 (Animals)
+    'cat': '🐱', 'dog': '🐶', 'panda': '🐼', 'tiger': '🐯', 'lion': '🦁', 'elephant': '🐘',
+    'giraffe': '🦒', 'rabbit': '🐰', 'bear': '🐻', 'frog': '🐸', 'pig': '🐷', 'cow': '🐮',
+    'horse': '🐴', 'chicken': '🐔', 'duck': '🦆', 'bird': '🐦', 'owl': '🦉', 'bee': '🐝',
+    'fox': '🦊', 'wolf': '🐺', 'deer': '🦌', 'monkey': '🐵', 'zebra': '🦓', 'kangaroo': '🦘',
+    'koala': '🐨', 'dolphin': '🐬', 'whale': '🐋', 'shark': '🦈', 'turtle': '🐢', 'snake': '🐍',
+    'mouse': '🐭', 'squirrel': '🐿️', 'camel': '🐫', 'penguin': '🐧', 'chick': '🐤', 'baby': '👶',
+    
+    // 과일 (Fruits)
+    'apple': '🍎', 'banana': '🍌', 'grape': '🍇', 'strawberry': '🍓', 'orange': '🍊',
+    'watermelon': '🍉', 'peach': '🍑', 'cherry': '🍒', 'kiwi': '🥝', 'pineapple': '🍍',
+    
+    // 음식 (Food)
+    'pizza': '🍕', 'hamburger': '🍔', 'french fries': '🍟', 'taco': '🌮', 'ramen': '🍜',
+    'bento box': '🍱', 'rice ball': '🍙', 'sushi': '🍣', 'cake': '🎂', 'cookie': '🍪',
+    'chocolate': '🍫', 'candy': '🍬', 'coffee': '☕', 'tea': '🍵', 'milk': '🥛', 'bread': '🍞',
+    'butter': '🧈', 'cheese': '🧀', 'egg': '🥚', 'juice': '🧃', 'soup': '🍲', 'salad': '🥗',
+    'donut': '🍩', 'muffin': '🧁', 'spaghetti': '🍝', 'hotdog': '🌭', 'steak': '🥩',
+    'shrimp': '🦐', 'sandwich': '🥪', 'yogurt': '🥛', 'honey': '🍯', 'jam': '🍯', 'ice cream': '🍦',
+    
+    // 교통수단 (Vehicles)
+    'car': '🚗', 'bus': '🚌', 'taxi': '🚕', 'ambulance': '🚑', 'fire truck': '🚒',
+    'police car': '🚓', 'bicycle': '🚲', 'airplane': '✈️', 'ship': '🚢', 'train': '🚂',
+    
+    // 장소 (Places)
+    'house': '🏠', 'school': '🏫', 'hospital': '🏥', 'convenience store': '🏪',
+    'department store': '🏬', 'barn': '🏚️', 'ocean': '🌊', 'mountain': '🏔️', 'beach': '🏖️',
+    'kitchen': '🍳', 'bathroom': '🚿', 'garden': '🌳', 'table': '🪑', 'chair': '🪑', 'bed': '🛏️',
+    'window': '🪟', 'door': '🚪', 'floor': '🪵', 'wall': '🧱',
+    
+    // 자연 (Nature)
+    'tree': '🌳', 'flower': '🌺', 'sun': '🌞', 'moon': '🌙', 'star': '⭐', 'cloud': '☁️',
+    'thunderstorm': '⛈️', 'rainbow': '🌈', 'snow': '❄️', 'river': '🌊', 'lake': '🏞️',
+    'forest': '🌲', 'desert': '🏜️', 'hill': '⛰️', 'volcano': '🌋', 'leaf': '🍃', 'rock': '🪨',
+    'wind': '💨', 'snowflake': '❄️', 'lightning': '⚡', 'storm': '🌪️', 'wave': '🌊',
+    'island': '🏝️', 'field': '🌾',
+    
+    // 동사 (Verbs)
+    'run': '🏃', 'walk': '🚶', 'eat': '🍽️', 'drink': '🥤', 'sleep': '😴', 'play': '🎮',
+    'sing': '🎤', 'dance': '💃', 'read': '📖', 'write': '✍️', 'swim': '🏊', 'climb': '🧗',
+    'open': '🚪', 'close': '🚪', 'draw': '🎨', 'cook': '👨‍🍳', 'wash': '🧼', 'clean': '🧹',
+    'talk': '💬', 'listen': '👂', 'look': '👀', 'smile': '😊', 'cry': '😢', 'help': '🤝',
+    'catch': '🤲', 'throw': '⚾', 'build': '🏗️', 'ride': '🚴', 'plant': '🌱', 'jump': '🤸',
+    
+    // 형용사 (Adjectives)
+    'big': '📦', 'small': '🔹', 'tall': '🏗️', 'short': '🔻', 'long': '➖', 'fast': '⚡',
+    'slow': '🐌', 'hot': '🔥', 'cold': '❄️', 'warm': '☀️', 'cool': '💨', 'happy': '😄',
+    'sad': '😢', 'angry': '😠', 'tired': '😴', 'hungry': '🍽️', 'full': '😋', 'dirty': '💩',
+    'pretty': '💐', 'cute': '🐰', 'funny': '😄', 'noisy': '🔊', 'quiet': '🔇', 'bright': '💡',
+    'dark': '🌙', 'strong': '💪', 'weak': '🪶', 'new': '🆕', 'old': '🏛️',
+    
+    // 물건/도구 (Objects/Tools)
+    'umbrella': '☔', 'balloon': '🎈', 'gift': '🎁', 'christmas tree': '🎄', 'soccer ball': '⚽',
+    'basketball': '🏀', 'tennis ball': '🎾', 'volleyball': '🏐', 'guitar': '🎸', 'piano': '🎹',
+    'microphone': '🎤', 'smartphone': '📱', 'laptop': '💻', 'watch': '⌚', 'book': '📚',
+    'pencil': '✏️', 'palette': '🎨', 'mask': '🎭', 'glasses': '👓', 'ring': '💍', 'camera': '📷',
+    'candle': '🕯️', 'knife': '🔪', 'ruler': '📏', 'broom': '🧹', 'bottle': '🪣', 'basket': '🧺',
+    'lightbulb': '💡', 'radio': '📻', 'telescope': '🔭', 'map': '🗺️', 'rope': '🪢', 'eraser': '📐',
+    'backpack': '🎒', 'hammer': '🔨', 'ladder': '🪜', 'heater': '🌡️', 'speaker': '📢', 'shovel': '⛏️',
+    'fan': '🌀', 'towel': '🧻', 'cup': '☕', 'soap': '🧴', 'plate': '🍽️', 'fork': '🍴', 'spoon': '🥄',
+    'bag': '👜', 'key': '🔑', 'picture': '🖼️', 'clock': '🕐',
+    
+    // 직업 (Professions)
+    'bus driver': '🚌👨‍✈️', 'firefighter': '👨‍🚒', 'nurse': '👩‍⚕️', 'doctor': '👨‍⚕️',
+    'teacher': '👩‍🏫', 'chef': '👨‍🍳', 'pilot': '✈️', 'farmer': '👨‍🌾', 'police officer': '👮',
+    'scientist': '👩‍🔬', 'painter': '🎨', 'singer': '🎤', 'astronaut': '👨‍🚀',
+    
+    // 옷/의류 (Clothing)
+    'shirt': '👕', 'pants': '👖', 'sneakers': '👟', 'crown': '👑', 'hat': '🎩',
+    
+    // 기타
+    'help': '🆘', 'bath': '🛁', 'song': '🎵', 'cereal': '🥣', 'cereal': '🥣'
+};
+
+// 이모지 자동 생성 함수 (단어에 맞는 이모지 찾기)
+function generateEmoji(word, hint = '') {
+    if (!word) return '❓';
+    
+    const wordLower = word.toLowerCase().trim();
+    
+    // 1. 직접 매칭 시도
+    if (emojiMapping[wordLower]) {
+        return emojiMapping[wordLower];
+    }
+    
+    // 2. 부분 매칭 시도 (복합 단어)
+    for (const [key, emoji] of Object.entries(emojiMapping)) {
+        if (wordLower.includes(key) || key.includes(wordLower)) {
+            return emoji;
+        }
+    }
+    
+    // 3. 힌트에서 키워드 추출하여 매칭
+    if (hint) {
+        const hintLower = hint.toLowerCase();
+        for (const [key, emoji] of Object.entries(emojiMapping)) {
+            if (hintLower.includes(key)) {
+                return emoji;
+            }
+        }
+    }
+    
+    // 4. 카테고리 기반 기본 이모지
+    if (wordLower.includes('animal') || wordLower.includes('동물')) return '🐾';
+    if (wordLower.includes('food') || wordLower.includes('음식')) return '🍽️';
+    if (wordLower.includes('fruit') || wordLower.includes('과일')) return '🍎';
+    if (wordLower.includes('vehicle') || wordLower.includes('교통')) return '🚗';
+    if (wordLower.includes('place') || wordLower.includes('장소')) return '📍';
+    if (wordLower.includes('action') || wordLower.includes('동작') || wordLower.includes('하다')) return '🎬';
+    if (wordLower.includes('big') || wordLower.includes('큰')) return '📦';
+    if (wordLower.includes('small') || wordLower.includes('작은')) return '🔹';
+    
+    // 5. 기본 이모지 (매칭 실패 시)
+    return '❓';
+}
+
+// 이모지 자동 할당 함수 (words.json 데이터에 이모지가 없거나 "?"인 경우)
+function assignEmojiIfMissing(wordData) {
+    if (!wordData.emoji || wordData.emoji === '?' || wordData.emoji === '' || wordData.emoji === '❓') {
+        const wordEn = typeof wordData.word === 'object' ? wordData.word.en : wordData.word;
+        const wordKo = typeof wordData.word === 'object' ? wordData.word.ko : wordData.word;
+        const hintEn = typeof wordData.hint === 'object' ? wordData.hint.en : wordData.hint;
+        const hintKo = typeof wordData.hint === 'object' ? wordData.hint.ko : wordData.hint;
+        
+        // 영어 단어로 먼저 시도, 실패 시 한국어 단어로 시도
+        let emoji = generateEmoji(wordEn, hintEn);
+        if (emoji === '❓') {
+            emoji = generateEmoji(wordKo, hintKo);
+        }
+        
+        wordData.emoji = emoji;
+    }
+    return wordData;
+}
+
 // Sound effects
 let soundEnabled = true;
 
@@ -406,6 +543,10 @@ async function loadWordsDatabase() {
             throw new Error('Failed to load words.json');
         }
         pictureDatabase = await response.json();
+        
+        // 이모지가 없거나 "?"인 경우 자동으로 이모지 할당
+        pictureDatabase = pictureDatabase.map(wordData => assignEmojiIfMissing(wordData));
+        
         return pictureDatabase;
     } catch (error) {
         console.error('Error loading words database:', error);
@@ -561,6 +702,20 @@ function loadQuestion() {
     stopTimer();
     
     const question = gameState.questions[gameState.currentQuestion];
+    
+    // 이모지가 없거나 "?"인 경우 자동으로 생성
+    if (!question.emoji || question.emoji === '?' || question.emoji === '' || question.emoji === '❓') {
+        const wordEn = typeof question.word === 'object' ? question.word.en : question.word;
+        const wordKo = typeof question.word === 'object' ? question.word.ko : question.word;
+        const hintEn = typeof question.hint === 'object' ? question.hint.en : question.hint;
+        const hintKo = typeof question.hint === 'object' ? question.hint.ko : question.hint;
+        
+        question.emoji = generateEmoji(wordEn, hintEn);
+        if (question.emoji === '❓') {
+            question.emoji = generateEmoji(wordKo, hintKo);
+        }
+    }
+    
     // Get word and hint for current language
     const word = typeof question.word === 'object' ? question.word[currentLanguage] : question.word;
     gameState.currentAnswer = word;
@@ -571,10 +726,11 @@ function loadQuestion() {
     if (question.image) {
         // Use image file if available (from images folder)
         const imagePath = question.image.startsWith('images/') ? question.image : `images/${question.image}`;
-        imageDisplay.innerHTML = `<img src="${imagePath}" alt="${word}" class="game-image" onerror="this.parentElement.innerHTML='<div class=\\'emoji\\'>${question.emoji}</div>'">`;
+        imageDisplay.innerHTML = `<img src="${imagePath}" alt="${word}" class="game-image" onerror="this.parentElement.innerHTML='<div class=\\'emoji\\'>${question.emoji || generateEmoji(word)}</div>'">`;
     } else {
-        // Use emoji as fallback
-        imageDisplay.innerHTML = `<div class="emoji">${question.emoji}</div>`;
+        // Use emoji as fallback (자동 생성된 이모지 사용)
+        const emojiToDisplay = question.emoji || generateEmoji(word);
+        imageDisplay.innerHTML = `<div class="emoji">${emojiToDisplay}</div>`;
     }
     
     // Clear feedback
