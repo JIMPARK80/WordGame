@@ -746,6 +746,9 @@ function loadQuestion() {
     hintArea.style.display = 'block';
     gameState.hintShown = true; // Mark as shown (no score penalty)
     
+    // Adjust font size to fit one line
+    adjustHintFontSize();
+    
     // Hide next button
     document.getElementById('nextBtn').style.display = 'none';
     
@@ -842,6 +845,10 @@ function selectChoice(selectedWord, isUserAction = true) {
         }
     });
     
+    // Hide hint when showing feedback
+    const hintArea = document.getElementById('hintArea');
+    hintArea.style.display = 'none';
+    
     if (isCorrect) {
         feedback.textContent = t('correctMsg');
         feedback.className = 'feedback correct';
@@ -858,6 +865,11 @@ function selectChoice(selectedWord, isUserAction = true) {
     }
     
     updateDisplay();
+    
+    // Adjust feedback font size to fit one line
+    setTimeout(() => {
+        adjustFeedbackFontSize();
+    }, 0);
     
     // Auto-advance to next question after 3 seconds (both correct and incorrect)
     autoNextTimeout = setTimeout(() => {
@@ -888,6 +900,10 @@ function checkAnswer() {
     // Check if answer is correct (case-insensitive)
     const isCorrect = userAnswer.toLowerCase() === gameState.currentAnswer.toLowerCase();
     
+    // Hide hint when showing feedback
+    const hintArea = document.getElementById('hintArea');
+    hintArea.style.display = 'none';
+    
     if (isCorrect) {
         feedback.textContent = t('correctMsg');
         feedback.className = 'feedback correct';
@@ -905,10 +921,75 @@ function checkAnswer() {
     
     updateDisplay();
     
+    // Adjust feedback font size to fit one line
+    setTimeout(() => {
+        adjustFeedbackFontSize();
+    }, 0);
+    
     // Auto-advance to next question after 3 seconds (both correct and incorrect)
     autoNextTimeout = setTimeout(() => {
         autoNextQuestion();
     }, 3000);
+}
+
+// Adjust text font size to fit one line (for both hint and feedback)
+function adjustTextFontSize(element, container) {
+    if (!element || !container) return;
+    
+    // Reset font size to initial (20px)
+    element.style.fontSize = '';
+    
+    // Get initial font size in pixels (should be same for both hint and feedback: 20px)
+    const initialFontSize = parseFloat(window.getComputedStyle(element).fontSize);
+    
+    // Maximum font size (same for both hint and feedback: 20px)
+    const maxFontSize = 20;
+    
+    // Minimum font size (same for both hint and feedback: 15px)
+    const minFontSize = 15;
+    
+    // Get container width (accounting for padding)
+    const padding = 30; // 15px padding on each side
+    const containerWidth = container.offsetWidth - padding;
+    const textWidth = element.scrollWidth;
+    
+    // If text overflows, reduce font size proportionally
+    if (textWidth > containerWidth) {
+        const ratio = containerWidth / textWidth;
+        const newFontSize = Math.max(
+            Math.min(
+                initialFontSize * ratio * 0.95, // 95% to add some margin
+                maxFontSize // Maximum font size limit (20px)
+            ),
+            minFontSize // Minimum font size limit (15px)
+        );
+        element.style.fontSize = `${newFontSize}px`;
+    } else {
+        // If text fits, use maximum font size (20px)
+        const newFontSize = Math.min(initialFontSize, maxFontSize);
+        element.style.fontSize = `${newFontSize}px`;
+    }
+}
+
+// Adjust hint font size to fit one line
+function adjustHintFontSize() {
+    const hintText = document.getElementById('hintText');
+    const hintArea = document.getElementById('hintArea');
+    adjustTextFontSize(hintText, hintArea);
+}
+
+// Adjust feedback font size to fit one line (same as hint)
+function adjustFeedbackFontSize() {
+    const feedback = document.getElementById('feedback');
+    const feedbackContainer = feedback; // feedback element itself is the container
+    
+    // Correct message is short, so always use 20px
+    if (feedback.classList.contains('correct')) {
+        feedback.style.fontSize = '20px';
+    } else {
+        // Incorrect message might be long, so adjust if needed
+        adjustTextFontSize(feedback, feedbackContainer);
+    }
 }
 
 // Show hint (manual - now hints are shown automatically, but keep function for compatibility)
@@ -1092,12 +1173,6 @@ function exitGame() {
 // Event listeners
 document.getElementById('submitBtn').addEventListener('click', checkAnswer);
 document.getElementById('nextBtn').addEventListener('click', nextQuestion);
-document.getElementById('newGameBtn').addEventListener('click', () => {
-    // Reset stage number and score for new game
-    gameState.stageNumber = 1;
-    gameState.score = 0;
-    showStartScreen();
-});
 
 // Start screen event listeners
 document.getElementById('startGameBtn').addEventListener('click', () => {
@@ -1354,3 +1429,4 @@ loadWordsDatabase().then(() => {
     console.error('Failed to initialize game:', error);
     showMessage(t('loadError'), 'error');
 });
+

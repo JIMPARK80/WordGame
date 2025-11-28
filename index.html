@@ -10,22 +10,22 @@
 <body>
     <div class="container">
         <header style="position: relative;">
-            <h1 id="gameTitle">🎨 그림 맞추기 게임</h1>
-            
-            <!-- Settings Menu Button (Desktop) -->
-            <div class="settings-menu-wrapper">
-                <button class="settings-btn desktop-only" id="settingsBtn" aria-label="Settings">
-                    ⚙️
-                </button>
-            </div>
-            
-            <!-- Hamburger Menu Button (Mobile) -->
-            <div style="display: flex; justify-content: flex-start; padding-left: 0;">
+            <div class="header-top">
+                <!-- Hamburger Menu Button (Mobile) -->
                 <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu">
                     <span></span>
                     <span></span>
                     <span></span>
                 </button>
+                
+                <h1 id="gameTitle">🎨 그림 맞추기 게임</h1>
+                
+                <!-- Settings Menu Button (Desktop) -->
+                <div class="settings-menu-wrapper">
+                    <button class="settings-btn desktop-only" id="settingsBtn" aria-label="Settings">
+                        ⚙️
+                    </button>
+                </div>
             </div>
             
             <!-- Menu Panel -->
@@ -174,10 +174,6 @@
                     </div>
                 </div>
 
-                <div class="hint-area" id="hintArea" style="display: none;">
-                    <p class="hint-text" id="hintText"></p>
-                </div>
-
                 <!-- Typing Mode -->
                 <div class="input-area" id="typingArea">
                     <input 
@@ -199,12 +195,15 @@
                     </div>
                 </div>
 
+                <div class="hint-area" id="hintArea" style="display: none;">
+                    <p class="hint-text" id="hintText"></p>
+                </div>
+
                 <div class="feedback" id="feedback"></div>
             </div>
 
             <div class="controls">
                 <button class="btn btn-primary btn-next" id="nextBtn" style="display: none;" data-i18n="next">다음 문제</button>
-                <button class="btn btn-reset btn-new-game" id="newGameBtn" data-i18n="newGame">새 게임</button>
             </div>
         </main>
     </div>

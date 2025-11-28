@@ -30,12 +30,20 @@ header {
     position: relative;
 }
 
+.header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
 /* Settings Menu Button (Desktop) */
 .settings-menu-wrapper {
     display: flex;
-    justify-content: flex-start;
-    margin-top: 15px;
-    margin-bottom: 10px;
+    justify-content: flex-end;
+    margin: 0;
+    flex-shrink: 0;
 }
 
 .settings-btn {
@@ -67,8 +75,7 @@ header {
 /* Hamburger Menu (Mobile) */
 .hamburger-btn {
     position: relative;
-    margin-top: 15px;
-    margin-bottom: 10px;
+    margin: 0;
     width: 40px;
     height: 40px;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -83,6 +90,7 @@ header {
     z-index: 1001;
     transition: all 0.3s ease;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0;
 }
 
 .hamburger-btn:hover {
@@ -442,10 +450,11 @@ header {
 header h1 {
     color: #667eea;
     font-size: 2.5em;
-    margin-bottom: 0;
-    margin-top: 0;
+    margin: 0;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
     line-height: 1.2;
+    flex: 1;
+    text-align: center;
 }
 
 .score-board {
@@ -515,7 +524,7 @@ header h1 {
 }
 
 .image-container {
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .image-display {
@@ -578,15 +587,15 @@ header h1 {
 }
 
 .multiple-choice-area {
-    margin-bottom: 20px;
-    margin-top: 10px;
+    margin-bottom: 0;
+    margin-top: 0;
 }
 
 .choice-buttons {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 0;
 }
 
 .choice-btn {
@@ -712,15 +721,18 @@ header h1 {
     text-align: center;
     padding: 15px;
     border-radius: 12px;
-    font-size: 1.5em;
+    font-size: 20px;
     font-weight: 600;
-    margin-bottom: 15px;
+    margin-bottom: 0;
     margin-top: 10px;
     min-height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .feedback.correct {
@@ -738,6 +750,10 @@ header h1 {
 .feedback.empty {
     background: transparent;
     border: none;
+    min-height: 0;
+    padding: 0;
+    margin: 0;
+    display: none;
 }
 
 .hint-area {
@@ -746,13 +762,23 @@ header h1 {
     border-radius: 12px;
     padding: 15px;
     margin-bottom: 15px;
-    margin-top: 10px;
+    margin-top: 15px;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
 }
 
 .hint-text {
     color: #856404;
-    font-size: 1.5em;
+    font-size: 20px;
     text-align: center;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
 }
 
 .controls {
@@ -761,7 +787,7 @@ header h1 {
     justify-content: center;
     flex-wrap: wrap;
     margin-top: 20px;
-    padding-top: 15px;
+    padding-top: 0;
 }
 
 /* Start Screen */
@@ -1163,73 +1189,186 @@ header h1 {
 }
 
 @media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
     .container {
-        padding: 15px;
+        padding: 12px;
+        border-radius: 15px;
     }
 
     .desktop-only {
         display: none;
     }
     
-    .hamburger-btn {
-        display: flex;
+    header {
+        padding-top: 10px;
+        margin-bottom: 15px;
     }
 
-    header {
-        padding-top: 20px;
-        margin-bottom: 20px;
+    .header-top {
+        margin-bottom: 8px;
+        gap: 10px;
     }
 
     header h1 {
         font-size: 1.6em;
-        margin-bottom: 0;
-        margin-top: 0;
+        margin: 0;
         line-height: 1.2;
+        text-align: center;
     }
     
     .hamburger-btn {
-        margin-top: 10px;
+        display: flex;
+        margin: 0;
+        width: 44px;
+        height: 44px;
+    }
+
+    .settings-menu-wrapper {
+        display: none;
     }
 
     .score-board {
         flex-direction: column;
-        gap: 6px;
-        margin-top: 10px;
-        margin-bottom: 10px;
+        gap: 8px;
+        margin-top: 8px;
+        margin-bottom: 12px;
     }
     
     .score-row {
         flex-direction: row;
-        gap: 6px;
+        gap: 8px;
     }
 
     .score-item {
-        padding: 10px 8px;
+        padding: 12px 6px;
         font-size: 0.9em;
         flex: 1;
-        border-radius: 10px;
+        border-radius: 12px;
+        min-width: 0;
     }
 
     .score-item .label {
         font-size: 0.95em;
         margin-bottom: 4px;
+        opacity: 0.9;
     }
 
     .score-item .value {
         font-size: 1.5em;
+        font-weight: bold;
+    }
+
+    .image-container {
+        margin-bottom: 12px;
     }
 
     .image-display {
-        padding: 22px 15px;
-        min-height: 144px;
+        padding: 20px 12px;
+        min-height: 180px;
+        border-radius: 15px;
     }
 
     .image-display .emoji {
-        font-size: 9em;
+        font-size: 8em;
+    }
+
+    .image-display .game-image {
+        max-height: 250px;
+    }
+
+    .hint-area {
+        padding: 12px;
+        margin-bottom: 12px;
+        margin-top: 12px;
+        border-radius: 12px;
+        min-height: 45px;
+    }
+
+    .hint-text {
+        font-size: 20px;
+        line-height: 1.4;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .input-area {
         flex-direction: column;
+        gap: 12px;
+        margin-bottom: 15px;
+    }
+
+    .multiple-choice-area {
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+
+    .choice-buttons {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-bottom: 0;
+    }
+
+    .choice-btn {
+        padding: 18px 12px;
+        font-size: 1.5em;
+        min-height: 60px;
+        border-radius: 12px;
+        border-width: 2px;
+    }
+
+    .word-input {
+        font-size: 1em;
+        padding: 16px 18px;
+        border-width: 2px;
+        border-radius: 12px;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 16px 20px;
+        min-height: 50px;
+    }
+
+    .btn-submit {
+        min-height: 50px;
+    }
+
+    .btn-new-game {
+        font-size: 1.8em;
+        padding: 16px 20px;
+        min-height: 56px;
+    }
+
+    .btn-next {
+        font-size: 1.3em;
+        padding: 16px 20px;
+        min-height: 52px;
+    }
+
+    .feedback {
+        padding: 12px;
+        font-size: 20px;
+        margin-bottom: 0;
+        border-radius: 12px;
+        min-height: 45px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .controls {
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 15px;
+        padding-top: 0;
+    }
+
+    .game-area {
+        margin-bottom: 20px;
     }
 
     .stage-clear-content {
@@ -1238,36 +1377,27 @@ header h1 {
     }
 
     .stage-clear-title {
-        font-size: 2em;
+        font-size: 1.8em;
+        margin-bottom: 20px;
     }
 
     .stage-clear-icon {
-        font-size: 5em;
+        font-size: 4.5em;
+        margin-bottom: 15px;
     }
 
     .stage-clear-stats {
         flex-direction: column;
-        gap: 15px;
+        gap: 12px;
+        margin-bottom: 30px;
+        padding: 15px;
     }
 
     .stat-value {
-        font-size: 1.5em;
+        font-size: 1.4em;
     }
 
-    .choice-buttons {
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-    }
-
-    .word-input {
-        font-size: 1em;
-    }
-
-    .controls {
-        flex-direction: column;
-    }
-
-    .btn {
-        width: 100%;
+    .stat-label {
+        font-size: 0.9em;
     }
 }
