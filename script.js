@@ -8,14 +8,117 @@ let gameState = {
     hintShown: false
 };
 
-// Current language (default: Korean)
-let currentLanguage = 'ko';
+// Current language (default: English)
+let currentLanguage = 'en';
 
-// Game mode (default: typing)
-let gameMode = 'typing'; // 'typing' or 'multiple'
+// Game mode (default: multiple choice)
+let gameMode = 'multiple'; // 'typing' or 'multiple'
 
 // Picture-words database (loaded from JSON)
 let pictureDatabase = [];
+
+// Sound effects
+let soundEnabled = true;
+
+// Play sound effect
+function playSound(type) {
+    if (!soundEnabled) return;
+    
+    try {
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        
+        if (type === 'correct') {
+            // Success sound - ascending melody
+            playCorrectSound(audioContext);
+        } else if (type === 'incorrect') {
+            // Failure sound - descending tone
+            playIncorrectSound(audioContext);
+        } else if (type === 'click') {
+            // Button click sound
+            playClickSound(audioContext);
+        }
+    } catch (error) {
+        console.log('Audio not supported:', error);
+    }
+}
+
+// Play correct answer sound (success melody)
+function playCorrectSound(audioContext) {
+    const frequencies = [523.25, 659.25, 783.99, 1046.50]; // C, E, G, C (major chord)
+    const duration = 0.15;
+    const startTime = audioContext.currentTime;
+    
+    frequencies.forEach((freq, index) => {
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        
+        oscillator.frequency.value = freq;
+        oscillator.type = 'sine';
+        
+        gainNode.gain.setValueAtTime(0, startTime + index * duration);
+        gainNode.gain.linearRampToValueAtTime(0.3, startTime + index * duration + 0.01);
+        gainNode.gain.linearRampToValueAtTime(0, startTime + index * duration + duration);
+        
+        oscillator.start(startTime + index * duration);
+        oscillator.stop(startTime + index * duration + duration);
+    });
+}
+
+// Play incorrect answer sound (failure tone)
+function playIncorrectSound(audioContext) {
+    const oscillator = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+    
+    oscillator.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+    
+    oscillator.frequency.setValueAtTime(200, audioContext.currentTime);
+    oscillator.frequency.linearRampToValueAtTime(100, audioContext.currentTime + 0.3);
+    oscillator.type = 'sawtooth';
+    
+    gainNode.gain.setValueAtTime(0, audioContext.currentTime);
+    gainNode.gain.linearRampToValueAtTime(0.2, audioContext.currentTime + 0.01);
+    gainNode.gain.linearRampToValueAtTime(0, audioContext.currentTime + 0.3);
+    
+    oscillator.start(audioContext.currentTime);
+    oscillator.stop(audioContext.currentTime + 0.3);
+}
+
+// Play click sound
+function playClickSound(audioContext) {
+    const oscillator = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+    
+    oscillator.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+    
+    oscillator.frequency.value = 800;
+    oscillator.type = 'sine';
+    
+    gainNode.gain.setValueAtTime(0, audioContext.currentTime);
+    gainNode.gain.linearRampToValueAtTime(0.1, audioContext.currentTime + 0.01);
+    gainNode.gain.linearRampToValueAtTime(0, audioContext.currentTime + 0.05);
+    
+    oscillator.start(audioContext.currentTime);
+    oscillator.stop(audioContext.currentTime + 0.05);
+}
+
+// Toggle sound on/off
+function toggleSound() {
+    soundEnabled = !soundEnabled;
+    const soundBtn = document.getElementById('soundBtn');
+    if (soundBtn) {
+        soundBtn.textContent = soundEnabled ? '🔊' : '🔇';
+        soundBtn.title = soundEnabled ? '사운드 끄기' : '사운드 켜기';
+    }
+    // Test sound when enabling
+    if (soundEnabled) {
+        playSound('click');
+    }
+}
 
 // Language translations
 const translations = {
@@ -43,7 +146,10 @@ const translations = {
         hintAlreadyShown: '이미 힌트를 보셨습니다!',
         hintUsed: '힌트를 사용했습니다!',
         typingMode: '타이핑',
-        multipleMode: '객관식'
+        multipleMode: '객관식',
+        stageClear: '스테이지 클리어!',
+        accuracy: '정확도',
+        nextStage: '다음 스테이지'
     },
     en: {
         gameTitle: '🎨 Picture Word Game',
@@ -69,7 +175,10 @@ const translations = {
         hintAlreadyShown: 'You already saw the hint!',
         hintUsed: 'Hint used!',
         typingMode: 'Typing',
-        multipleMode: 'Multiple Choice'
+        multipleMode: 'Multiple Choice',
+        stageClear: 'Stage Clear!',
+        accuracy: 'Accuracy',
+        nextStage: 'Next Stage'
     }
 };
 
@@ -96,6 +205,17 @@ function updateUILanguage() {
     const wordInput = document.getElementById('wordInput');
     wordInput.placeholder = t('placeholder');
     
+    // Update game mode button text
+    const gameModeBtn = document.getElementById('gameModeBtn');
+    if (gameModeBtn) {
+        const modeNames = {
+            'multiple': { 'en': 'Multiple Choice', 'ko': '객관식' },
+            'typing': { 'en': 'Typing', 'ko': '타이핑' }
+        };
+        const currentModeName = modeNames[gameMode][currentLanguage];
+        gameModeBtn.textContent = currentLanguage === 'ko' ? `게임 모드: ${currentModeName}` : `Game Mode: ${currentModeName}`;
+    }
+    
     // Update score labels
     document.querySelectorAll('.score-item .label').forEach((el, index) => {
         const keys = ['score', 'correct', 'question'];
@@ -105,17 +225,27 @@ function updateUILanguage() {
     });
 }
 
+// Toggle language dropdown
+function toggleLanguageDropdown() {
+    const dropdown = document.getElementById('languageDropdown');
+    const isVisible = dropdown.style.display !== 'none';
+    dropdown.style.display = isVisible ? 'none' : 'block';
+}
+
 // Change language
 function changeLanguage(lang) {
     currentLanguage = lang;
     
-    // Update language buttons
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.classList.remove('active');
-        if (btn.dataset.lang === lang) {
-            btn.classList.add('active');
-        }
-    });
+    // Update language button text
+    const languageBtn = document.getElementById('languageBtn');
+    const langNames = {
+        'en': 'English',
+        'ko': '한국어'
+    };
+    languageBtn.textContent = `Language: ${langNames[lang]}`;
+    
+    // Close dropdown
+    document.getElementById('languageDropdown').style.display = 'none';
     
     // Update UI
     updateUILanguage();
@@ -126,17 +256,32 @@ function changeLanguage(lang) {
     }
 }
 
+// Toggle game mode dropdown
+function toggleGameModeDropdown() {
+    const dropdown = document.getElementById('modeDropdown');
+    const isVisible = dropdown.style.display !== 'none';
+    dropdown.style.display = isVisible ? 'none' : 'block';
+}
+
 // Change game mode
 function changeGameMode(mode) {
     gameMode = mode;
     
-    // Update mode buttons
-    document.querySelectorAll('.mode-btn').forEach(btn => {
-        btn.classList.remove('active');
-        if (btn.dataset.mode === mode) {
-            btn.classList.add('active');
-        }
-    });
+    // Update mode button text
+    const gameModeBtn = document.getElementById('gameModeBtn');
+    const modeNames = {
+        'multiple': 'Multiple Choice',
+        'typing': 'Typing'
+    };
+    const modeNamesKo = {
+        'multiple': '객관식',
+        'typing': '타이핑'
+    };
+    const displayName = currentLanguage === 'ko' ? modeNamesKo[mode] : modeNames[mode];
+    gameModeBtn.textContent = currentLanguage === 'ko' ? `게임 모드: ${displayName}` : `Game Mode: ${displayName}`;
+    
+    // Close dropdown
+    document.getElementById('modeDropdown').style.display = 'none';
     
     // Show/hide appropriate UI
     const typingArea = document.getElementById('typingArea');
@@ -203,6 +348,16 @@ async function initGame() {
         return;
     }
     
+    // Hide stage clear screen if visible
+    const stageClearScreen = document.getElementById('stageClearScreen');
+    const gameArea = document.getElementById('gameArea');
+    if (stageClearScreen) {
+        stageClearScreen.style.display = 'none';
+    }
+    if (gameArea) {
+        gameArea.style.display = 'block';
+    }
+    
     // Shuffle and select 10 random questions
     const shuffled = [...pictureDatabase].sort(() => Math.random() - 0.5);
     gameState.questions = shuffled.slice(0, 10);
@@ -230,8 +385,9 @@ function loadQuestion() {
     // Display picture
     const imageDisplay = document.getElementById('imageDisplay');
     if (question.image) {
-        // Use image file if available
-        imageDisplay.innerHTML = `<img src="${question.image}" alt="${word}" class="game-image">`;
+        // Use image file if available (from images folder)
+        const imagePath = question.image.startsWith('images/') ? question.image : `images/${question.image}`;
+        imageDisplay.innerHTML = `<img src="${imagePath}" alt="${word}" class="game-image" onerror="this.parentElement.innerHTML='<div class=\\'emoji\\'>${question.emoji}</div>'">`;
     } else {
         // Use emoji as fallback
         imageDisplay.innerHTML = `<div class="emoji">${question.emoji}</div>`;
@@ -242,8 +398,13 @@ function loadQuestion() {
     feedback.textContent = '';
     feedback.className = 'feedback empty';
     
-    // Hide hint
-    document.getElementById('hintArea').style.display = 'none';
+    // Show hint automatically
+    const hint = typeof question.hint === 'object' ? question.hint[currentLanguage] : question.hint;
+    const hintArea = document.getElementById('hintArea');
+    const hintText = document.getElementById('hintText');
+    hintText.textContent = `${currentLanguage === 'ko' ? '💡 힌트' : '💡 Hint'}: ${hint}`;
+    hintArea.style.display = 'block';
+    gameState.hintShown = true; // Mark as shown (no score penalty)
     
     // Hide next button
     document.getElementById('nextBtn').style.display = 'none';
@@ -340,10 +501,12 @@ function selectChoice(selectedWord) {
         gameState.correctCount++;
         showMessage(t('pointsMsg', { points: 10 }), 'success');
         celebrate(); // Fireworks effect
+        playSound('correct'); // Success sound
     } else {
         feedback.textContent = t('wrongMsg', { word: gameState.currentAnswer });
         feedback.className = 'feedback incorrect';
         showMessage(t('wrongMsg2'), 'error');
+        playSound('incorrect'); // Failure sound
     }
     
     updateDisplay();
@@ -377,38 +540,22 @@ function checkAnswer() {
         gameState.correctCount++;
         showMessage(t('pointsMsg', { points: 10 }), 'success');
         celebrate(); // Fireworks effect
+        playSound('correct'); // Success sound
     } else {
         feedback.textContent = t('wrongMsg', { word: gameState.currentAnswer });
         feedback.className = 'feedback incorrect';
         showMessage(t('wrongMsg2'), 'error');
+        playSound('incorrect'); // Failure sound
     }
     
     updateDisplay();
     nextBtn.style.display = 'block';
 }
 
-// Show hint
+// Show hint (manual - now hints are shown automatically, but keep function for compatibility)
 function showHint() {
-    if (gameState.hintShown) {
-        showMessage(t('hintAlreadyShown'), 'error');
-        return;
-    }
-    
-    const question = gameState.questions[gameState.currentQuestion];
-    const hintArea = document.getElementById('hintArea');
-    const hintText = document.getElementById('hintText');
-    
-    // Get hint for current language
-    const hint = typeof question.hint === 'object' ? question.hint[currentLanguage] : question.hint;
-    hintText.textContent = `💡 ${currentLanguage === 'ko' ? '힌트' : 'Hint'}: ${hint}`;
-    hintArea.style.display = 'block';
-    gameState.hintShown = true;
-    
-    // Reduce score for using hint
-    if (gameState.score > 0) {
-        gameState.score = Math.max(0, gameState.score - 2);
-        updateDisplay();
-    }
+    // Hint is now shown automatically, so this function just shows a message
+    showMessage(currentLanguage === 'ko' ? '힌트는 자동으로 표시됩니다!' : 'Hint is shown automatically!', 'success');
 }
 
 // Next question
@@ -431,11 +578,11 @@ function endGame() {
     const wordInput = document.getElementById('wordInput');
     const submitBtn = document.getElementById('submitBtn');
     const nextBtn = document.getElementById('nextBtn');
-    const hintBtn = document.getElementById('hintBtn');
     const feedback = document.getElementById('feedback');
+    const gameArea = document.getElementById('gameArea');
+    const stageClearScreen = document.getElementById('stageClearScreen');
     
-    imageDisplay.innerHTML = '<div class="emoji">🎊</div>';
-    
+    // Disable game controls
     if (gameMode === 'typing') {
         wordInput.disabled = true;
         submitBtn.disabled = true;
@@ -447,16 +594,36 @@ function endGame() {
     }
     
     nextBtn.style.display = 'none';
-    hintBtn.disabled = true;
     
-    feedback.textContent = t('gameOver', { 
-        score: gameState.score, 
-        correct: gameState.correctCount, 
-        total: gameState.questions.length 
-    });
-    feedback.className = 'feedback correct';
+    // Calculate accuracy
+    const accuracy = gameState.questions.length > 0 
+        ? Math.round((gameState.correctCount / gameState.questions.length) * 100) 
+        : 0;
     
-    showMessage(t('gameComplete', { score: gameState.score }), 'success');
+    // Show Stage Clear screen
+    gameArea.style.display = 'none';
+    stageClearScreen.style.display = 'flex';
+    
+    // Update Stage Clear screen content
+    document.getElementById('stageClearTitle').textContent = t('stageClear');
+    document.getElementById('finalScore').textContent = gameState.score;
+    document.getElementById('finalCorrect').textContent = `${gameState.correctCount} / ${gameState.questions.length}`;
+    document.getElementById('finalAccuracy').textContent = `${accuracy}%`;
+    
+    // Update accuracy label
+    document.querySelector('.stat-item:last-child .stat-label').textContent = t('accuracy');
+    
+    // Update Next Stage button text
+    const nextStageBtn = document.getElementById('stageClearNextStageBtn');
+    if (nextStageBtn) {
+        nextStageBtn.textContent = t('nextStage');
+    }
+    
+    // Celebrate with confetti
+    celebrate();
+    
+    // Play success sound
+    playSound('correct');
 }
 
 // Show message
@@ -480,20 +647,55 @@ function showMessage(text, type) {
 // Event listeners
 document.getElementById('submitBtn').addEventListener('click', checkAnswer);
 document.getElementById('nextBtn').addEventListener('click', nextQuestion);
-document.getElementById('hintBtn').addEventListener('click', showHint);
 document.getElementById('newGameBtn').addEventListener('click', initGame);
+document.getElementById('stageClearNextStageBtn').addEventListener('click', () => {
+    document.getElementById('stageClearScreen').style.display = 'none';
+    document.getElementById('gameArea').style.display = 'block';
+    initGame();
+});
 
 // Language selector
-document.getElementById('langKo').addEventListener('click', () => changeLanguage('ko'));
-document.getElementById('langEn').addEventListener('click', () => changeLanguage('en'));
+document.getElementById('languageBtn').addEventListener('click', toggleLanguageDropdown);
+
+// Language options
+document.querySelectorAll('.lang-option').forEach(option => {
+    option.addEventListener('click', (e) => {
+        const lang = e.target.dataset.lang;
+        changeLanguage(lang);
+        playSound('click');
+    });
+});
+
+// Close dropdowns when clicking outside
+document.addEventListener('click', (e) => {
+    const languageSelector = document.querySelector('.language-selector');
+    const languageDropdown = document.getElementById('languageDropdown');
+    if (!languageSelector.contains(e.target) && languageDropdown.style.display !== 'none') {
+        languageDropdown.style.display = 'none';
+    }
+    
+    const gameModeSelector = document.querySelector('.game-mode-selector');
+    const modeDropdown = document.getElementById('modeDropdown');
+    if (!gameModeSelector.contains(e.target) && modeDropdown.style.display !== 'none') {
+        modeDropdown.style.display = 'none';
+    }
+});
 
 // Game mode selector
-document.getElementById('modeTyping').addEventListener('click', () => changeGameMode('typing'));
-document.getElementById('modeMultiple').addEventListener('click', () => changeGameMode('multiple'));
+document.getElementById('gameModeBtn').addEventListener('click', toggleGameModeDropdown);
 
-// Game mode selector
-document.getElementById('modeTyping').addEventListener('click', () => changeGameMode('typing'));
-document.getElementById('modeMultiple').addEventListener('click', () => changeGameMode('multiple'));
+// Game mode options
+document.querySelectorAll('.mode-option').forEach(option => {
+    option.addEventListener('click', (e) => {
+        const mode = e.target.dataset.mode;
+        changeGameMode(mode);
+        playSound('click');
+    });
+});
+
+
+// Sound toggle button
+document.getElementById('soundBtn').addEventListener('click', toggleSound);
 
 // Enter key support
 document.getElementById('wordInput').addEventListener('keypress', (e) => {
@@ -512,9 +714,9 @@ document.getElementById('wordInput').addEventListener('keypress', (e) => {
 
 // Initialize on load
 loadWordsDatabase().then(() => {
+    // Initialize game mode UI (default: multiple choice)
+    changeGameMode('multiple');
     updateUILanguage();
-    // Initialize game mode UI
-    changeGameMode('typing');
     initGame();
 }).catch(error => {
     console.error('Failed to initialize game:', error);

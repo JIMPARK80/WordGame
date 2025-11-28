@@ -8,14 +8,20 @@
 </head>
 <body>
     <div class="container">
-        <header>
+        <header style="position: relative;">
             <div class="language-selector">
-                <button class="lang-btn active" id="langKo" data-lang="ko">한국어</button>
-                <button class="lang-btn" id="langEn" data-lang="en">English</button>
+                <button class="lang-btn active" id="languageBtn">Language: English</button>
+                <div class="language-dropdown" id="languageDropdown" style="display: none;">
+                    <button class="lang-option" data-lang="en">English</button>
+                    <button class="lang-option" data-lang="ko">한국어</button>
+                </div>
             </div>
             <div class="game-mode-selector">
-                <button class="mode-btn active" id="modeTyping" data-mode="typing" data-i18n="typingMode">타이핑</button>
-                <button class="mode-btn" id="modeMultiple" data-mode="multiple" data-i18n="multipleMode">객관식</button>
+                <button class="mode-btn active" id="gameModeBtn">Game Mode: Multiple Choice</button>
+                <div class="mode-dropdown" id="modeDropdown" style="display: none;">
+                    <button class="mode-option" data-mode="multiple" data-i18n="multipleMode">Multiple Choice</button>
+                    <button class="mode-option" data-mode="typing" data-i18n="typingMode">Typing</button>
+                </div>
             </div>
             <h1 id="gameTitle">🎨 그림 맞추기 게임</h1>
             <div class="score-board">
@@ -35,11 +41,38 @@
         </header>
 
         <main>
-            <div class="game-area">
+            <!-- Stage Clear Screen -->
+            <div class="stage-clear-screen" id="stageClearScreen" style="display: none;">
+                <div class="stage-clear-content">
+                    <div class="stage-clear-icon">🎉</div>
+                    <h2 class="stage-clear-title" id="stageClearTitle">Stage Clear!</h2>
+                    <div class="stage-clear-stats">
+                        <div class="stat-item">
+                            <span class="stat-label" data-i18n="score">Score</span>
+                            <span class="stat-value" id="finalScore">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label" data-i18n="correct">Correct</span>
+                            <span class="stat-value" id="finalCorrect">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Accuracy</span>
+                            <span class="stat-value" id="finalAccuracy">0%</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" id="stageClearNextStageBtn" data-i18n="nextStage">Next Stage</button>
+                </div>
+            </div>
+
+            <div class="game-area" id="gameArea">
                 <div class="image-container">
                     <div class="image-display" id="imageDisplay">
                         <!-- Picture will be displayed here -->
                     </div>
+                </div>
+
+                <div class="hint-area" id="hintArea" style="display: none;">
+                    <p class="hint-text" id="hintText"></p>
                 </div>
 
                 <!-- Typing Mode -->
@@ -64,16 +97,12 @@
                 </div>
 
                 <div class="feedback" id="feedback"></div>
-
-                <div class="hint-area" id="hintArea" style="display: none;">
-                    <p class="hint-text" id="hintText"></p>
-                </div>
             </div>
 
             <div class="controls">
                 <button class="btn btn-primary" id="nextBtn" style="display: none;" data-i18n="next">다음 문제</button>
-                <button class="btn btn-secondary" id="hintBtn" data-i18n="hint">힌트 보기</button>
                 <button class="btn btn-reset" id="newGameBtn" data-i18n="newGame">새 게임</button>
+                <button class="btn btn-sound" id="soundBtn" title="사운드 끄기">🔊</button>
             </div>
         </main>
     </div>
