@@ -741,7 +741,7 @@ function loadQuestion() {
     const imageDisplay = document.getElementById('imageDisplay');
     if (question.image) {
         // Use image file if available (from images folder)
-        const imagePath = question.image.startsWith('images/') ? question.image : `images/${question.image}`;
+        const imagePath = question.image.startsWith('assets/images/') ? question.image : (question.image.startsWith('images/') ? `assets/${question.image}` : `assets/images/${question.image}`);
         imageDisplay.innerHTML = `<img src="${imagePath}" alt="${word}" class="game-image" onerror="this.parentElement.innerHTML='<div class=\\'emoji\\'>${question.emoji || generateEmoji(word)}</div>'">`;
     } else {
         // Use emoji as fallback (자동 생성된 이모지 사용)
