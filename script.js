@@ -72,6 +72,9 @@ let pictureDatabase = [];
 // Stages database (loaded from JSON)
 let stagesDatabase = {};
 
+// Words by level database (loaded from JSON)
+let wordsByLevelDatabase = {};
+
 // Emoji auto-generation mapping (단어 의미에 따른 이모지 자동 매칭)
 const emojiMapping = {
     // 동물 (Animals)
@@ -798,6 +801,22 @@ async function loadStagesDatabase() {
     }
 }
 
+// Load words by level from JSON file
+async function loadWordsByLevelDatabase() {
+    try {
+        const response = await fetch('words_by_level.json');
+        if (!response.ok) {
+            throw new Error('Failed to load words_by_level.json');
+        }
+        wordsByLevelDatabase = await response.json();
+        return wordsByLevelDatabase;
+    } catch (error) {
+        console.error('Error loading words by level database:', error);
+        showMessage(t('loadError'), 'error');
+        return {};
+    }
+}
+
 // Initialize game
 async function initGame() {
     // Load words database if not loaded
@@ -808,6 +827,11 @@ async function initGame() {
     // Load stages database if not loaded
     if (Object.keys(stagesDatabase).length === 0) {
         await loadStagesDatabase();
+    }
+    
+    // Load words by level database if not loaded
+    if (Object.keys(wordsByLevelDatabase).length === 0) {
+        await loadWordsByLevelDatabase();
     }
     
     if (pictureDatabase.length === 0) {
@@ -829,21 +853,30 @@ async function initGame() {
         gameArea.style.display = 'block';
     }
     
-    // Get current stage data
-    const currentStage = stagesDatabase[gameState.stageNumber.toString()];
+    // Get words for current level from words_by_level.json
+    const currentLevel = gameState.level.toString();
+    const levelWords = [];
     
-    if (!currentStage) {
-        showMessage(currentLanguage === 'ko' ? '스테이지 데이터를 찾을 수 없습니다.' : 'Stage data not found.', 'error');
+    // Get nouns, verbs, and adjectives for current level
+    if (wordsByLevelDatabase.nouns && wordsByLevelDatabase.nouns[currentLevel]) {
+        levelWords.push(...wordsByLevelDatabase.nouns[currentLevel]);
+    }
+    if (wordsByLevelDatabase.verbs && wordsByLevelDatabase.verbs[currentLevel]) {
+        levelWords.push(...wordsByLevelDatabase.verbs[currentLevel]);
+    }
+    if (wordsByLevelDatabase.adjectives && wordsByLevelDatabase.adjectives[currentLevel]) {
+        levelWords.push(...wordsByLevelDatabase.adjectives[currentLevel]);
+    }
+    
+    if (levelWords.length === 0) {
+        showMessage(currentLanguage === 'ko' ? '레벨 단어를 찾을 수 없습니다.' : 'Level words not found.', 'error');
         return;
     }
     
-    // Get words for current stage
-    const stageWords = currentStage.words || [];
-    
-    // Filter pictureDatabase to only include words from current stage
+    // Filter pictureDatabase to only include words from current level
     const stageQuestions = pictureDatabase.filter(wordData => {
         const wordEn = typeof wordData.word === 'object' ? wordData.word.en : wordData.word;
-        return stageWords.includes(wordEn.toLowerCase());
+        return levelWords.includes(wordEn.toLowerCase());
     });
     
     if (stageQuestions.length === 0) {
@@ -1947,7 +1980,7 @@ document.getElementById('wordInput').addEventListener('keypress', (e) => {
 });
 
 // Initialize on load
-Promise.all([loadWordsDatabase(), loadStagesDatabase()]).then(() => {
+Promise.all([loadWordsDatabase(), loadStagesDatabase(), loadWordsByLevelDatabase()]).then(() => {
     // Initialize game mode UI (default: multiple choice)
     changeGameMode('multiple');
     updateUILanguage();
