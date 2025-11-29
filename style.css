@@ -1023,6 +1023,11 @@ header h1 {
     color: #333;
 }
 
+.btn-success {
+    background: linear-gradient(135deg, #51CF66 0%, #40C057 100%);
+    color: white;
+}
+
 .btn-reset {
     background: #ff6b6b;
     color: white;
@@ -1174,6 +1179,25 @@ header h1 {
 .btn-start:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px var(--spacing-lg) rgba(102, 126, 234, 0.6);
+}
+
+.btn-load {
+    width: 80%;
+    font-size: 2em;
+    padding: var(--spacing-lg) var(--spacing-xl);
+    font-weight: 700;
+    background: linear-gradient(135deg, #51CF66 0%, #40C057 100%);
+    color: white;
+    border: none;
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-load:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px var(--spacing-lg) rgba(81, 207, 102, 0.6);
 }
 
 .btn-options {
@@ -1431,6 +1455,27 @@ header h1 {
 .level-info-lock {
     font-size: 1em;
     margin-left: 5px;
+}
+
+.level-select-item {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.level-select-item:hover {
+    background: rgba(102, 126, 234, 0.1);
+    border-color: var(--color-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.level-select-item.locked {
+    cursor: not-allowed;
+}
+
+.level-select-item.locked:hover {
+    transform: none;
+    box-shadow: none;
 }
 
 .level-info-header {

@@ -95,9 +95,36 @@
                 <div class="start-screen-content">
                     <h1 class="start-screen-title">🎨 Picture Word Game</h1>
                     <div class="start-screen-buttons">
-                        <button class="btn btn-primary btn-start" id="startGameBtn" data-i18n="startGame">게임 시작</button>
-                        <button class="btn btn-secondary btn-options" id="startScreenOptionsBtn" data-i18n="options">옵션</button>
-                        <button class="btn btn-danger btn-exit" id="exitGameBtn" data-i18n="exitGame">게임 종료</button>
+                        <button class="btn btn-primary btn-start" id="startGameBtn" data-i18n="startGame">New Game</button>
+                        <button class="btn btn-success btn-load" id="loadGameBtn" data-i18n="loadGame">Load Game</button>
+                        <button class="btn btn-secondary btn-options" id="startScreenOptionsBtn" data-i18n="options">Options</button>
+                        <button class="btn btn-danger btn-exit" id="exitGameBtn" data-i18n="exitGame"> Exit Game</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Level Select Modal -->
+            <div class="options-modal" id="levelSelectModal" style="display: none;">
+                <div class="options-modal-content">
+                    <div class="options-modal-header">
+                        <h2 class="options-modal-title" data-i18n="levelGuide">Level Guide</h2>
+                        <button class="options-modal-close" id="levelSelectModalClose" aria-label="Close">×</button>
+                    </div>
+                    <div class="options-modal-body">
+                        <div class="menu-section menu-section-info">
+                            <div class="level-info-description" style="margin-bottom: 15px;">${t('selectLevel')}</div>
+                            <div class="level-info-content" id="levelSelectContent">
+                                <!-- Level selection will be populated by JavaScript -->
+                            </div>
+                        </div>
+                        <div class="menu-section">
+                            <div class="menu-options">
+                                <button class="menu-option menu-option-back" id="levelSelectBackBtn" data-i18n="backToStart">
+                                    <span class="menu-option-icon">🏠</span>
+                                    <span class="menu-option-text" data-i18n="backToStart">시작 화면으로</span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

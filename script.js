@@ -495,7 +495,9 @@ const translations = {
         exitGame: '게임 종료',
         backToStart: '시작 화면으로',
         backToGame: '게임 화면으로',
-        goal: '목표'
+        goal: '목표',
+        loadGame: '이어하기',
+        selectLevel: '레벨을 선택하세요'
     },
     en: {
         gameTitle: '🎨 Picture Word Game',
@@ -545,7 +547,9 @@ const translations = {
         exitGame: 'Exit Game',
         backToStart: 'Back to Start',
         backToGame: 'Back to Game',
-        goal: 'Goal'
+        goal: 'Goal',
+        loadGame: 'Load Game',
+        selectLevel: 'Select a level to start'
     }
 };
 
@@ -1675,16 +1679,52 @@ document.getElementById('nextBtn').addEventListener('click', nextQuestion);
 
 // Start screen event listeners
 document.getElementById('startGameBtn').addEventListener('click', () => {
-    // Load saved max level or start from level 1
-    const savedMaxLevel = getMaxLevel();
+    // Start new game from level 1
     gameState.stageNumber = 1;
     gameState.score = 0;
-    gameState.level = savedMaxLevel; // Start from saved level
+    gameState.level = 1;
     gameState.perfectCount = 0;
     updatePerfectGoal(); // Set perfect goal based on level
     initGame();
     playSound('click');
 });
+
+// Load game button - show level select modal
+const loadGameBtn = document.getElementById('loadGameBtn');
+if (loadGameBtn) {
+    loadGameBtn.addEventListener('click', () => {
+        showLevelSelectModal();
+        playSound('click');
+    });
+}
+
+// Level select modal close button
+const levelSelectModalClose = document.getElementById('levelSelectModalClose');
+if (levelSelectModalClose) {
+    levelSelectModalClose.addEventListener('click', () => {
+        hideLevelSelectModal();
+        playSound('click');
+    });
+}
+
+// Level select back button
+const levelSelectBackBtn = document.getElementById('levelSelectBackBtn');
+if (levelSelectBackBtn) {
+    levelSelectBackBtn.addEventListener('click', () => {
+        hideLevelSelectModal();
+        playSound('click');
+    });
+}
+
+// Close level select modal when clicking outside
+const levelSelectModal = document.getElementById('levelSelectModal');
+if (levelSelectModal) {
+    levelSelectModal.addEventListener('click', (e) => {
+        if (e.target.id === 'levelSelectModal') {
+            hideLevelSelectModal();
+        }
+    });
+}
 
 // Show options modal
 function showOptionsModal() {
@@ -1725,8 +1765,9 @@ function updateLevelInfo() {
         const currentBadge = isCurrentLevel ? (currentLanguage === 'ko' ? '<span class="level-info-badge">현재</span>' : '<span class="level-info-badge">Current</span>') : '';
         const lockIcon = !isUnlocked ? '<span class="level-info-lock">🔒</span>' : '';
         const crownIcon = isUnlocked ? '👑' : '🔒';
-        const ageText = isUnlocked ? (currentLanguage === 'ko' ? `${age}세` : `${age} years old`) : (currentLanguage === 'ko' ? '???' : '???');
-        const questionsText = isUnlocked ? (currentLanguage === 'ko' ? `${questions}문제` : `${questions} questions`) : (currentLanguage === 'ko' ? '???' : '???');
+        // Always show actual age and questions, even for locked levels
+        const ageText = currentLanguage === 'ko' ? `${age}세` : `${age} years old`;
+        const questionsText = currentLanguage === 'ko' ? `${questions}문제` : `${questions} questions`;
         
         html += `
             <div class="${levelClass}">
@@ -1747,6 +1788,95 @@ function updateLevelInfo() {
     
     html += '</div>';
     levelInfoContent.innerHTML = html;
+}
+
+// Show level select modal
+function showLevelSelectModal() {
+    const levelSelectModal = document.getElementById('levelSelectModal');
+    
+    if (levelSelectModal) {
+        levelSelectModal.style.display = 'flex';
+        updateLevelSelect();
+    }
+}
+
+// Hide level select modal
+function hideLevelSelectModal() {
+    const levelSelectModal = document.getElementById('levelSelectModal');
+    
+    if (levelSelectModal) {
+        levelSelectModal.style.display = 'none';
+    }
+}
+
+// Update level select display (clickable levels)
+function updateLevelSelect() {
+    const levelSelectContent = document.getElementById('levelSelectContent');
+    const levelSelectDescription = document.getElementById('levelSelectDescription');
+    if (!levelSelectContent) return;
+    
+    if (levelSelectDescription) {
+        levelSelectDescription.textContent = t('selectLevel');
+    }
+    
+    const maxLevel = getMaxLevel();
+    
+    let html = '<div class="level-info-list">';
+    
+    for (let level = 1; level <= 5; level++) {
+        const age = agePerLevel[level];
+        const questions = questionsPerLevel[level];
+        const isUnlocked = isLevelUnlocked(level);
+        const levelClass = isUnlocked ? 'level-info-item level-select-item' : 'level-info-item locked';
+        
+        const crownIcon = isUnlocked ? '👑' : '🔒';
+        // Always show actual age and questions, even for locked levels
+        const ageText = currentLanguage === 'ko' ? `${age}세` : `${age} years old`;
+        const questionsText = currentLanguage === 'ko' ? `${questions}문제` : `${questions} questions`;
+        
+        html += `
+            <div class="${levelClass}" ${isUnlocked ? `data-level="${level}"` : ''}>
+                <div class="level-info-header">
+                    <span class="level-info-crown">${crownIcon}</span>
+                    <span class="level-info-level">Level ${level}</span>
+                </div>
+                <div class="level-info-details">
+                    <span class="level-info-age">${ageText}</span>
+                    <span class="level-info-separator">•</span>
+                    <span class="level-info-questions">${questionsText}</span>
+                </div>
+            </div>
+        `;
+    }
+    
+    html += '</div>';
+    levelSelectContent.innerHTML = html;
+    
+    // Add click event listeners to unlocked levels
+    document.querySelectorAll('.level-select-item').forEach(item => {
+        item.addEventListener('click', () => {
+            const selectedLevel = parseInt(item.dataset.level, 10);
+            startGameAtLevel(selectedLevel);
+        });
+    });
+}
+
+// Start game at specific level
+function startGameAtLevel(level) {
+    if (!isLevelUnlocked(level)) {
+        showMessage(currentLanguage === 'ko' ? '이 레벨은 아직 잠겨있습니다.' : 'This level is locked.', 'error');
+        return;
+    }
+    
+    gameState.stageNumber = 1;
+    gameState.score = 0;
+    gameState.level = level;
+    gameState.perfectCount = 0;
+    updatePerfectGoal();
+    
+    hideLevelSelectModal();
+    initGame();
+    playSound('click');
 }
 
 // Hide options modal
