@@ -70,11 +70,11 @@
                 <div class="score-row score-row-bottom">
                     <div class="score-item score-item-correct">
                         <span class="correct-icon">😊</span>
-                        <span class="value" id="correctCount">0</span>
+                        <span class="value" id="perfectCount">Perfect: 0 / 5</span>
                     </div>
                     <div class="score-item score-item-question">
                         <span class="question-icon">📘</span>
-                        <span class="value" id="questionNumber">1 / 10</span>
+                        <span class="value" id="levelNumber">Level: 1</span>
                     </div>
                     <div class="score-item score-item-timer">
                         <span class="timer-icon">🕐</span>
@@ -166,6 +166,14 @@
                         <div class="stat-item">
                             <span class="stat-label" data-i18n="accuracy">Accuracy</span>
                             <span class="stat-value" id="finalAccuracy">0%</span>
+                        </div>
+                        <div class="stat-item" id="perfectStatItem" style="display: none;">
+                            <span class="stat-label">Perfect</span>
+                            <span class="stat-value" id="finalPerfect">⭐</span>
+                        </div>
+                        <div class="stat-item" id="levelUpStatItem" style="display: none;">
+                            <span class="stat-label">Level Up!</span>
+                            <span class="stat-value" id="finalLevel">🎉</span>
                         </div>
                     </div>
                     <button class="btn btn-primary" id="stageClearNextStageBtn" data-i18n="nextStage">Next Stage</button>
