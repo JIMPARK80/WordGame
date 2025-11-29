@@ -188,10 +188,11 @@ function assignEmojiIfMissing(wordData) {
 
 // Sound effects
 let soundEnabled = true;
+let ttsEnabled = true; // TTS (Text-to-Speech) enabled by default
 
 // TTS (Text-to-Speech) function
 function speak(text) {
-    if (!text) return;
+    if (!text || !ttsEnabled) return; // Check TTS enabled state
     
     try {
         // Check if SpeechSynthesis is available
@@ -308,6 +309,16 @@ function toggleSound() {
     }
 }
 
+// Toggle TTS on/off
+function toggleTTS() {
+    ttsEnabled = !ttsEnabled;
+    updateTTSButtonIcon();
+    // Test TTS when enabling
+    if (ttsEnabled) {
+        speak('test');
+    }
+}
+
 // Update sound button icon
 function updateSoundButtonIcon() {
     const menuSoundBtn = document.getElementById('menuSoundBtn');
@@ -339,6 +350,40 @@ function updateSoundButtonIcon() {
             textElement.textContent = soundText;
         }
         modalSoundBtn.classList.toggle('active', soundEnabled);
+    }
+}
+
+// Update TTS button icon
+function updateTTSButtonIcon() {
+    const menuTTSBtn = document.getElementById('menuTTSBtn');
+    const modalTTSBtn = document.getElementById('modalTTSBtn');
+    const icon = ttsEnabled ? '🗣️' : '🔇';
+    const ttsText = ttsEnabled ? t('ttsOn') : t('ttsOff');
+    
+    // Update in-game menu TTS button
+    if (menuTTSBtn) {
+        const iconElement = menuTTSBtn.querySelector('.menu-option-icon');
+        if (iconElement) {
+            iconElement.textContent = icon;
+        }
+        const textElement = menuTTSBtn.querySelector('.menu-option-text');
+        if (textElement) {
+            textElement.textContent = ttsText;
+        }
+        menuTTSBtn.classList.toggle('active', ttsEnabled);
+    }
+    
+    // Update modal TTS button
+    if (modalTTSBtn) {
+        const iconElement = modalTTSBtn.querySelector('.menu-option-icon');
+        if (iconElement) {
+            iconElement.textContent = icon;
+        }
+        const textElement = modalTTSBtn.querySelector('.menu-option-text');
+        if (textElement) {
+            textElement.textContent = ttsText;
+        }
+        modalTTSBtn.classList.toggle('active', ttsEnabled);
     }
 }
 
@@ -379,6 +424,8 @@ const translations = {
         sound: '사운드',
         soundOn: '사운드 켜기',
         soundOff: '사운드 끄기',
+        ttsOn: '음성 발음 켜기',
+        ttsOff: '음성 발음 끄기',
         time: '시간',
         timeUp: '시간 초과!',
         startGame: '게임 시작',
@@ -423,6 +470,8 @@ const translations = {
         sound: 'Sound',
         soundOn: 'Sound ON',
         soundOff: 'Sound OFF',
+        ttsOn: 'Voice ON',
+        ttsOff: 'Voice OFF',
         time: 'Time',
         timeUp: 'Time Up!',
         startGame: 'Start Game',
@@ -484,6 +533,8 @@ function updateUILanguage() {
     
     // Update sound button
     updateSoundButtonIcon();
+    // Update TTS button
+    updateTTSButtonIcon();
 }
 
 // Toggle language dropdown
@@ -789,7 +840,31 @@ function stopTimer() {
     }
 }
 
-// Start timer
+// Pause timer (keep current time)
+function pauseTimer() {
+    if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+    }
+}
+
+// Resume timer (continue from current time)
+function resumeTimer() {
+    // Only resume if timer was paused (timerInterval is null) and timeLeft > 0
+    if (!timerInterval && timeLeft > 0) {
+        timerInterval = setInterval(() => {
+            timeLeft--;
+            updateTimerDisplay();
+            
+            if (timeLeft <= 0) {
+                stopTimer();
+                handleTimeUp();
+            }
+        }, 1000);
+    }
+}
+
+// Start timer (reset to full time)
 function startTimer() {
     stopTimer(); // Clear any existing timer
     timeLeft = 10;
@@ -1503,7 +1578,7 @@ function showOptionsModal() {
     if (optionsModal) {
         // Pause game if game area is visible (game is in progress)
         if (gameArea && gameArea.style.display !== 'none' && gameArea.style.display !== '') {
-            stopTimer(); // Pause the timer
+            pauseTimer(); // Pause the timer (keep current time)
         }
         
         optionsModal.style.display = 'flex';
@@ -1522,13 +1597,35 @@ function hideOptionsModal() {
         
         // Resume game if game area is visible (game is in progress)
         if (gameArea && gameArea.style.display !== 'none' && gameArea.style.display !== '') {
-            // Check if there's a current question and timer should be running
+            // Check if there's a current question and game is not ended
             if (gameState.questions.length > 0 && gameState.currentQuestion < gameState.questions.length) {
                 const feedback = document.getElementById('feedback');
                 const nextBtn = document.getElementById('nextBtn');
-                // Only restart timer if question is active (not showing feedback)
-                if (feedback && !feedback.textContent && nextBtn && nextBtn.style.display === 'none') {
-                    startTimer(); // Resume the timer
+                const wordInput = document.getElementById('wordInput');
+                const submitBtn = document.getElementById('submitBtn');
+                
+                // Check if question is active (not showing feedback result)
+                // Question is active if:
+                // 1. Feedback is empty or not visible (no answer has been submitted yet)
+                // 2. Next button is hidden (not waiting to proceed)
+                // 3. Input/buttons are enabled (in typing mode) or choices are enabled (in multiple choice mode)
+                const hasNoFeedback = !feedback || !feedback.textContent || feedback.textContent.trim() === '';
+                const nextBtnHidden = !nextBtn || nextBtn.style.display === 'none' || nextBtn.style.display === '';
+                
+                // In typing mode, check if input is enabled
+                let isInputActive = true;
+                if (gameMode === 'typing') {
+                    isInputActive = wordInput && !wordInput.disabled && submitBtn && !submitBtn.disabled;
+                } else {
+                    // In multiple choice mode, check if any choice button is enabled
+                    const choiceButtons = document.querySelectorAll('.choice-btn');
+                    isInputActive = choiceButtons.length > 0 && Array.from(choiceButtons).some(btn => !btn.disabled);
+                }
+                
+                // Resume timer if question is active (no feedback shown, next button hidden, and input/choices are active)
+                if (hasNoFeedback && nextBtnHidden && isInputActive) {
+                    // Resume timer from current time (don't reset)
+                    resumeTimer();
                 }
             }
         }
@@ -1572,6 +1669,8 @@ function updateModalActiveStates() {
     
     // Update sound button (use updateSoundButtonIcon for consistency)
     updateSoundButtonIcon();
+    // Update TTS button (use updateTTSButtonIcon for consistency)
+    updateTTSButtonIcon();
 }
 
 document.getElementById('startScreenOptionsBtn').addEventListener('click', () => {
@@ -1715,6 +1814,16 @@ const modalSoundBtn = document.getElementById('modalSoundBtn');
 if (modalSoundBtn) {
     modalSoundBtn.addEventListener('click', () => {
         toggleSound();
+        updateModalActiveStates();
+        playSound('click');
+    });
+}
+
+// TTS button event listeners
+const modalTTSBtn = document.getElementById('modalTTSBtn');
+if (modalTTSBtn) {
+    modalTTSBtn.addEventListener('click', () => {
+        toggleTTS();
         updateModalActiveStates();
         playSound('click');
     });
