@@ -1,0 +1,79 @@
+{
+  "nouns": {
+    "1": [
+      "cat", "dog", "bird", "chick", "rabbit", "frog", "pig", "cow", "duck", "chicken", "bear",
+      "apple", "banana", "grape", "strawberry", "peach", "cherry", "watermelon",
+      "milk", "cookie", "candy", "honey", "jam", "ice cream",
+      "car", "book", "cup", "spoon", "fork", "key", "bag",
+      "bed", "chair", "table", "towel", "door", "window", "plate", "soap"
+    ],
+    "2": [
+      "panda", "lion", "horse", "turtle",
+      "bread", "rice ball", "ramen", "pizza", "cake", "chocolate", "tea", "juice", "yogurt", "cheese",
+      "shirt", "pants", "hat", "crown", "glasses", "mask", "sneakers",
+      "watch", "balloon", "gift", "bottle",
+      "kitchen", "bathroom", "garden",
+      "tree", "flower", "cloud", "rainbow", "snow",
+      "house", "school"
+    ],
+    "3": [
+      "penguin", "owl", "bee",
+      "french fries", "taco",
+      "pencil", "eraser", "backpack", "ruler",
+      "doctor", "nurse", "teacher", "chef", "farmer",
+      "river", "beach", "mountain", "forest", "ocean",
+      "bus", "taxi", "bicycle", "ship", "train",
+      "picture", "clock", "ring", "bed"
+    ],
+    "4": [
+      "hospital", "convenience store", "department store",
+      "airplane", "ambulance", "fire truck", "police car",
+      "firefighter", "painter", "singer",
+      "camera", "laptop", "guitar", "piano", "microphone",
+      "bento box", "barn", "palette", "bath"
+    ],
+    "5": [
+      "elephant", "giraffe", "tiger",
+      "scientist", "astronaut",
+      "volleyball", "basketball", "tennis ball", "soccer ball",
+      "umbrella", "telescope", "smartphone",
+      "kitchen", "bathroom", "garden",
+      "microphone", "department store", "convenience store"
+    ]
+  },
+  "verbs": {
+    "1": [
+      "run", "walk", "eat", "drink", "sleep", "play", "sing", "dance", "jump", "smile"
+    ],
+    "2": [
+      "read", "write", "swim", "climb", "open", "close", "draw"
+    ],
+    "3": [
+      "wash", "clean", "look", "listen", "catch", "throw", "help"
+    ],
+    "4": [
+      "build", "ride", "plant"
+    ],
+    "5": [
+      "talk"
+    ]
+  },
+  "adjectives": {
+    "1": [
+      "big", "small", "hot", "cold", "happy", "sad"
+    ],
+    "2": [
+      "long", "short", "fast", "slow", "tired", "hungry", "full", "dirty", "cute"
+    ],
+    "3": [
+      "angry", "pretty", "funny", "noisy", "quiet"
+    ],
+    "4": [
+      "bright", "dark", "strong", "weak"
+    ],
+    "5": [
+      "warm", "cool", "new", "old"
+    ]
+  }
+}
+
