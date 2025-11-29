@@ -31,6 +31,15 @@ const questionsPerLevel = {
     5: 7    // Level 5 (7세): 7문제
 };
 
+// Age per level
+const agePerLevel = {
+    1: 3,   // Level 1: 3세
+    2: 4,   // Level 2: 4세
+    3: 5,   // Level 3: 5세
+    4: 6,   // Level 4: 6세
+    5: 7    // Level 5: 7세
+};
+
 // Get required perfect clears for current level
 function getRequiredPerfect(level) {
     return requiredPerfect[level] || requiredPerfect[5]; // Default to 10 for level 5+
@@ -440,6 +449,10 @@ const translations = {
         soundOff: '사운드 끄기',
         ttsOn: '음성 발음 켜기',
         ttsOff: '음성 발음 끄기',
+        levelGuide: '레벨 가이드',
+        levelInfo: '레벨별 단어 습득 타겟 나이',
+        levelAge: '세',
+        levelQuestions: '문제',
         time: '시간',
         timeUp: '시간 초과!',
         startGame: '게임 시작',
@@ -486,6 +499,10 @@ const translations = {
         soundOff: 'Sound OFF',
         ttsOn: 'Voice ON',
         ttsOff: 'Voice OFF',
+        levelGuide: 'Level Guide',
+        levelInfo: 'Target Age for Word Learning by Level',
+        levelAge: 'years old',
+        levelQuestions: 'questions',
         time: 'Time',
         timeUp: 'Time Up!',
         startGame: 'Start Game',
@@ -549,6 +566,11 @@ function updateUILanguage() {
     updateSoundButtonIcon();
     // Update TTS button
     updateTTSButtonIcon();
+    // Update level info if modal is open
+    const optionsModal = document.getElementById('optionsModal');
+    if (optionsModal && optionsModal.style.display === 'flex') {
+        updateLevelInfo();
+    }
 }
 
 // Toggle language dropdown
@@ -580,6 +602,11 @@ function changeLanguage(lang) {
     
     // Update UI
     updateUILanguage();
+    // Update level info if modal is open
+    const optionsModal = document.getElementById('optionsModal');
+    if (optionsModal && optionsModal.style.display === 'flex') {
+        updateLevelInfo();
+    }
     
     // Reload current question with new language
     if (gameState.questions.length > 0) {
@@ -1328,25 +1355,27 @@ function triggerIconAnimation(iconClass, animationClass) {
 function updateDisplay() {
     const oldPerfectCount = gameState.perfectCount || 0;
     
-    // Display Stage
-    document.getElementById('stageNumber').textContent = gameState.stageNumber;
-    
-    // Display Level with crown icon
+    // Display Level (Most Prominent - Center)
     const levelNumberElement = document.getElementById('levelNumber');
     if (levelNumberElement) {
-        levelNumberElement.textContent = `LV ${gameState.level}`;
+        levelNumberElement.textContent = `LEVEL ${gameState.level}`;
+    }
+    
+    // Display Stage
+    const stageNumberElement = document.getElementById('stageNumber');
+    if (stageNumberElement) {
+        stageNumberElement.textContent = `Stage ${gameState.stageNumber}`;
     }
     
     // Display Perfect count with goal
     const perfectCountElement = document.getElementById('perfectCount');
     if (perfectCountElement) {
-        perfectCountElement.textContent = `Perfect: ${gameState.perfectCount} / ${gameState.perfectGoal}`;
+        perfectCountElement.textContent = `Perfect ${gameState.perfectCount}/${gameState.perfectGoal}`;
     }
     
     // Display Question number (current / total)
     const questionNumberElement = document.getElementById('questionNumber');
     if (questionNumberElement) {
-        const remaining = gameState.questions.length - gameState.currentQuestion;
         questionNumberElement.textContent = `${gameState.currentQuestion + 1} / ${gameState.questions.length}`;
     }
     
@@ -1603,7 +1632,47 @@ function showOptionsModal() {
         optionsModal.style.display = 'flex';
         // Update active states in modal
         updateModalActiveStates();
+        // Update level info
+        updateLevelInfo();
     }
+}
+
+// Update level info display
+function updateLevelInfo() {
+    const levelInfoContent = document.getElementById('levelInfoContent');
+    if (!levelInfoContent) return;
+    
+    let html = `<div class="level-info-description">${t('levelInfo')}</div>`;
+    html += '<div class="level-info-list">';
+    
+    for (let level = 1; level <= 5; level++) {
+        const age = agePerLevel[level];
+        const questions = questionsPerLevel[level];
+        const isCurrentLevel = gameState.level === level;
+        const levelClass = isCurrentLevel ? 'level-info-item current' : 'level-info-item';
+        
+        const currentBadge = isCurrentLevel ? (currentLanguage === 'ko' ? '<span class="level-info-badge">현재</span>' : '<span class="level-info-badge">Current</span>') : '';
+        const ageText = currentLanguage === 'ko' ? `${age}세` : `${age} years old`;
+        const questionsText = currentLanguage === 'ko' ? `${questions}문제` : `${questions} questions`;
+        
+        html += `
+            <div class="${levelClass}">
+                <div class="level-info-header">
+                    <span class="level-info-crown">👑</span>
+                    <span class="level-info-level">Level ${level}</span>
+                    ${currentBadge}
+                </div>
+                <div class="level-info-details">
+                    <span class="level-info-age">${ageText}</span>
+                    <span class="level-info-separator">•</span>
+                    <span class="level-info-questions">${questionsText}</span>
+                </div>
+            </div>
+        `;
+    }
+    
+    html += '</div>';
+    levelInfoContent.innerHTML = html;
 }
 
 // Hide options modal
