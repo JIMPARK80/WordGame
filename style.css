@@ -1415,6 +1415,24 @@ header h1 {
     box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
 }
 
+.level-info-item.locked {
+    background: rgba(200, 200, 200, 0.1);
+    border: 2px solid rgba(150, 150, 150, 0.3);
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.level-info-item.locked .level-info-level,
+.level-info-item.locked .level-info-age,
+.level-info-item.locked .level-info-questions {
+    color: #999;
+}
+
+.level-info-lock {
+    font-size: 1em;
+    margin-left: 5px;
+}
+
 .level-info-header {
     display: flex;
     align-items: center;

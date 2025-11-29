@@ -55,6 +55,38 @@ function updatePerfectGoal() {
     gameState.perfectGoal = getRequiredPerfect(gameState.level);
 }
 
+// Local storage keys
+const STORAGE_KEY_MAX_LEVEL = 'wordGame_maxLevel';
+
+// Save max level to local storage
+function saveMaxLevel(level) {
+    try {
+        const currentMaxLevel = getMaxLevel();
+        if (level > currentMaxLevel) {
+            localStorage.setItem(STORAGE_KEY_MAX_LEVEL, level.toString());
+        }
+    } catch (error) {
+        console.error('Error saving max level:', error);
+    }
+}
+
+// Get max level from local storage
+function getMaxLevel() {
+    try {
+        const savedLevel = localStorage.getItem(STORAGE_KEY_MAX_LEVEL);
+        return savedLevel ? parseInt(savedLevel, 10) : 1; // Default to level 1
+    } catch (error) {
+        console.error('Error loading max level:', error);
+        return 1;
+    }
+}
+
+// Check if level is unlocked
+function isLevelUnlocked(level) {
+    const maxLevel = getMaxLevel();
+    return level <= maxLevel;
+}
+
 // Timer state
 let timerInterval = null;
 let timeLeft = 10;
@@ -1474,6 +1506,8 @@ function endGame() {
             gameState.perfectCount = 0; // Reset perfect count for new level
             updatePerfectGoal(); // Update goal for new level
             levelUpOccurred = true;
+            // Save max level to local storage
+            saveMaxLevel(gameState.level);
         }
     }
     
@@ -1641,10 +1675,11 @@ document.getElementById('nextBtn').addEventListener('click', nextQuestion);
 
 // Start screen event listeners
 document.getElementById('startGameBtn').addEventListener('click', () => {
-    // Reset game state for new game
+    // Load saved max level or start from level 1
+    const savedMaxLevel = getMaxLevel();
     gameState.stageNumber = 1;
     gameState.score = 0;
-    gameState.level = 1;
+    gameState.level = savedMaxLevel; // Start from saved level
     gameState.perfectCount = 0;
     updatePerfectGoal(); // Set perfect goal based on level
     initGame();
@@ -1675,6 +1710,8 @@ function updateLevelInfo() {
     const levelInfoContent = document.getElementById('levelInfoContent');
     if (!levelInfoContent) return;
     
+    const maxLevel = getMaxLevel();
+    
     let html = `<div class="level-info-description">${t('levelInfo')}</div>`;
     html += '<div class="level-info-list">';
     
@@ -1682,17 +1719,21 @@ function updateLevelInfo() {
         const age = agePerLevel[level];
         const questions = questionsPerLevel[level];
         const isCurrentLevel = gameState.level === level;
-        const levelClass = isCurrentLevel ? 'level-info-item current' : 'level-info-item';
+        const isUnlocked = isLevelUnlocked(level);
+        const levelClass = isCurrentLevel ? 'level-info-item current' : (isUnlocked ? 'level-info-item' : 'level-info-item locked');
         
         const currentBadge = isCurrentLevel ? (currentLanguage === 'ko' ? '<span class="level-info-badge">현재</span>' : '<span class="level-info-badge">Current</span>') : '';
-        const ageText = currentLanguage === 'ko' ? `${age}세` : `${age} years old`;
-        const questionsText = currentLanguage === 'ko' ? `${questions}문제` : `${questions} questions`;
+        const lockIcon = !isUnlocked ? '<span class="level-info-lock">🔒</span>' : '';
+        const crownIcon = isUnlocked ? '👑' : '🔒';
+        const ageText = isUnlocked ? (currentLanguage === 'ko' ? `${age}세` : `${age} years old`) : (currentLanguage === 'ko' ? '???' : '???');
+        const questionsText = isUnlocked ? (currentLanguage === 'ko' ? `${questions}문제` : `${questions} questions`) : (currentLanguage === 'ko' ? '???' : '???');
         
         html += `
             <div class="${levelClass}">
                 <div class="level-info-header">
-                    <span class="level-info-crown">👑</span>
+                    <span class="level-info-crown">${crownIcon}</span>
                     <span class="level-info-level">Level ${level}</span>
+                    ${lockIcon}
                     ${currentBadge}
                 </div>
                 <div class="level-info-details">
@@ -1981,6 +2022,11 @@ document.getElementById('wordInput').addEventListener('keypress', (e) => {
 
 // Initialize on load
 Promise.all([loadWordsDatabase(), loadStagesDatabase(), loadWordsByLevelDatabase()]).then(() => {
+    // Load saved max level
+    const savedMaxLevel = getMaxLevel();
+    gameState.level = savedMaxLevel;
+    updatePerfectGoal();
+    
     // Initialize game mode UI (default: multiple choice)
     changeGameMode('multiple');
     updateUILanguage();
