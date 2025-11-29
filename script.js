@@ -15,7 +15,7 @@ let gameState = {
 
 // Required perfect clears for each level
 const requiredPerfect = {
-    1: 5,   // LV1 -> LV2
+    1: 3,   // LV1 -> LV2
     2: 5,   // LV2 -> LV3
     3: 7,   // LV3 -> LV4
     4: 10,  // LV4 -> LV5
@@ -38,6 +38,24 @@ const agePerLevel = {
     3: 5,   // Level 3: 5세
     4: 6,   // Level 4: 6세
     5: 7    // Level 5: 7세
+};
+
+// Description per level
+const levelDescriptions = {
+    ko: {
+        1: '일상 사물 단어 익히기',
+        2: '음식·사물 인지 확장',
+        3: '기본 동작·형용사 배우기',
+        4: '복합 동작 이해 단계',
+        5: '다양한 단어 종합 학습'
+    },
+    en: {
+        1: 'Learn everyday object words',
+        2: 'Expand food and object recognition',
+        3: 'Learn basic actions and adjectives',
+        4: 'Understand complex actions',
+        5: 'Comprehensive word learning'
+    }
 };
 
 // Get required perfect clears for current level
@@ -1758,30 +1776,28 @@ function updateLevelInfo() {
     for (let level = 1; level <= 5; level++) {
         const age = agePerLevel[level];
         const questions = questionsPerLevel[level];
-        const isCurrentLevel = gameState.level === level;
-        const isUnlocked = isLevelUnlocked(level);
-        const levelClass = isCurrentLevel ? 'level-info-item current' : (isUnlocked ? 'level-info-item' : 'level-info-item locked');
+        const levelClass = 'level-info-item';
         
-        const currentBadge = isCurrentLevel ? (currentLanguage === 'ko' ? '<span class="level-info-badge">현재</span>' : '<span class="level-info-badge">Current</span>') : '';
-        const lockIcon = !isUnlocked ? '<span class="level-info-lock">🔒</span>' : '';
-        const crownIcon = isUnlocked ? '👑' : '🔒';
-        // Always show actual age and questions, even for locked levels
-        const ageText = currentLanguage === 'ko' ? `${age}세` : `${age} years old`;
-        const questionsText = currentLanguage === 'ko' ? `${questions}문제` : `${questions} questions`;
+        // Always show actual age and pass criteria
+        const ageText = currentLanguage === 'ko' ? `${age}세` : `${age} yr`;
+        const perfectRequired = getRequiredPerfect(level);
+        const passCriteriaText = currentLanguage === 'ko' 
+            ? `레벨업: Perfect ${perfectRequired}개`
+            : `Level Up: ${perfectRequired} Perfects`;
+        const description = levelDescriptions[currentLanguage] && levelDescriptions[currentLanguage][level] ? levelDescriptions[currentLanguage][level] : '';
         
         html += `
             <div class="${levelClass}">
                 <div class="level-info-header">
-                    <span class="level-info-crown">${crownIcon}</span>
+                    <span class="level-info-crown">👑</span>
                     <span class="level-info-level">Level ${level}</span>
-                    ${lockIcon}
-                    ${currentBadge}
                 </div>
                 <div class="level-info-details">
                     <span class="level-info-age">${ageText}</span>
                     <span class="level-info-separator">•</span>
-                    <span class="level-info-questions">${questionsText}</span>
+                    <span class="level-info-questions">${passCriteriaText}</span>
                 </div>
+                ${description ? `<div class="level-info-description-text">${description}</div>` : ''}
             </div>
         `;
     }
@@ -1826,24 +1842,30 @@ function updateLevelSelect() {
     for (let level = 1; level <= 5; level++) {
         const age = agePerLevel[level];
         const questions = questionsPerLevel[level];
+        const isCurrentLevel = gameState.level === level;
         const isUnlocked = isLevelUnlocked(level);
-        const levelClass = isUnlocked ? 'level-info-item level-select-item' : 'level-info-item locked';
+        const levelClass = isCurrentLevel ? 'level-info-item level-select-item current' : (isUnlocked ? 'level-info-item level-select-item' : 'level-info-item locked');
         
+        const currentBadge = isCurrentLevel ? (currentLanguage === 'ko' ? '<span class="level-info-badge">현재</span>' : '<span class="level-info-badge">Current</span>') : '';
         const crownIcon = isUnlocked ? '👑' : '🔒';
-        // Always show actual age and questions, even for locked levels
-        const ageText = currentLanguage === 'ko' ? `${age}세` : `${age} years old`;
-        const questionsText = currentLanguage === 'ko' ? `${questions}문제` : `${questions} questions`;
+        // Always show actual age and pass criteria, even for locked levels
+        const ageText = currentLanguage === 'ko' ? `${age}세` : `${age} yr`;
+        const perfectRequired = getRequiredPerfect(level);
+        const passCriteriaText = currentLanguage === 'ko' 
+            ? `레벨업: Perfect ${perfectRequired}개`
+            : `Level Up: ${perfectRequired} Perfects`;
         
         html += `
             <div class="${levelClass}" ${isUnlocked ? `data-level="${level}"` : ''}>
                 <div class="level-info-header">
                     <span class="level-info-crown">${crownIcon}</span>
                     <span class="level-info-level">Level ${level}</span>
+                    ${currentBadge}
                 </div>
                 <div class="level-info-details">
                     <span class="level-info-age">${ageText}</span>
                     <span class="level-info-separator">•</span>
-                    <span class="level-info-questions">${questionsText}</span>
+                    <span class="level-info-questions">${passCriteriaText}</span>
                 </div>
             </div>
         `;

@@ -1511,11 +1511,18 @@ header h1 {
     gap: 8px;
     font-size: 0.95em;
     color: #666;
+    white-space: nowrap;
+    flex-wrap: nowrap;
 }
 
 .level-info-age {
     font-weight: 600;
     color: var(--color-primary);
+    white-space: nowrap;
+}
+
+.level-info-questions {
+    white-space: nowrap;
 }
 
 .level-info-separator {
@@ -1524,6 +1531,20 @@ header h1 {
 
 .level-info-questions {
     color: #666;
+}
+
+.level-info-description-text {
+    margin-top: 8px;
+    font-size: 0.9em;
+    color: #555;
+    font-style: italic;
+    text-align: center;
+    padding-top: 6px;
+    border-top: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+.level-info-item.locked .level-info-description-text {
+    color: #999;
 }
 
 @media (max-width: 600px) {

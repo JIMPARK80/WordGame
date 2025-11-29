@@ -95,7 +95,7 @@
                 <div class="start-screen-content">
                     <h1 class="start-screen-title">🎨 Picture Word Game</h1>
                     <div class="start-screen-buttons">
-                        <button class="btn btn-primary btn-start" id="startGameBtn" data-i18n="startGame">New Game</button>
+                        <button class="btn btn-primary btn-start" id="startGameBtn" data-i18n="newGame">New Game</button>
                         <button class="btn btn-success btn-load" id="loadGameBtn" data-i18n="loadGame">Load Game</button>
                         <button class="btn btn-secondary btn-options" id="startScreenOptionsBtn" data-i18n="options">Options</button>
                         <button class="btn btn-danger btn-exit" id="exitGameBtn" data-i18n="exitGame"> Exit Game</button>
@@ -112,7 +112,7 @@
                     </div>
                     <div class="options-modal-body">
                         <div class="menu-section menu-section-info">
-                            <div class="level-info-description" style="margin-bottom: 15px;">${t('selectLevel')}</div>
+                            <div class="level-info-description" id="levelSelectDescription" style="margin-bottom: 15px;"></div>
                             <div class="level-info-content" id="levelSelectContent">
                                 <!-- Level selection will be populated by JavaScript -->
                             </div>
