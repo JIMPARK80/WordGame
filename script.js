@@ -22,9 +22,23 @@ const requiredPerfect = {
     5: 10   // LV5 -> maintain/repeat
 };
 
+// Questions per level (age-based difficulty)
+const questionsPerLevel = {
+    1: 3,   // Level 1 (3세): 3문제
+    2: 3,   // Level 2 (4세): 3문제
+    3: 5,   // Level 3 (5세): 5문제
+    4: 6,   // Level 4 (6세): 6문제
+    5: 7    // Level 5 (7세): 7문제
+};
+
 // Get required perfect clears for current level
 function getRequiredPerfect(level) {
     return requiredPerfect[level] || requiredPerfect[5]; // Default to 10 for level 5+
+}
+
+// Get questions count for current level
+function getQuestionsPerLevel(level) {
+    return questionsPerLevel[level] || questionsPerLevel[5]; // Default to 7 for level 5+
 }
 
 // Update perfect goal based on current level
@@ -810,16 +824,21 @@ async function initGame() {
         return;
     }
     
-    // Shuffle and select all questions for the stage
+    // Shuffle questions for the stage
     const shuffled = [...stageQuestions].sort(() => Math.random() - 0.5);
-    gameState.questions = shuffled;
+    
+    // Get questions count based on current level
+    const questionsCount = getQuestionsPerLevel(gameState.level);
+    
+    // Select only the number of questions for current level
+    gameState.questions = shuffled.slice(0, Math.min(questionsCount, shuffled.length));
     gameState.currentQuestion = 0;
     // Don't reset score and stage number - keep them for next stage
     // gameState.score = 0; // Keep score across stages
     gameState.correctCount = 0; // Reset correct count for new stage
     
-    // Store current stage goal
-    gameState.stageGoal = currentStage.goal || stageQuestions.length;
+    // Store current stage goal (use level-based question count)
+    gameState.stageGoal = questionsCount;
     
     // Update perfect goal based on current level
     updatePerfectGoal();
