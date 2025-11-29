@@ -115,6 +115,8 @@ header {
     transition: all var(--transition-normal);
     box-shadow: var(--shadow-sm);
     z-index: var(--z-menu);
+    margin-left: 15px;
+    flex-shrink: 0;
 }
 
 .settings-btn:hover {
@@ -512,16 +514,17 @@ header h1 {
     gap: 12px;
     margin: 20px 0;
     padding: 15px 0;
+    position: relative;
 }
 
 .level-icon-large {
-    font-size: 2.5em;
+    font-size: 2.24em;
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
     animation: gamePulse 2s ease-in-out infinite;
 }
 
 .level-text {
-    font-size: 2.2em;
+    font-size: 2.45em;
     font-weight: bold;
     color: var(--color-primary);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
@@ -564,14 +567,18 @@ header h1 {
     background: linear-gradient(135deg, #FF6B6B 0%, #EE5A6F 100%);
 }
 
+.info-item-progress {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
 .info-icon {
-    font-size: 1.5em;
+    font-size: 2.2em;
     display: inline-block;
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
 
 .info-value {
-    font-size: 1.1em;
+    font-size: 1.8em;
     font-weight: 600;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
     white-space: nowrap;
@@ -590,13 +597,13 @@ header h1 {
 }
 
 .progress-icon {
-    font-size: 1.8em;
+    font-size: 2.6em;
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
     animation: bookFlip 2s ease-in-out infinite;
 }
 
 .progress-text {
-    font-size: 1.6em;
+    font-size: 2.4em;
     font-weight: bold;
     color: var(--color-primary);
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
@@ -1760,8 +1767,8 @@ header h1 {
     }
 
     header h1 {
-        font-size: 1.6em;
-        margin: 0;
+        font-size: 2.08em;
+        margin: 0 0 15px 0;
         line-height: 1.2;
         text-align: center;
     }
@@ -1784,12 +1791,20 @@ header h1 {
     }
 
     .level-icon-large {
-        font-size: 2em;
+        font-size: 1.82em;
     }
 
     .level-text {
-        font-size: 1.6em;
+        font-size: 1.68em;
         letter-spacing: 1px;
+    }
+    
+    .level-display .settings-btn,
+    .level-display .hamburger-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2em;
+        margin-left: 10px;
     }
 
     /* Info Bar - Mobile */
@@ -1805,11 +1820,11 @@ header h1 {
     }
 
     .info-icon {
-        font-size: 1.2em;
+        font-size: 1.8em;
     }
 
     .info-value {
-        font-size: 0.9em;
+        font-size: 1.5em;
     }
 
     /* Progress Display - Mobile */
@@ -1819,11 +1834,11 @@ header h1 {
     }
 
     .progress-icon {
-        font-size: 1.5em;
+        font-size: 2.2em;
     }
 
     .progress-text {
-        font-size: 1.3em;
+        font-size: 2em;
     }
 
     /* Image Display - Mobile (Larger) */

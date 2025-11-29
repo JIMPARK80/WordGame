@@ -10,23 +10,8 @@
 <body>
     <div class="container">
         <header style="position: relative;">
-            <div class="header-top">
-                <!-- Hamburger Menu Button (Mobile) -->
-                <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                
-                <h1 id="gameTitle">🎨 그림 맞추기 게임</h1>
-                
-                <!-- Settings Menu Button (Desktop) -->
-                <div class="settings-menu-wrapper">
-                    <button class="settings-btn desktop-only" id="settingsBtn" aria-label="Settings">
-                        ⚙️
-                    </button>
-                </div>
-            </div>
+            <!-- Game Title (Top) -->
+            <h1 class="game-title" id="gameTitle">🎨 Picture Word Game</h1>
             
             <!-- Menu Panel -->
             <div class="menu-panel" id="menuPanel">
@@ -60,13 +45,21 @@
                 </div>
             </div>
             
-            <!-- Level Display (Most Prominent) -->
+            <!-- Level Display with Settings -->
             <div class="level-display">
                 <span class="level-icon-large">👑</span>
                 <span class="level-text" id="levelNumber">LEVEL 1</span>
+                <button class="settings-btn desktop-only" id="settingsBtn" aria-label="Settings">
+                    ⚙️
+                </button>
+                <button class="hamburger-btn mobile-only" id="hamburgerBtn" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
             
-            <!-- Info Bar (Stage, Perfect, Timer) -->
+            <!-- Info Bar (Stage, Perfect) -->
             <div class="info-bar">
                 <div class="info-item info-item-stage">
                     <span class="info-icon">🏆</span>
@@ -76,16 +69,18 @@
                     <span class="info-icon">😊</span>
                     <span class="info-value" id="perfectCount">Perfect 0/5</span>
                 </div>
+            </div>
+            
+            <!-- Bottom Bar (Timer, Question Number) -->
+            <div class="info-bar">
                 <div class="info-item info-item-timer">
                     <span class="info-icon">⏱</span>
                     <span class="info-value" id="timer">8</span>
                 </div>
-            </div>
-            
-            <!-- Progress Display (Question Number) -->
-            <div class="progress-display">
-                <span class="progress-icon">📘</span>
-                <span class="progress-text" id="questionNumber">1 / 3</span>
+                <div class="info-item info-item-progress">
+                    <span class="info-icon">📘</span>
+                    <span class="info-value" id="questionNumber">1 / 3</span>
+                </div>
             </div>
         </header>
 
