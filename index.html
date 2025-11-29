@@ -58,13 +58,13 @@
             
             <div class="score-board">
                 <div class="score-row score-row-top">
-                    <div class="score-item score-item-coin">
-                        <span class="coin-icon">⭐</span>
-                        <span class="value" id="score">0</span>
-                    </div>
                     <div class="score-item score-item-stage">
                         <span class="stage-icon">🏆</span>
                         <span class="value" id="stageNumber">1</span>
+                    </div>
+                    <div class="score-item score-item-level">
+                        <span class="level-icon">👑</span>
+                        <span class="value" id="levelNumber">LV 1</span>
                     </div>
                 </div>
                 <div class="score-row score-row-bottom">
@@ -74,7 +74,7 @@
                     </div>
                     <div class="score-item score-item-question">
                         <span class="question-icon">📘</span>
-                        <span class="value" id="levelNumber">Level: 1</span>
+                        <span class="value" id="questionNumber">1 / 10</span>
                     </div>
                     <div class="score-item score-item-timer">
                         <span class="timer-icon">🕐</span>
@@ -152,16 +152,8 @@
                     <h2 class="stage-clear-title" id="stageClearTitle">Stage Clear!</h2>
                     <div class="stage-clear-stats">
                         <div class="stat-item">
-                            <span class="stat-label" data-i18n="score">Score</span>
-                            <span class="stat-value" id="finalScore">0</span>
-                        </div>
-                        <div class="stat-item">
                             <span class="stat-label" data-i18n="correct">Correct</span>
                             <span class="stat-value" id="finalCorrect">0 / 0</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-label" data-i18n="goal">Goal</span>
-                            <span class="stat-value" id="finalGoal">0</span>
                         </div>
                         <div class="stat-item">
                             <span class="stat-label" data-i18n="accuracy">Accuracy</span>

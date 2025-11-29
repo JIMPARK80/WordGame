@@ -10,8 +10,27 @@ let gameState = {
     stageGoal: 10,  // Default goal, will be set from stages.json
     level: 1,  // Current level (starts at 1)
     perfectCount: 0,  // Current perfect count for level up
-    perfectGoal: 5  // Perfect clears needed for level up (default: 5)
+    perfectGoal: 5  // Perfect clears needed for level up (will be set based on level)
 };
+
+// Required perfect clears for each level
+const requiredPerfect = {
+    1: 5,   // LV1 -> LV2
+    2: 5,   // LV2 -> LV3
+    3: 7,   // LV3 -> LV4
+    4: 10,  // LV4 -> LV5
+    5: 10   // LV5 -> maintain/repeat
+};
+
+// Get required perfect clears for current level
+function getRequiredPerfect(level) {
+    return requiredPerfect[level] || requiredPerfect[5]; // Default to 10 for level 5+
+}
+
+// Update perfect goal based on current level
+function updatePerfectGoal() {
+    gameState.perfectGoal = getRequiredPerfect(gameState.level);
+}
 
 // Timer state
 let timerInterval = null;
@@ -751,6 +770,9 @@ async function initGame() {
     // Store current stage goal
     gameState.stageGoal = currentStage.goal || stageQuestions.length;
     
+    // Update perfect goal based on current level
+    updatePerfectGoal();
+    
     loadQuestion();
     updateDisplay();
 }
@@ -1032,14 +1054,9 @@ function selectChoice(selectedWord, isUserAction = true) {
     if (isCorrect) {
         feedback.textContent = t('correctMsg');
         feedback.className = 'feedback correct';
-        const oldScore = gameState.score;
-        gameState.score += 10;
+        gameState.score += 10; // Score calculated but not displayed
         gameState.correctCount++;
-        // Trigger score icon animation only when score increases
-        if (gameState.score > oldScore) {
-            triggerIconAnimation('coin-icon', 'score-shake');
-        }
-        showMessage(t('pointsMsg', { points: 10 }), 'success');
+        showMessage(t('correctMsg'), 'success');
         celebrate(); // Fireworks effect
         playSound('correct'); // Success sound
         // TTS: Speak the correct word
@@ -1094,14 +1111,9 @@ function checkAnswer() {
     if (isCorrect) {
         feedback.textContent = t('correctMsg');
         feedback.className = 'feedback correct';
-        const oldScore = gameState.score;
-        gameState.score += 10;
+        gameState.score += 10; // Score calculated but not displayed
         gameState.correctCount++;
-        // Trigger score icon animation only when score increases
-        if (gameState.score > oldScore) {
-            triggerIconAnimation('coin-icon', 'score-shake');
-        }
-        showMessage(t('pointsMsg', { points: 10 }), 'success');
+        showMessage(t('correctMsg'), 'success');
         celebrate(); // Fireworks effect
         playSound('correct'); // Success sound
         // TTS: Speak the correct word
@@ -1222,8 +1234,14 @@ function triggerIconAnimation(iconClass, animationClass) {
 function updateDisplay() {
     const oldPerfectCount = gameState.perfectCount || 0;
     
-    document.getElementById('score').textContent = gameState.score;
+    // Display Stage
     document.getElementById('stageNumber').textContent = gameState.stageNumber;
+    
+    // Display Level with crown icon
+    const levelNumberElement = document.getElementById('levelNumber');
+    if (levelNumberElement) {
+        levelNumberElement.textContent = `LV ${gameState.level}`;
+    }
     
     // Display Perfect count with goal
     const perfectCountElement = document.getElementById('perfectCount');
@@ -1231,14 +1249,14 @@ function updateDisplay() {
         perfectCountElement.textContent = `Perfect: ${gameState.perfectCount} / ${gameState.perfectGoal}`;
     }
     
-    // Display Level
-    const levelNumberElement = document.getElementById('levelNumber');
-    if (levelNumberElement) {
-        levelNumberElement.textContent = `Level: ${gameState.level}`;
+    // Display Question number (current / total)
+    const questionNumberElement = document.getElementById('questionNumber');
+    if (questionNumberElement) {
+        const remaining = gameState.questions.length - gameState.currentQuestion;
+        questionNumberElement.textContent = `${gameState.currentQuestion + 1} / ${gameState.questions.length}`;
     }
     
     // Trigger animations when values change
-    // Score animation is triggered directly when score increases in selectChoice() and checkAnswer()
     if (gameState.perfectCount > oldPerfectCount) {
         triggerIconAnimation('correct-icon', 'correct-jump');
     }
@@ -1287,6 +1305,9 @@ function endGame() {
     let levelUpOccurred = false;
     const previousLevel = gameState.level;
     
+    // Update perfect goal based on current level
+    updatePerfectGoal();
+    
     // Increment Perfect count if Perfect
     if (isPerfect) {
         gameState.perfectCount++;
@@ -1295,8 +1316,8 @@ function endGame() {
         if (gameState.perfectCount >= gameState.perfectGoal) {
             gameState.level++;
             gameState.perfectCount = 0; // Reset perfect count for new level
+            updatePerfectGoal(); // Update goal for new level
             levelUpOccurred = true;
-            // Perfect goal can be adjusted per level if needed (currently stays at 5)
         }
     }
     
@@ -1309,7 +1330,18 @@ function endGame() {
     gameArea.style.display = 'none';
     stageClearScreen.style.display = 'flex';
     
-    // Update Stage Clear screen content based on score
+    // Update Stage Clear screen icon and title based on result
+    const stageClearIcon = document.querySelector('.stage-clear-icon');
+    if (stageClearIcon) {
+        if (isStageClear) {
+            // Success - Celebration icon
+            stageClearIcon.textContent = '🎉';
+        } else {
+            // Failure - Challenge icon (encouraging retry)
+            stageClearIcon.textContent = '💪';
+        }
+    }
+    
     if (isStageClear) {
         // Goal reached - Stage Clear!
         document.getElementById('stageClearTitle').textContent = t('stageClear');
@@ -1326,10 +1358,7 @@ function endGame() {
     }
     
     // Update stats
-    document.getElementById('finalScore').textContent = gameState.score;
     document.getElementById('finalCorrect').textContent = `${gameState.correctCount} / ${gameState.questions.length}`;
-    const stageGoal = gameState.stageGoal || gameState.questions.length;
-    document.getElementById('finalGoal').textContent = `${stageGoal}`;
     document.getElementById('finalAccuracy').textContent = `${accuracy}%`;
     
     // Show Perfect indicator if Perfect
@@ -1461,7 +1490,7 @@ document.getElementById('startGameBtn').addEventListener('click', () => {
     gameState.score = 0;
     gameState.level = 1;
     gameState.perfectCount = 0;
-    gameState.perfectGoal = 5; // Default perfect goal
+    updatePerfectGoal(); // Set perfect goal based on level
     initGame();
     playSound('click');
 });
