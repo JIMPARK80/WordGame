@@ -1,269 +1,3226 @@
 [
-  { "emoji": "🐱", "word": { "ko": "고양이", "en": "cat" }, "hint": { "ko": "집에서 키우는 귀여운 동물", "en": "A cute pet animal" } },
-  { "emoji": "🐶", "word": { "ko": "강아지", "en": "dog" }, "hint": { "ko": "사람의 가장 친한 친구", "en": "Man's best friend" } },
-  { "emoji": "🐼", "word": { "ko": "팬더", "en": "panda" }, "hint": { "ko": "검은색과 흰색의 큰 동물", "en": "A large black and white animal" } },
-  { "emoji": "🐯", "word": { "ko": "호랑이", "en": "tiger" }, "hint": { "ko": "줄무늬가 있는 큰 고양이", "en": "A large striped cat" } },
-  { "emoji": "🦁", "word": { "ko": "사자", "en": "lion" }, "hint": { "ko": "정글의 왕", "en": "King of the jungle" } },
-  { "emoji": "🐘", "word": { "ko": "코끼리", "en": "elephant" }, "hint": { "ko": "긴 코를 가진 큰 동물", "en": "A large animal with a long trunk" } },
-  { "emoji": "🦒", "word": { "ko": "기린", "en": "giraffe" }, "hint": { "ko": "목이 매우 긴 동물", "en": "An animal with a very long neck" } },
-  { "emoji": "🐰", "word": { "ko": "토끼", "en": "rabbit" }, "hint": { "ko": "긴 귀를 가진 작은 동물", "en": "A small animal with long ears" } },
-  { "emoji": "🐻", "word": { "ko": "곰", "en": "bear" }, "hint": { "ko": "큰 덩치의 곰돌이", "en": "A large furry animal" } },
-  { "emoji": "🐸", "word": { "ko": "개구리", "en": "frog" }, "hint": { "ko": "연못에 사는 초록색 동물", "en": "A green animal that lives in ponds" } },
-  { "emoji": "🐷", "word": { "ko": "돼지", "en": "pig" }, "hint": { "ko": "핑크색 동물", "en": "A pink animal" } },
-  { "emoji": "🐮", "word": { "ko": "소", "en": "cow" }, "hint": { "ko": "우유를 주는 동물", "en": "An animal that gives milk" } },
-  { "emoji": "🐴", "word": { "ko": "말", "en": "horse" }, "hint": { "ko": "타고 다니는 동물", "en": "An animal you can ride" } },
-  { "emoji": "🐔", "word": { "ko": "닭", "en": "chicken" }, "hint": { "ko": "알을 낳는 동물", "en": "An animal that lays eggs" } },
-  { "emoji": "🐤", "word": { "ko": "병아리", "en": "chick" }, "hint": { "ko": "작은 새끼 새", "en": "A small baby bird" } },
-  { "emoji": "🦆", "word": { "ko": "오리", "en": "duck" }, "hint": { "ko": "물에서 헤엄치는 새", "en": "A bird that swims in water" } },
-  { "emoji": "🐧", "word": { "ko": "펭귄", "en": "penguin" }, "hint": { "ko": "남극에 사는 새", "en": "A bird that lives in Antarctica" } },
-  { "emoji": "🐦", "word": { "ko": "새", "en": "bird" }, "hint": { "ko": "하늘을 나는 동물", "en": "An animal that flies in the sky" } },
-  { "emoji": "🦉", "word": { "ko": "올빼미", "en": "owl" }, "hint": { "ko": "밤에 활동하는 새", "en": "A bird that is active at night" } },
-  { "emoji": "🐝", "word": { "ko": "벌", "en": "bee" }, "hint": { "ko": "꿀을 만드는 곤충", "en": "An insect that makes honey" } },
-  { "emoji": "🍎", "word": { "ko": "사과", "en": "apple" }, "hint": { "ko": "빨간 과일", "en": "A red fruit" } },
-  { "emoji": "🍌", "word": { "ko": "바나나", "en": "banana" }, "hint": { "ko": "노란색 긴 과일", "en": "A long yellow fruit" } },
-  { "emoji": "🍇", "word": { "ko": "포도", "en": "grape" }, "hint": { "ko": "작은 알갱이 과일", "en": "A fruit with small berries" } },
-  { "emoji": "🍓", "word": { "ko": "딸기", "en": "strawberry" }, "hint": { "ko": "빨간색 작은 과일", "en": "A small red fruit" } },
-  { "emoji": "🍊", "word": { "ko": "오렌지", "en": "orange" }, "hint": { "ko": "주황색 과일", "en": "An orange-colored fruit" } },
-  { "emoji": "🍉", "word": { "ko": "수박", "en": "watermelon" }, "hint": { "ko": "여름에 먹는 큰 과일", "en": "A large fruit eaten in summer" } },
-  { "emoji": "🍑", "word": { "ko": "복숭아", "en": "peach" }, "hint": { "ko": "분홍색 과일", "en": "A pink fruit" } },
-  { "emoji": "🍒", "word": { "ko": "체리", "en": "cherry" }, "hint": { "ko": "작은 빨간 과일", "en": "A small red fruit" } },
-  { "emoji": "🥝", "word": { "ko": "키위", "en": "kiwi" }, "hint": { "ko": "초록색 털이 있는 과일", "en": "A fruit with green fuzzy skin" } },
-  { "emoji": "🍍", "word": { "ko": "파인애플", "en": "pineapple" }, "hint": { "ko": "노란색 열대 과일", "en": "A yellow tropical fruit" } },
-  { "emoji": "🚗", "word": { "ko": "자동차", "en": "car" }, "hint": { "ko": "도로를 달리는 교통수단", "en": "A vehicle that runs on roads" } },
-  { "emoji": "🚌", "word": { "ko": "버스", "en": "bus" }, "hint": { "ko": "많은 사람을 태우는 차", "en": "A vehicle that carries many people" } },
-  { "emoji": "🚕", "word": { "ko": "택시", "en": "taxi" }, "hint": { "ko": "돈을 받고 태워주는 차", "en": "A vehicle that takes you for money" } },
-  { "emoji": "🚑", "word": { "ko": "구급차", "en": "ambulance" }, "hint": { "ko": "환자를 싣는 차", "en": "A vehicle that carries patients" } },
-  { "emoji": "🚒", "word": { "ko": "소방차", "en": "fire truck" }, "hint": { "ko": "불을 끄는 차", "en": "A vehicle that puts out fires" } },
-  { "emoji": "🚓", "word": { "ko": "경찰차", "en": "police car" }, "hint": { "ko": "경찰이 타는 차", "en": "A vehicle used by police" } },
-  { "emoji": "🚲", "word": { "ko": "자전거", "en": "bicycle" }, "hint": { "ko": "페달을 밟는 두 바퀴", "en": "Two wheels with pedals" } },
-  { "emoji": "✈️", "word": { "ko": "비행기", "en": "airplane" }, "hint": { "ko": "하늘을 나는 교통수단", "en": "A vehicle that flies in the sky" } },
-  { "emoji": "🚢", "word": { "ko": "배", "en": "ship" }, "hint": { "ko": "바다를 항해하는 교통수단", "en": "A vehicle that sails on the sea" } },
-  { "emoji": "🚂", "word": { "ko": "기차", "en": "train" }, "hint": { "ko": "레일 위를 달리는 교통수단", "en": "A vehicle that runs on rails" } },
-  { "emoji": "🏠", "word": { "ko": "집", "en": "house" }, "hint": { "ko": "사람이 사는 곳", "en": "A place where people live" }, "image": "house.png" },
-  { "emoji": "🏫", "word": { "ko": "학교", "en": "school" }, "hint": { "ko": "공부하는 곳", "en": "A place where you study" }, "image": "school.png" },
-  { "emoji": "🏥", "word": { "ko": "병원", "en": "hospital" }, "hint": { "ko": "병을 고치는 곳", "en": "A place where you get treated" } },
-  { "emoji": "🏪", "word": { "ko": "편의점", "en": "convenience store" }, "hint": { "ko": "작은 상점", "en": "A small store" } },
-  { "emoji": "🏬", "word": { "ko": "백화점", "en": "department store" }, "hint": { "ko": "큰 쇼핑몰", "en": "A large shopping mall" } },
-  { "emoji": "🌳", "word": { "ko": "나무", "en": "tree" }, "hint": { "ko": "땅에 뿌리를 둔 식물", "en": "A plant with roots in the ground" } },
-  { "emoji": "🌺", "word": { "ko": "꽃", "en": "flower" }, "hint": { "ko": "예쁜 색깔의 식물", "en": "A plant with beautiful colors" } },
-  { "emoji": "🌞", "word": { "ko": "태양", "en": "sun" }, "hint": { "ko": "하늘의 큰 별", "en": "A large star in the sky" } },
-  { "emoji": "🌙", "word": { "ko": "달", "en": "moon" }, "hint": { "ko": "밤하늘의 위성", "en": "A satellite in the night sky" } },
-  { "emoji": "⭐", "word": { "ko": "별", "en": "star" }, "hint": { "ko": "밤하늘의 반짝이는 것", "en": "A twinkling thing in the night sky" } },
-  { "emoji": "☁️", "word": { "ko": "구름", "en": "cloud" }, "hint": { "ko": "하늘의 흰색 덩어리", "en": "A white mass in the sky" } },
-  { "emoji": "⛈️", "word": { "ko": "천둥번개", "en": "thunderstorm" }, "hint": { "ko": "번개와 천둥", "en": "Lightning and thunder" } },
-  { "emoji": "🌈", "word": { "ko": "무지개", "en": "rainbow" }, "hint": { "ko": "일곱 가지 색깔", "en": "Seven colors" } },
-  { "emoji": "❄️", "word": { "ko": "눈", "en": "snow" }, "hint": { "ko": "겨울에 내리는 하얀 것", "en": "White stuff that falls in winter" } },
-  { "emoji": "☔", "word": { "ko": "우산", "en": "umbrella" }, "hint": { "ko": "비를 막는 도구", "en": "A tool to block rain" } },
-  { "emoji": "🌊", "word": { "ko": "바다", "en": "ocean" }, "hint": { "ko": "넓은 물", "en": "A vast body of water" } },
-  { "emoji": "🏔️", "word": { "ko": "산", "en": "mountain" }, "hint": { "ko": "높은 땅", "en": "High land" } },
-  { "emoji": "🏖️", "word": { "ko": "해변", "en": "beach" }, "hint": { "ko": "바다 옆 모래밭", "en": "Sandy area next to the ocean" } },
-  { "emoji": "🎈", "word": { "ko": "풍선", "en": "balloon" }, "hint": { "ko": "공기로 부풀린 것", "en": "Something filled with air" } },
-  { "emoji": "🎂", "word": { "ko": "케이크", "en": "cake" }, "hint": { "ko": "생일에 먹는 디저트", "en": "A dessert eaten on birthdays" } },
-  { "emoji": "🎁", "word": { "ko": "선물", "en": "gift" }, "hint": { "ko": "주고받는 것", "en": "Something given and received" } },
-  { "emoji": "🎄", "word": { "ko": "크리스마스트리", "en": "Christmas tree" }, "hint": { "ko": "12월에 장식하는 나무", "en": "A tree decorated in December" } },
-  { "emoji": "⚽", "word": { "ko": "축구공", "en": "soccer ball" }, "hint": { "ko": "발로 차는 공", "en": "A ball you kick with your foot" } },
-  { "emoji": "🏀", "word": { "ko": "농구공", "en": "basketball" }, "hint": { "ko": "바스켓에 넣는 공", "en": "A ball you put in a basket" } },
-  { "emoji": "🎾", "word": { "ko": "테니스공", "en": "tennis ball" }, "hint": { "ko": "라켓으로 치는 공", "en": "A ball you hit with a racket" } },
-  { "emoji": "🏐", "word": { "ko": "배구공", "en": "volleyball" }, "hint": { "ko": "네트 위로 넘기는 공", "en": "A ball you hit over a net" } },
-  { "emoji": "🎸", "word": { "ko": "기타", "en": "guitar" }, "hint": { "ko": "줄을 튕기는 악기", "en": "An instrument with strings" } },
-  { "emoji": "🎹", "word": { "ko": "피아노", "en": "piano" }, "hint": { "ko": "건반을 누르는 악기", "en": "An instrument with keys" } },
-  { "emoji": "🎤", "word": { "ko": "마이크", "en": "microphone" }, "hint": { "ko": "노래할 때 쓰는 것", "en": "Something used when singing" } },
-  { "emoji": "📱", "word": { "ko": "스마트폰", "en": "smartphone" }, "hint": { "ko": "손에 들고 다니는 전화기", "en": "A phone you carry in your hand" } },
-  { "emoji": "💻", "word": { "ko": "노트북", "en": "laptop" }, "hint": { "ko": "접을 수 있는 컴퓨터", "en": "A foldable computer" } },
-  { "emoji": "⌚", "word": { "ko": "시계", "en": "watch" }, "hint": { "ko": "시간을 보는 것", "en": "Something that tells time" } },
-  { "emoji": "📚", "word": { "ko": "책", "en": "book" }, "hint": { "ko": "읽는 것", "en": "Something you read" } },
-  { "emoji": "✏️", "word": { "ko": "연필", "en": "pencil" }, "hint": { "ko": "글씨를 쓰는 도구", "en": "A tool for writing" } },
-  { "emoji": "🎨", "word": { "ko": "팔레트", "en": "palette" }, "hint": { "ko": "그림을 그리는 도구", "en": "A tool for painting" } },
-  { "emoji": "🎭", "word": { "ko": "가면", "en": "mask" }, "hint": { "ko": "얼굴에 쓰는 것", "en": "Something worn on the face" } },
-  { "emoji": "👓", "word": { "ko": "안경", "en": "glasses" }, "hint": { "ko": "눈에 쓰는 것", "en": "Something worn on the eyes" } },
-  { "emoji": "👕", "word": { "ko": "셔츠", "en": "shirt" }, "hint": { "ko": "입는 옷", "en": "Clothing you wear" } },
-  { "emoji": "👖", "word": { "ko": "바지", "en": "pants" }, "hint": { "ko": "다리에 입는 옷", "en": "Clothing worn on legs" } },
-  { "emoji": "👟", "word": { "ko": "운동화", "en": "sneakers" }, "hint": { "ko": "신는 신발", "en": "Shoes you wear" } },
-  { "emoji": "👑", "word": { "ko": "왕관", "en": "crown" }, "hint": { "ko": "왕이 쓰는 것", "en": "Something worn by a king" } },
-  { "emoji": "🎩", "word": { "ko": "모자", "en": "hat" }, "hint": { "ko": "머리에 쓰는 것", "en": "Something worn on the head" } },
-  { "emoji": "🍕", "word": { "ko": "피자", "en": "pizza" }, "hint": { "ko": "이탈리아 음식", "en": "Italian food" } },
-  { "emoji": "🍔", "word": { "ko": "햄버거", "en": "hamburger" }, "hint": { "ko": "패티가 들어간 음식", "en": "Food with a patty" } },
-  { "emoji": "🍟", "word": { "ko": "감자튀김", "en": "french fries" }, "hint": { "ko": "감자를 튀긴 것", "en": "Fried potatoes" } },
-  { "emoji": "🌮", "word": { "ko": "타코", "en": "taco" }, "hint": { "ko": "멕시코 음식", "en": "Mexican food" } },
-  { "emoji": "🍜", "word": { "ko": "라면", "en": "ramen" }, "hint": { "ko": "면이 들어간 국물 음식", "en": "Noodle soup" } },
-  { "emoji": "🍱", "word": { "ko": "도시락", "en": "bento box" }, "hint": { "ko": "여러 가지 반찬이 담긴 것", "en": "A box with various side dishes" } },
-  { "emoji": "🍙", "word": { "ko": "주먹밥", "en": "rice ball" }, "hint": { "ko": "밥을 뭉친 것", "en": "A ball of rice" } },
-  { "emoji": "🍣", "word": { "ko": "초밥", "en": "sushi" }, "hint": { "ko": "생선이 올라간 밥", "en": "Rice with fish on top" } },
-  { "emoji": "🍰", "word": { "ko": "케이크", "en": "cake" }, "hint": { "ko": "달콤한 디저트", "en": "A sweet dessert" } },
-  { "emoji": "🍪", "word": { "ko": "쿠키", "en": "cookie" }, "hint": { "ko": "작은 과자", "en": "A small snack" } },
-  { "emoji": "🍫", "word": { "ko": "초콜릿", "en": "chocolate" }, "hint": { "ko": "달콤한 간식", "en": "A sweet treat" } },
-  { "emoji": "🍬", "word": { "ko": "사탕", "en": "candy" }, "hint": { "ko": "달콤한 과자", "en": "A sweet snack" } },
-  { "emoji": "☕", "word": { "ko": "커피", "en": "coffee" }, "hint": { "ko": "아침에 마시는 음료", "en": "A drink for the morning" } },
-  { "emoji": "🍵", "word": { "ko": "차", "en": "tea" }, "hint": { "ko": "따뜻한 음료", "en": "A warm drink" } },
-  { "emoji": "🥤", "word": { "ko": "음료수", "en": "drink" }, "hint": { "ko": "마시는 것", "en": "Something to drink" } },
-  { "emoji": "🍼", "word": { "ko": "우유", "en": "milk" }, "hint": { "ko": "하얀 음료", "en": "A white drink" } },
-  { "emoji": "🥛", "word": { "ko": "우유", "en": "milk" }, "hint": { "ko": "유리잔에 담긴 음료", "en": "A drink in a glass" } },
-  { "emoji": "🏚️", "word": { "ko": "헛간", "en": "barn" }, "hint": { "ko": "농장에 있는 붉은색 건물", "en": "A red building on a farm" }, "image": "barn.png" },
-  { "emoji": "🚌👨‍✈️", "word": { "ko": "버스기사", "en": "bus driver" }, "hint": { "ko": "버스를 운전하는 사람", "en": "A person who drives a bus" }, "image": "busdriver.png" },
-  { "emoji": "👨‍🚒", "word": { "ko": "소방관", "en": "firefighter" }, "hint": { "ko": "불을 끄는 사람", "en": "A person who puts out fires" }, "image": "firefighter.png" },
-  { "emoji": "👩‍⚕️", "word": { "ko": "간호사", "en": "nurse" }, "hint": { "ko": "병원에서 환자를 돌보는 사람", "en": "A person who takes care of patients" }, "image": "nurse.png" },
-  { "emoji": "👶", "word": { "ko": "아기", "en": "baby" }, "hint": { "ko": "갓 태어난 작은 아이", "en": "A small newborn child" }, "image": "baby.png" },
-  { "emoji": "🤸", "word": { "ko": "점프", "en": "jump" }, "hint": { "ko": "공중으로 뛰는 동작", "en": "An action of jumping in the air" }, "image": "jump.png" },
-  { "emoji": "🆘", "word": { "ko": "도움", "en": "help" }, "hint": { "ko": "어려울 때 필요한 것", "en": "Something needed when in trouble" }, "image": "help.png" },
-  { "emoji": "💍", "word": { "ko": "반지", "en": "ring" }, "hint": { "ko": "손가락에 끼는 장식품", "en": "Jewelry worn on the finger" }, "image": "ring.png" },
-  { "emoji": "🛁", "word": { "ko": "목욕", "en": "bath" }, "hint": { "ko": "욕조에서 몸을 씻는 것", "en": "Washing your body in a tub" }, "image": "bath.png" },
-  { "emoji": "🎵", "word": { "ko": "노래", "en": "song" }, "hint": { "ko": "음악과 함께 부르는 것", "en": "Something sung with music" }, "image": "song.png" },
-  { "emoji": "🏃", "word": { "ko": "달리다", "en": "run" }, "hint": { "ko": "빠르게 걷는 동작", "en": "Moving fast on foot" } },
-  { "emoji": "🚶", "word": { "ko": "걷다", "en": "walk" }, "hint": { "ko": "발로 이동하는 동작", "en": "Moving on foot" } },
-  { "emoji": "🍽️", "word": { "ko": "먹다", "en": "eat" }, "hint": { "ko": "음식을 섭취하는 동작", "en": "Taking food into your mouth" }, "image": "eat.png" },
-  { "emoji": "🥤", "word": { "ko": "마시다", "en": "drink" }, "hint": { "ko": "액체를 삼키는 동작", "en": "Swallowing a liquid" } },
-  { "emoji": "😴", "word": { "ko": "자다", "en": "sleep" }, "hint": { "ko": "눈을 감고 휴식하는 동작", "en": "Closing your eyes and resting" } },
-  { "emoji": "🎮", "word": { "ko": "놀다", "en": "play" }, "hint": { "ko": "재미있게 즐기는 동작", "en": "Having fun and enjoying" } },
-  { "emoji": "🎤", "word": { "ko": "노래하다", "en": "sing" }, "hint": { "ko": "목소리로 음악을 만드는 동작", "en": "Making music with your voice" } },
-  { "emoji": "💃", "word": { "ko": "춤추다", "en": "dance" }, "hint": { "ko": "리듬에 맞춰 몸을 움직이는 동작", "en": "Moving your body to rhythm" } },
-  { "emoji": "📖", "word": { "ko": "읽다", "en": "read" }, "hint": { "ko": "글자를 보고 이해하는 동작", "en": "Looking at words and understanding" } },
-  { "emoji": "✍️", "word": { "ko": "쓰다", "en": "write" }, "hint": { "ko": "글자를 만드는 동작", "en": "Creating words and letters" } },
-  { "emoji": "🏊", "word": { "ko": "수영하다", "en": "swim" }, "hint": { "ko": "물 속에서 움직이는 동작", "en": "Moving in water" } },
-  { "emoji": "🧗", "word": { "ko": "오르다", "en": "climb" }, "hint": { "ko": "위로 올라가는 동작", "en": "Going up" } },
-  { "emoji": "🚪", "word": { "ko": "열다", "en": "open" }, "hint": { "ko": "닫힌 것을 벌리는 동작", "en": "Making something not closed" }, "image": "open.png" },
-  { "emoji": "🚪", "word": { "ko": "닫다", "en": "close" }, "hint": { "ko": "열린 것을 막는 동작", "en": "Making something closed" }, "image": "close.png" },
-  { "emoji": "🎨", "word": { "ko": "그리다", "en": "draw" }, "hint": { "ko": "그림을 만드는 동작", "en": "Creating a picture" } },
-  { "emoji": "👨‍🍳", "word": { "ko": "요리하다", "en": "cook" }, "hint": { "ko": "음식을 만드는 동작", "en": "Making food" } },
-  { "emoji": "🧼", "word": { "ko": "씻다", "en": "wash" }, "hint": { "ko": "물로 깨끗하게 하는 동작", "en": "Cleaning with water" } },
-  { "emoji": "🧹", "word": { "ko": "청소하다", "en": "clean" }, "hint": { "ko": "더러운 것을 깨끗하게 하는 동작", "en": "Making something not dirty" } },
-  { "emoji": "💬", "word": { "ko": "말하다", "en": "talk" }, "hint": { "ko": "이야기를 나누는 동작", "en": "Speaking with someone" } },
-  { "emoji": "👂", "word": { "ko": "듣다", "en": "listen" }, "hint": { "ko": "소리를 받아들이는 동작", "en": "Receiving sound" } },
-  { "emoji": "👀", "word": { "ko": "보다", "en": "look" }, "hint": { "ko": "눈으로 보는 동작", "en": "Using your eyes to see" } },
-  { "emoji": "😊", "word": { "ko": "미소짓다", "en": "smile" }, "hint": { "ko": "기쁘게 웃는 동작", "en": "Showing happiness with your face" } },
-  { "emoji": "😢", "word": { "ko": "울다", "en": "cry" }, "hint": { "ko": "눈물을 흘리는 동작", "en": "Shedding tears" } },
-  { "emoji": "🤝", "word": { "ko": "돕다", "en": "help" }, "hint": { "ko": "다른 사람을 도와주는 동작", "en": "Assisting someone" } },
-  { "emoji": "🤲", "word": { "ko": "잡다", "en": "catch" }, "hint": { "ko": "손으로 잡는 동작", "en": "Grabbing with your hand" } },
-  { "emoji": "⚾", "word": { "ko": "던지다", "en": "throw" }, "hint": { "ko": "멀리 보내는 동작", "en": "Sending something far away" } },
-  { "emoji": "🏗️", "word": { "ko": "만들다", "en": "build" }, "hint": { "ko": "무언가를 짓는 동작", "en": "Constructing something" } },
-  { "emoji": "🚴", "word": { "ko": "타다", "en": "ride" }, "hint": { "ko": "위에 올라타는 동작", "en": "Sitting on top of something" } },
-  { "emoji": "🌱", "word": { "ko": "심다", "en": "plant" }, "hint": { "ko": "땅에 넣어 기르는 동작", "en": "Putting in the ground to grow" } },
-  { "emoji": "🪑", "word": { "ko": "의자", "en": "chair" }, "hint": { "ko": "앉는 가구", "en": "Furniture to sit on" } },
-  { "emoji": "🛏️", "word": { "ko": "침대", "en": "bed" }, "hint": { "ko": "자는 가구", "en": "Furniture to sleep on" } },
-  { "emoji": "🪟", "word": { "ko": "창문", "en": "window" }, "hint": { "ko": "빛이 들어오는 구멍", "en": "An opening for light" } },
-  { "emoji": "🚪", "word": { "ko": "문", "en": "door" }, "hint": { "ko": "들어가는 통로", "en": "An entrance" } },
-  { "emoji": "🍳", "word": { "ko": "부엌", "en": "kitchen" }, "hint": { "ko": "요리하는 방", "en": "A room for cooking" } },
-  { "emoji": "🚿", "word": { "ko": "욕실", "en": "bathroom" }, "hint": { "ko": "씻는 방", "en": "A room for washing" } },
-  { "emoji": "🌳", "word": { "ko": "정원", "en": "garden" }, "hint": { "ko": "식물을 기르는 곳", "en": "A place to grow plants" }, "image": "garden.png" },
-  { "emoji": "🖼️", "word": { "ko": "그림", "en": "picture" }, "hint": { "ko": "그려진 이미지", "en": "A drawn image" } },
-  { "emoji": "🕐", "word": { "ko": "시계", "en": "clock" }, "hint": { "ko": "시간을 보여주는 것", "en": "Something that shows time" } },
-  { "emoji": "🧴", "word": { "ko": "비누", "en": "soap" }, "hint": { "ko": "씻을 때 쓰는 것", "en": "Something used when washing" } },
-  { "emoji": "🍽️", "word": { "ko": "접시", "en": "plate" }, "hint": { "ko": "음식을 담는 그릇", "en": "A dish for food" } },
-  { "emoji": "🍴", "word": { "ko": "포크", "en": "fork" }, "hint": { "ko": "음식을 찌르는 도구", "en": "A tool to stab food" } },
-  { "emoji": "🥄", "word": { "ko": "숟가락", "en": "spoon" }, "hint": { "ko": "음식을 떠먹는 도구", "en": "A tool to scoop food" } },
-  { "emoji": "👜", "word": { "ko": "가방", "en": "bag" }, "hint": { "ko": "물건을 담는 것", "en": "Something to carry things" } },
-  { "emoji": "🔑", "word": { "ko": "열쇠", "en": "key" }, "hint": { "ko": "문을 여는 도구", "en": "A tool to open doors" } },
-  { "emoji": "🍞", "word": { "ko": "빵", "en": "bread" }, "hint": { "ko": "밀가루로 만든 음식", "en": "Food made from flour" } },
-  { "emoji": "🧈", "word": { "ko": "버터", "en": "butter" }, "hint": { "ko": "노란색 기름", "en": "Yellow fat" } },
-  { "emoji": "🧀", "word": { "ko": "치즈", "en": "cheese" }, "hint": { "ko": "우유로 만든 음식", "en": "Food made from milk" } },
-  { "emoji": "🥚", "word": { "ko": "계란", "en": "egg" }, "hint": { "ko": "닭이 낳는 것", "en": "What a chicken lays" } },
-  { "emoji": "🥣", "word": { "ko": "시리얼", "en": "cereal" }, "hint": { "ko": "아침에 먹는 곡물", "en": "Grain eaten in the morning" } },
-  { "emoji": "🧃", "word": { "ko": "주스", "en": "juice" }, "hint": { "ko": "과일에서 나온 음료", "en": "Drink from fruit" } },
-  { "emoji": "🍲", "word": { "ko": "수프", "en": "soup" }, "hint": { "ko": "국물 음식", "en": "Liquid food" } },
-  { "emoji": "🥗", "word": { "ko": "샐러드", "en": "salad" }, "hint": { "ko": "야채를 섞은 음식", "en": "Mixed vegetables" } },
-  { "emoji": "🍩", "word": { "ko": "도넛", "en": "donut" }, "hint": { "ko": "구멍이 있는 달콤한 빵", "en": "Sweet bread with a hole" } },
-  { "emoji": "🧁", "word": { "ko": "머핀", "en": "muffin" }, "hint": { "ko": "작은 케이크", "en": "A small cake" } },
-  { "emoji": "🍝", "word": { "ko": "스파게티", "en": "spaghetti" }, "hint": { "ko": "긴 면", "en": "Long noodles" } },
-  { "emoji": "🌭", "word": { "ko": "핫도그", "en": "hotdog" }, "hint": { "ko": "소시지 빵", "en": "Sausage in bread" } },
-  { "emoji": "🥩", "word": { "ko": "스테이크", "en": "steak" }, "hint": { "ko": "구운 고기", "en": "Grilled meat" } },
-  { "emoji": "🦐", "word": { "ko": "새우", "en": "shrimp" }, "hint": { "ko": "작은 바다 생물", "en": "A small sea creature" } },
-  { "emoji": "🥪", "word": { "ko": "샌드위치", "en": "sandwich" }, "hint": { "ko": "빵 사이에 넣은 음식", "en": "Food between bread" } },
-  { "emoji": "🥛", "word": { "ko": "요거트", "en": "yogurt" }, "hint": { "ko": "발효된 우유", "en": "Fermented milk" } },
-  { "emoji": "🍯", "word": { "ko": "꿀", "en": "honey" }, "hint": { "ko": "벌이 만든 달콤한 것", "en": "Sweet thing made by bees" } },
-  { "emoji": "🍯", "word": { "ko": "잼", "en": "jam" }, "hint": { "ko": "과일로 만든 달콤한 것", "en": "Sweet thing made from fruit" }, "image": "jam.png" },
-  { "emoji": "🍦", "word": { "ko": "아이스크림", "en": "ice cream" }, "hint": { "ko": "차가운 달콤한 디저트", "en": "Cold sweet dessert" } },
-  { "emoji": "🦊", "word": { "ko": "여우", "en": "fox" }, "hint": { "ko": "빨간색 꼬리 동물", "en": "An animal with a red tail" } },
-  { "emoji": "🐺", "word": { "ko": "늑대", "en": "wolf" }, "hint": { "ko": "울부짖는 동물", "en": "An animal that howls" } },
-  { "emoji": "🦌", "word": { "ko": "사슴", "en": "deer" }, "hint": { "ko": "뿔이 있는 동물", "en": "An animal with antlers" } },
-  { "emoji": "🐵", "word": { "ko": "원숭이", "en": "monkey" }, "hint": { "ko": "나무를 타는 동물", "en": "An animal that climbs trees" } },
-  { "emoji": "🦓", "word": { "ko": "얼룩말", "en": "zebra" }, "hint": { "ko": "줄무늬 말", "en": "A striped horse" } },
-  { "emoji": "🦘", "word": { "ko": "캥거루", "en": "kangaroo" }, "hint": { "ko": "주머니가 있는 동물", "en": "An animal with a pouch" } },
-  { "emoji": "🐨", "word": { "ko": "코알라", "en": "koala" }, "hint": { "ko": "나무에 사는 동물", "en": "An animal that lives in trees" } },
-  { "emoji": "🐬", "word": { "ko": "돌고래", "en": "dolphin" }, "hint": { "ko": "똑똑한 바다 동물", "en": "A smart sea animal" } },
-  { "emoji": "🐋", "word": { "ko": "고래", "en": "whale" }, "hint": { "ko": "가장 큰 바다 동물", "en": "The largest sea animal" } },
-  { "emoji": "🦈", "word": { "ko": "상어", "en": "shark" }, "hint": { "ko": "날카로운 이빨의 바다 동물", "en": "A sea animal with sharp teeth" } },
-  { "emoji": "🐢", "word": { "ko": "거북이", "en": "turtle" }, "hint": { "ko": "등껍질이 있는 동물", "en": "An animal with a shell" } },
-  { "emoji": "🐍", "word": { "ko": "뱀", "en": "snake" }, "hint": { "ko": "기어다니는 동물", "en": "An animal that slithers" } },
-  { "emoji": "🐭", "word": { "ko": "쥐", "en": "mouse" }, "hint": { "ko": "작은 설치류", "en": "A small rodent" } },
-  { "emoji": "🐿️", "word": { "ko": "다람쥐", "en": "squirrel" }, "hint": { "ko": "도토리를 좋아하는 동물", "en": "An animal that likes acorns" } },
-  { "emoji": "🐫", "word": { "ko": "낙타", "en": "camel" }, "hint": { "ko": "등에 혹이 있는 동물", "en": "An animal with humps" } },
-  { "emoji": "🌊", "word": { "ko": "강", "en": "river" }, "hint": { "ko": "흐르는 물", "en": "Flowing water" } },
-  { "emoji": "🏞️", "word": { "ko": "호수", "en": "lake" }, "hint": { "ko": "고인 물", "en": "Still water" } },
-  { "emoji": "🌲", "word": { "ko": "숲", "en": "forest" }, "hint": { "ko": "많은 나무가 있는 곳", "en": "A place with many trees" } },
-  { "emoji": "🏜️", "word": { "ko": "사막", "en": "desert" }, "hint": { "ko": "모래가 많은 곳", "en": "A place with lots of sand" } },
-  { "emoji": "⛰️", "word": { "ko": "언덕", "en": "hill" }, "hint": { "ko": "작은 산", "en": "A small mountain" } },
-  { "emoji": "🌋", "word": { "ko": "화산", "en": "volcano" }, "hint": { "ko": "용암이 나오는 산", "en": "A mountain that erupts lava" } },
-  { "emoji": "🍃", "word": { "ko": "잎", "en": "leaf" }, "hint": { "ko": "나무의 초록 부분", "en": "The green part of a tree" } },
-  { "emoji": "🪨", "word": { "ko": "돌", "en": "rock" }, "hint": { "ko": "단단한 물질", "en": "Hard material" } },
-  { "emoji": "💨", "word": { "ko": "바람", "en": "wind" }, "hint": { "ko": "공기가 움직이는 것", "en": "Moving air" } },
-  { "emoji": "❄️", "word": { "ko": "눈송이", "en": "snowflake" }, "hint": { "ko": "눈의 작은 조각", "en": "A small piece of snow" } },
-  { "emoji": "⚡", "word": { "ko": "번개", "en": "lightning" }, "hint": { "ko": "하늘의 번쩍이는 빛", "en": "Bright light in the sky" } },
-  { "emoji": "🌪️", "word": { "ko": "폭풍", "en": "storm" }, "hint": { "ko": "강한 바람과 비", "en": "Strong wind and rain" } },
-  { "emoji": "🌊", "word": { "ko": "파도", "en": "wave" }, "hint": { "ko": "바다의 움직임", "en": "Movement of the ocean" } },
-  { "emoji": "🏝️", "word": { "ko": "섬", "en": "island" }, "hint": { "ko": "물로 둘러싸인 땅", "en": "Land surrounded by water" } },
-  { "emoji": "🌾", "word": { "ko": "들판", "en": "field" }, "hint": { "ko": "넓은 평지", "en": "A wide flat area" } },
-  { "emoji": "👨‍⚕️", "word": { "ko": "의사", "en": "doctor" }, "hint": { "ko": "병을 고치는 사람", "en": "A person who treats illness" } },
-  { "emoji": "👩‍🏫", "word": { "ko": "선생님", "en": "teacher" }, "hint": { "ko": "가르치는 사람", "en": "A person who teaches" } },
-  { "emoji": "👨‍🍳", "word": { "ko": "요리사", "en": "chef" }, "hint": { "ko": "음식을 만드는 사람", "en": "A person who makes food" } },
-  { "emoji": "✈️", "word": { "ko": "조종사", "en": "pilot" }, "hint": { "ko": "비행기를 조종하는 사람", "en": "A person who flies planes" } },
-  { "emoji": "👨‍🌾", "word": { "ko": "농부", "en": "farmer" }, "hint": { "ko": "작물을 기르는 사람", "en": "A person who grows crops" } },
-  { "emoji": "👮", "word": { "ko": "경찰관", "en": "police officer" }, "hint": { "ko": "법을 지키게 하는 사람", "en": "A person who enforces the law" } },
-  { "emoji": "👩‍🔬", "word": { "ko": "과학자", "en": "scientist" }, "hint": { "ko": "연구하는 사람", "en": "A person who researches" } },
-  { "emoji": "🎨", "word": { "ko": "화가", "en": "painter" }, "hint": { "ko": "그림을 그리는 사람", "en": "A person who paints" } },
-  { "emoji": "🎤", "word": { "ko": "가수", "en": "singer" }, "hint": { "ko": "노래하는 사람", "en": "A person who sings" } },
-  { "emoji": "👨‍🚀", "word": { "ko": "우주비행사", "en": "astronaut" }, "hint": { "ko": "우주에 가는 사람", "en": "A person who goes to space" } },
-  { "emoji": "📷", "word": { "ko": "카메라", "en": "camera" }, "hint": { "ko": "사진을 찍는 기계", "en": "A machine that takes pictures" } },
-  { "emoji": "🕯️", "word": { "ko": "양초", "en": "candle" }, "hint": { "ko": "불을 켜는 것", "en": "Something that gives light" } },
-  { "emoji": "🔪", "word": { "ko": "칼", "en": "knife" }, "hint": { "ko": "자르는 도구", "en": "A tool for cutting" } },
-  { "emoji": "📏", "word": { "ko": "자", "en": "ruler" }, "hint": { "ko": "길이를 재는 도구", "en": "A tool to measure length" } },
-  { "emoji": "🧹", "word": { "ko": "빗자루", "en": "broom" }, "hint": { "ko": "쓸어내는 도구", "en": "A tool for sweeping" } },
-  { "emoji": "🪣", "word": { "ko": "병", "en": "bottle" }, "hint": { "ko": "액체를 담는 그릇", "en": "A container for liquids" } },
-  { "emoji": "🧺", "word": { "ko": "바구니", "en": "basket" }, "hint": { "ko": "물건을 담는 그릇", "en": "A container for things" } },
-  { "emoji": "💡", "word": { "ko": "전구", "en": "lightbulb" }, "hint": { "ko": "빛을 내는 것", "en": "Something that gives light" } },
-  { "emoji": "📻", "word": { "ko": "라디오", "en": "radio" }, "hint": { "ko": "소리를 듣는 기계", "en": "A machine for sound" } },
-  { "emoji": "🔭", "word": { "ko": "망원경", "en": "telescope" }, "hint": { "ko": "먼 곳을 보는 도구", "en": "A tool to see far away" } },
-  { "emoji": "🗺️", "word": { "ko": "지도", "en": "map" }, "hint": { "ko": "길을 찾는 그림", "en": "A picture to find your way" } },
-  { "emoji": "🪢", "word": { "ko": "밧줄", "en": "rope" }, "hint": { "ko": "묶는 줄", "en": "String for tying" } },
-  { "emoji": "📐", "word": { "ko": "지우개", "en": "eraser" }, "hint": { "ko": "지우는 도구", "en": "A tool for erasing" } },
-  { "emoji": "🎒", "word": { "ko": "배낭", "en": "backpack" }, "hint": { "ko": "등에 메는 가방", "en": "A bag worn on the back" } },
-  { "emoji": "🔨", "word": { "ko": "망치", "en": "hammer" }, "hint": { "ko": "두드리는 도구", "en": "A tool for hitting" } },
-  { "emoji": "🪜", "word": { "ko": "사다리", "en": "ladder" }, "hint": { "ko": "오르는 도구", "en": "A tool for climbing" } },
-  { "emoji": "🌡️", "word": { "ko": "히터", "en": "heater" }, "hint": { "ko": "따뜻하게 하는 기계", "en": "A machine that makes heat" } },
-  { "emoji": "📢", "word": { "ko": "스피커", "en": "speaker" }, "hint": { "ko": "소리를 내는 기계", "en": "A machine that makes sound" } },
-  { "emoji": "🪑", "word": { "ko": "탁자", "en": "table" }, "hint": { "ko": "물건을 올려놓는 가구", "en": "Furniture to put things on" } },
-  { "emoji": "🧻", "word": { "ko": "수건", "en": "towel" }, "hint": { "ko": "물을 닦는 천", "en": "Cloth to dry water" } },
-  { "emoji": "☕", "word": { "ko": "컵", "en": "cup" }, "hint": { "ko": "마시는 그릇", "en": "A container for drinking" } },
-  { "emoji": "🪵", "word": { "ko": "바닥", "en": "floor" }, "hint": { "ko": "걷는 곳", "en": "Where you walk" } },
-  { "emoji": "🧱", "word": { "ko": "벽", "en": "wall" }, "hint": { "ko": "막는 구조", "en": "A structure that blocks" } },
-  { "emoji": "⛏️", "word": { "ko": "삽", "en": "shovel" }, "hint": { "ko": "땅을 파는 도구", "en": "A tool for digging" } },
-  { "emoji": "🌀", "word": { "ko": "선풍기", "en": "fan" }, "hint": { "ko": "바람을 만드는 기계", "en": "A machine that makes wind" } },
-  { "emoji": "📦", "word": { "ko": "큰", "en": "big" }, "hint": { "ko": "크기가 큰 것", "en": "Large in size" } },
-  { "emoji": "🔹", "word": { "ko": "작은", "en": "small" }, "hint": { "ko": "크기가 작은 것", "en": "Small in size" } },
-  { "emoji": "🏗️", "word": { "ko": "키 큰", "en": "tall" }, "hint": { "ko": "높이가 높은 것", "en": "High in height" } },
-  { "emoji": "🔻", "word": { "ko": "키 작은", "en": "short" }, "hint": { "ko": "높이가 낮은 것", "en": "Low in height" } },
-  { "emoji": "➖", "word": { "ko": "긴", "en": "long" }, "hint": { "ko": "길이가 긴 것", "en": "Long in length" } },
-  { "emoji": "⚡", "word": { "ko": "빠른", "en": "fast" }, "hint": { "ko": "속도가 빠른 것", "en": "Fast in speed" } },
-  { "emoji": "🐌", "word": { "ko": "느린", "en": "slow" }, "hint": { "ko": "속도가 느린 것", "en": "Slow in speed" } },
-  { "emoji": "🔥", "word": { "ko": "뜨거운", "en": "hot" }, "hint": { "ko": "온도가 높은 것", "en": "High in temperature" } },
-  { "emoji": "❄️", "word": { "ko": "차가운", "en": "cold" }, "hint": { "ko": "온도가 낮은 것", "en": "Low in temperature" }, "image": "cold.png" },
-  { "emoji": "☀️", "word": { "ko": "따뜻한", "en": "warm" }, "hint": { "ko": "적당히 따뜻한 것", "en": "Moderately warm" } },
-  { "emoji": "💨", "word": { "ko": "시원한", "en": "cool" }, "hint": { "ko": "적당히 차가운 것", "en": "Moderately cool" } },
-  { "emoji": "😄", "word": { "ko": "행복한", "en": "happy" }, "hint": { "ko": "기쁜 감정", "en": "Feeling joy" } },
-  { "emoji": "😢", "word": { "ko": "슬픈", "en": "sad" }, "hint": { "ko": "슬픈 감정", "en": "Feeling sorrow" } },
-  { "emoji": "😠", "word": { "ko": "화난", "en": "angry" }, "hint": { "ko": "화가 난 감정", "en": "Feeling anger" } },
-  { "emoji": "😴", "word": { "ko": "피곤한", "en": "tired" }, "hint": { "ko": "힘이 없는 상태", "en": "Feeling without energy" } },
-  { "emoji": "🍽️", "word": { "ko": "배고픈", "en": "hungry" }, "hint": { "ko": "음식을 원하는 상태", "en": "Wanting food" }, "image": "hungry.png" },
-  { "emoji": "😋", "word": { "ko": "배부른", "en": "full" }, "hint": { "ko": "음식을 충분히 먹은 상태", "en": "Having eaten enough" } },
-  { "emoji": "✨", "word": { "ko": "깨끗한", "en": "clean" }, "hint": { "ko": "더러움 없는 상태", "en": "Not dirty" } },
-  { "emoji": "💩", "word": { "ko": "더러운", "en": "dirty" }, "hint": { "ko": "더러운 상태", "en": "Not clean" } },
-  { "emoji": "💐", "word": { "ko": "예쁜", "en": "pretty" }, "hint": { "ko": "아름다운 것", "en": "Beautiful" } },
-  { "emoji": "🐰", "word": { "ko": "귀여운", "en": "cute" }, "hint": { "ko": "사랑스러운 것", "en": "Lovable" } },
-  { "emoji": "😄", "word": { "ko": "재미있는", "en": "funny" }, "hint": { "ko": "웃긴 것", "en": "Making you laugh" }, "image": "funny.png" },
-  { "emoji": "🔊", "word": { "ko": "시끄러운", "en": "noisy" }, "hint": { "ko": "소리가 큰 것", "en": "Loud sound" } },
-  { "emoji": "🔇", "word": { "ko": "조용한", "en": "quiet" }, "hint": { "ko": "소리가 작은 것", "en": "Small sound" } },
-  { "emoji": "💡", "word": { "ko": "밝은", "en": "bright" }, "hint": { "ko": "빛이 강한 것", "en": "Strong light" } },
-  { "emoji": "🌙", "word": { "ko": "어두운", "en": "dark" }, "hint": { "ko": "빛이 없는 것", "en": "No light" } },
-  { "emoji": "💪", "word": { "ko": "강한", "en": "strong" }, "hint": { "ko": "힘이 센 것", "en": "Having power" } },
-  { "emoji": "🪶", "word": { "ko": "약한", "en": "weak" }, "hint": { "ko": "힘이 약한 것", "en": "Not having much power" } },
-  { "emoji": "🆕", "word": { "ko": "새로운", "en": "new" }, "hint": { "ko": "최근에 생긴 것", "en": "Recently made" } },
-  { "emoji": "🏛️", "word": { "ko": "오래된", "en": "old" }, "hint": { "ko": "오래 전에 생긴 것", "en": "Made long ago" } }
+  {
+    "emoji": "🐱",
+    "word": {
+      "ko": "고양이",
+      "en": "cat"
+    },
+    "hint": {
+      "ko": "집에서 키우는 귀여운 동물",
+      "en": "A cute pet animal"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🐶",
+    "word": {
+      "ko": "강아지",
+      "en": "dog"
+    },
+    "hint": {
+      "ko": "사람의 가장 친한 친구",
+      "en": "Man's best friend"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🐼",
+    "word": {
+      "ko": "팬더",
+      "en": "panda"
+    },
+    "hint": {
+      "ko": "검은색과 흰색의 큰 동물",
+      "en": "A large black and white animal"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🐯",
+    "word": {
+      "ko": "호랑이",
+      "en": "tiger"
+    },
+    "hint": {
+      "ko": "줄무늬가 있는 큰 고양이",
+      "en": "A large striped cat"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🦁",
+    "word": {
+      "ko": "사자",
+      "en": "lion"
+    },
+    "hint": {
+      "ko": "정글의 왕",
+      "en": "King of the jungle"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🐘",
+    "word": {
+      "ko": "코끼리",
+      "en": "elephant"
+    },
+    "hint": {
+      "ko": "긴 코를 가진 큰 동물",
+      "en": "A large animal with a long trunk"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🦒",
+    "word": {
+      "ko": "기린",
+      "en": "giraffe"
+    },
+    "hint": {
+      "ko": "목이 매우 긴 동물",
+      "en": "An animal with a very long neck"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🐰",
+    "word": {
+      "ko": "토끼",
+      "en": "rabbit"
+    },
+    "hint": {
+      "ko": "긴 귀를 가진 작은 동물",
+      "en": "A small animal with long ears"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🐻",
+    "word": {
+      "ko": "곰",
+      "en": "bear"
+    },
+    "hint": {
+      "ko": "큰 덩치의 곰돌이",
+      "en": "A large furry animal"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🐸",
+    "word": {
+      "ko": "개구리",
+      "en": "frog"
+    },
+    "hint": {
+      "ko": "연못에 사는 초록색 동물",
+      "en": "A green animal that lives in ponds"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🐷",
+    "word": {
+      "ko": "돼지",
+      "en": "pig"
+    },
+    "hint": {
+      "ko": "핑크색 동물",
+      "en": "A pink animal"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🐮",
+    "word": {
+      "ko": "소",
+      "en": "cow"
+    },
+    "hint": {
+      "ko": "우유를 주는 동물",
+      "en": "An animal that gives milk"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🐴",
+    "word": {
+      "ko": "말",
+      "en": "horse"
+    },
+    "hint": {
+      "ko": "타고 다니는 동물",
+      "en": "An animal you can ride"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🐔",
+    "word": {
+      "ko": "닭",
+      "en": "chicken"
+    },
+    "hint": {
+      "ko": "알을 낳는 동물",
+      "en": "An animal that lays eggs"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🐤",
+    "word": {
+      "ko": "병아리",
+      "en": "chick"
+    },
+    "hint": {
+      "ko": "작은 새끼 새",
+      "en": "A small baby bird"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🦆",
+    "word": {
+      "ko": "오리",
+      "en": "duck"
+    },
+    "hint": {
+      "ko": "물에서 헤엄치는 새",
+      "en": "A bird that swims in water"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🐧",
+    "word": {
+      "ko": "펭귄",
+      "en": "penguin"
+    },
+    "hint": {
+      "ko": "남극에 사는 새",
+      "en": "A bird that lives in Antarctica"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🐦",
+    "word": {
+      "ko": "새",
+      "en": "bird"
+    },
+    "hint": {
+      "ko": "하늘을 나는 동물",
+      "en": "An animal that flies in the sky"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🦉",
+    "word": {
+      "ko": "올빼미",
+      "en": "owl"
+    },
+    "hint": {
+      "ko": "밤에 활동하는 새",
+      "en": "A bird that is active at night"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🐝",
+    "word": {
+      "ko": "벌",
+      "en": "bee"
+    },
+    "hint": {
+      "ko": "꿀을 만드는 곤충",
+      "en": "An insect that makes honey"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🍎",
+    "word": {
+      "ko": "사과",
+      "en": "apple"
+    },
+    "hint": {
+      "ko": "빨간 과일",
+      "en": "A red fruit"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🍌",
+    "word": {
+      "ko": "바나나",
+      "en": "banana"
+    },
+    "hint": {
+      "ko": "노란색 긴 과일",
+      "en": "A long yellow fruit"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🍇",
+    "word": {
+      "ko": "포도",
+      "en": "grape"
+    },
+    "hint": {
+      "ko": "작은 알갱이 과일",
+      "en": "A fruit with small berries"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🍓",
+    "word": {
+      "ko": "딸기",
+      "en": "strawberry"
+    },
+    "hint": {
+      "ko": "빨간색 작은 과일",
+      "en": "A small red fruit"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🍊",
+    "word": {
+      "ko": "오렌지",
+      "en": "orange"
+    },
+    "hint": {
+      "ko": "주황색 과일",
+      "en": "An orange-colored fruit"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🍉",
+    "word": {
+      "ko": "수박",
+      "en": "watermelon"
+    },
+    "hint": {
+      "ko": "여름에 먹는 큰 과일",
+      "en": "A large fruit eaten in summer"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🍑",
+    "word": {
+      "ko": "복숭아",
+      "en": "peach"
+    },
+    "hint": {
+      "ko": "분홍색 과일",
+      "en": "A pink fruit"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🍒",
+    "word": {
+      "ko": "체리",
+      "en": "cherry"
+    },
+    "hint": {
+      "ko": "작은 빨간 과일",
+      "en": "A small red fruit"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🥝",
+    "word": {
+      "ko": "키위",
+      "en": "kiwi"
+    },
+    "hint": {
+      "ko": "초록색 털이 있는 과일",
+      "en": "A fruit with green fuzzy skin"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🍍",
+    "word": {
+      "ko": "파인애플",
+      "en": "pineapple"
+    },
+    "hint": {
+      "ko": "노란색 열대 과일",
+      "en": "A yellow tropical fruit"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🚗",
+    "word": {
+      "ko": "자동차",
+      "en": "car"
+    },
+    "hint": {
+      "ko": "도로를 달리는 교통수단",
+      "en": "A vehicle that runs on roads"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🚌",
+    "word": {
+      "ko": "버스",
+      "en": "bus"
+    },
+    "hint": {
+      "ko": "많은 사람을 태우는 차",
+      "en": "A vehicle that carries many people"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🚕",
+    "word": {
+      "ko": "택시",
+      "en": "taxi"
+    },
+    "hint": {
+      "ko": "돈을 받고 태워주는 차",
+      "en": "A vehicle that takes you for money"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🚑",
+    "word": {
+      "ko": "구급차",
+      "en": "ambulance"
+    },
+    "hint": {
+      "ko": "환자를 싣는 차",
+      "en": "A vehicle that carries patients"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🚒",
+    "word": {
+      "ko": "소방차",
+      "en": "fire truck"
+    },
+    "hint": {
+      "ko": "불을 끄는 차",
+      "en": "A vehicle that puts out fires"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🚓",
+    "word": {
+      "ko": "경찰차",
+      "en": "police car"
+    },
+    "hint": {
+      "ko": "경찰이 타는 차",
+      "en": "A vehicle used by police"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🚲",
+    "word": {
+      "ko": "자전거",
+      "en": "bicycle"
+    },
+    "hint": {
+      "ko": "페달을 밟는 두 바퀴",
+      "en": "Two wheels with pedals"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "✈️",
+    "word": {
+      "ko": "비행기",
+      "en": "airplane"
+    },
+    "hint": {
+      "ko": "하늘을 나는 교통수단",
+      "en": "A vehicle that flies in the sky"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🚢",
+    "word": {
+      "ko": "배",
+      "en": "ship"
+    },
+    "hint": {
+      "ko": "바다를 항해하는 교통수단",
+      "en": "A vehicle that sails on the sea"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🚂",
+    "word": {
+      "ko": "기차",
+      "en": "train"
+    },
+    "hint": {
+      "ko": "레일 위를 달리는 교통수단",
+      "en": "A vehicle that runs on rails"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🏠",
+    "word": {
+      "ko": "집",
+      "en": "house"
+    },
+    "hint": {
+      "ko": "사람이 사는 곳",
+      "en": "A place where people live"
+    },
+    "image": "house.png",
+    "type": "noun"
+  },
+  {
+    "emoji": "🏫",
+    "word": {
+      "ko": "학교",
+      "en": "school"
+    },
+    "hint": {
+      "ko": "공부하는 곳",
+      "en": "A place where you study"
+    },
+    "image": "school.png",
+    "type": "noun"
+  },
+  {
+    "emoji": "🏥",
+    "word": {
+      "ko": "병원",
+      "en": "hospital"
+    },
+    "hint": {
+      "ko": "병을 고치는 곳",
+      "en": "A place where you get treated"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🏪",
+    "word": {
+      "ko": "편의점",
+      "en": "convenience store"
+    },
+    "hint": {
+      "ko": "작은 상점",
+      "en": "A small store"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🏬",
+    "word": {
+      "ko": "백화점",
+      "en": "department store"
+    },
+    "hint": {
+      "ko": "큰 쇼핑몰",
+      "en": "A large shopping mall"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🌳",
+    "word": {
+      "ko": "나무",
+      "en": "tree"
+    },
+    "hint": {
+      "ko": "땅에 뿌리를 둔 식물",
+      "en": "A plant with roots in the ground"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🌺",
+    "word": {
+      "ko": "꽃",
+      "en": "flower"
+    },
+    "hint": {
+      "ko": "예쁜 색깔의 식물",
+      "en": "A plant with beautiful colors"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🌞",
+    "word": {
+      "ko": "태양",
+      "en": "sun"
+    },
+    "hint": {
+      "ko": "하늘의 큰 별",
+      "en": "A large star in the sky"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🌙",
+    "word": {
+      "ko": "달",
+      "en": "moon"
+    },
+    "hint": {
+      "ko": "밤하늘의 위성",
+      "en": "A satellite in the night sky"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "⭐",
+    "word": {
+      "ko": "별",
+      "en": "star"
+    },
+    "hint": {
+      "ko": "밤하늘의 반짝이는 것",
+      "en": "A twinkling thing in the night sky"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "☁️",
+    "word": {
+      "ko": "구름",
+      "en": "cloud"
+    },
+    "hint": {
+      "ko": "하늘의 흰색 덩어리",
+      "en": "A white mass in the sky"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "⛈️",
+    "word": {
+      "ko": "천둥번개",
+      "en": "thunderstorm"
+    },
+    "hint": {
+      "ko": "번개와 천둥",
+      "en": "Lightning and thunder"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🌈",
+    "word": {
+      "ko": "무지개",
+      "en": "rainbow"
+    },
+    "hint": {
+      "ko": "일곱 가지 색깔",
+      "en": "Seven colors"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "❄️",
+    "word": {
+      "ko": "눈",
+      "en": "snow"
+    },
+    "hint": {
+      "ko": "겨울에 내리는 하얀 것",
+      "en": "White stuff that falls in winter"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "☔",
+    "word": {
+      "ko": "우산",
+      "en": "umbrella"
+    },
+    "hint": {
+      "ko": "비를 막는 도구",
+      "en": "A tool to block rain"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🌊",
+    "word": {
+      "ko": "바다",
+      "en": "ocean"
+    },
+    "hint": {
+      "ko": "넓은 물",
+      "en": "A vast body of water"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🏔️",
+    "word": {
+      "ko": "산",
+      "en": "mountain"
+    },
+    "hint": {
+      "ko": "높은 땅",
+      "en": "High land"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🏖️",
+    "word": {
+      "ko": "해변",
+      "en": "beach"
+    },
+    "hint": {
+      "ko": "바다 옆 모래밭",
+      "en": "Sandy area next to the ocean"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🎈",
+    "word": {
+      "ko": "풍선",
+      "en": "balloon"
+    },
+    "hint": {
+      "ko": "공기로 부풀린 것",
+      "en": "Something filled with air"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🎂",
+    "word": {
+      "ko": "케이크",
+      "en": "cake"
+    },
+    "hint": {
+      "ko": "생일에 먹는 디저트",
+      "en": "A dessert eaten on birthdays"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🎁",
+    "word": {
+      "ko": "선물",
+      "en": "gift"
+    },
+    "hint": {
+      "ko": "주고받는 것",
+      "en": "Something given and received"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🎄",
+    "word": {
+      "ko": "크리스마스트리",
+      "en": "Christmas tree"
+    },
+    "hint": {
+      "ko": "12월에 장식하는 나무",
+      "en": "A tree decorated in December"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "⚽",
+    "word": {
+      "ko": "축구공",
+      "en": "soccer ball"
+    },
+    "hint": {
+      "ko": "발로 차는 공",
+      "en": "A ball you kick with your foot"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🏀",
+    "word": {
+      "ko": "농구공",
+      "en": "basketball"
+    },
+    "hint": {
+      "ko": "바스켓에 넣는 공",
+      "en": "A ball you put in a basket"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🎾",
+    "word": {
+      "ko": "테니스공",
+      "en": "tennis ball"
+    },
+    "hint": {
+      "ko": "라켓으로 치는 공",
+      "en": "A ball you hit with a racket"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🏐",
+    "word": {
+      "ko": "배구공",
+      "en": "volleyball"
+    },
+    "hint": {
+      "ko": "네트 위로 넘기는 공",
+      "en": "A ball you hit over a net"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🎸",
+    "word": {
+      "ko": "기타",
+      "en": "guitar"
+    },
+    "hint": {
+      "ko": "줄을 튕기는 악기",
+      "en": "An instrument with strings"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🎹",
+    "word": {
+      "ko": "피아노",
+      "en": "piano"
+    },
+    "hint": {
+      "ko": "건반을 누르는 악기",
+      "en": "An instrument with keys"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🎤",
+    "word": {
+      "ko": "마이크",
+      "en": "microphone"
+    },
+    "hint": {
+      "ko": "노래할 때 쓰는 것",
+      "en": "Something used when singing"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "📱",
+    "word": {
+      "ko": "스마트폰",
+      "en": "smartphone"
+    },
+    "hint": {
+      "ko": "손에 들고 다니는 전화기",
+      "en": "A phone you carry in your hand"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "💻",
+    "word": {
+      "ko": "노트북",
+      "en": "laptop"
+    },
+    "hint": {
+      "ko": "접을 수 있는 컴퓨터",
+      "en": "A foldable computer"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "⌚",
+    "word": {
+      "ko": "시계",
+      "en": "watch"
+    },
+    "hint": {
+      "ko": "시간을 보는 것",
+      "en": "Something that tells time"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "📚",
+    "word": {
+      "ko": "책",
+      "en": "book"
+    },
+    "hint": {
+      "ko": "읽는 것",
+      "en": "Something you read"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "✏️",
+    "word": {
+      "ko": "연필",
+      "en": "pencil"
+    },
+    "hint": {
+      "ko": "글씨를 쓰는 도구",
+      "en": "A tool for writing"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🎨",
+    "word": {
+      "ko": "팔레트",
+      "en": "palette"
+    },
+    "hint": {
+      "ko": "그림을 그리는 도구",
+      "en": "A tool for painting"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🎭",
+    "word": {
+      "ko": "가면",
+      "en": "mask"
+    },
+    "hint": {
+      "ko": "얼굴에 쓰는 것",
+      "en": "Something worn on the face"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "👓",
+    "word": {
+      "ko": "안경",
+      "en": "glasses"
+    },
+    "hint": {
+      "ko": "눈에 쓰는 것",
+      "en": "Something worn on the eyes"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "👕",
+    "word": {
+      "ko": "셔츠",
+      "en": "shirt"
+    },
+    "hint": {
+      "ko": "입는 옷",
+      "en": "Clothing you wear"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "👖",
+    "word": {
+      "ko": "바지",
+      "en": "pants"
+    },
+    "hint": {
+      "ko": "다리에 입는 옷",
+      "en": "Clothing worn on legs"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "👟",
+    "word": {
+      "ko": "운동화",
+      "en": "sneakers"
+    },
+    "hint": {
+      "ko": "신는 신발",
+      "en": "Shoes you wear"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "👑",
+    "word": {
+      "ko": "왕관",
+      "en": "crown"
+    },
+    "hint": {
+      "ko": "왕이 쓰는 것",
+      "en": "Something worn by a king"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🎩",
+    "word": {
+      "ko": "모자",
+      "en": "hat"
+    },
+    "hint": {
+      "ko": "머리에 쓰는 것",
+      "en": "Something worn on the head"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🍕",
+    "word": {
+      "ko": "피자",
+      "en": "pizza"
+    },
+    "hint": {
+      "ko": "이탈리아 음식",
+      "en": "Italian food"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🍔",
+    "word": {
+      "ko": "햄버거",
+      "en": "hamburger"
+    },
+    "hint": {
+      "ko": "패티가 들어간 음식",
+      "en": "Food with a patty"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🍟",
+    "word": {
+      "ko": "감자튀김",
+      "en": "french fries"
+    },
+    "hint": {
+      "ko": "감자를 튀긴 것",
+      "en": "Fried potatoes"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🌮",
+    "word": {
+      "ko": "타코",
+      "en": "taco"
+    },
+    "hint": {
+      "ko": "멕시코 음식",
+      "en": "Mexican food"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🍜",
+    "word": {
+      "ko": "라면",
+      "en": "ramen"
+    },
+    "hint": {
+      "ko": "면이 들어간 국물 음식",
+      "en": "Noodle soup"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🍱",
+    "word": {
+      "ko": "도시락",
+      "en": "bento box"
+    },
+    "hint": {
+      "ko": "여러 가지 반찬이 담긴 것",
+      "en": "A box with various side dishes"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🍙",
+    "word": {
+      "ko": "주먹밥",
+      "en": "rice ball"
+    },
+    "hint": {
+      "ko": "밥을 뭉친 것",
+      "en": "A ball of rice"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🍣",
+    "word": {
+      "ko": "초밥",
+      "en": "sushi"
+    },
+    "hint": {
+      "ko": "생선이 올라간 밥",
+      "en": "Rice with fish on top"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🍰",
+    "word": {
+      "ko": "케이크",
+      "en": "cake"
+    },
+    "hint": {
+      "ko": "달콤한 디저트",
+      "en": "A sweet dessert"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🍪",
+    "word": {
+      "ko": "쿠키",
+      "en": "cookie"
+    },
+    "hint": {
+      "ko": "작은 과자",
+      "en": "A small snack"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🍫",
+    "word": {
+      "ko": "초콜릿",
+      "en": "chocolate"
+    },
+    "hint": {
+      "ko": "달콤한 간식",
+      "en": "A sweet treat"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🍬",
+    "word": {
+      "ko": "사탕",
+      "en": "candy"
+    },
+    "hint": {
+      "ko": "달콤한 과자",
+      "en": "A sweet snack"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "☕",
+    "word": {
+      "ko": "커피",
+      "en": "coffee"
+    },
+    "hint": {
+      "ko": "아침에 마시는 음료",
+      "en": "A drink for the morning"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🍵",
+    "word": {
+      "ko": "차",
+      "en": "tea"
+    },
+    "hint": {
+      "ko": "따뜻한 음료",
+      "en": "A warm drink"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🥤",
+    "word": {
+      "ko": "음료수",
+      "en": "drink"
+    },
+    "hint": {
+      "ko": "마시는 것",
+      "en": "Something to drink"
+    },
+    "type": "verb"
+  },
+  {
+    "emoji": "🍼",
+    "word": {
+      "ko": "우유",
+      "en": "milk"
+    },
+    "hint": {
+      "ko": "하얀 음료",
+      "en": "A white drink"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🥛",
+    "word": {
+      "ko": "우유",
+      "en": "milk"
+    },
+    "hint": {
+      "ko": "유리잔에 담긴 음료",
+      "en": "A drink in a glass"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🏚️",
+    "word": {
+      "ko": "헛간",
+      "en": "barn"
+    },
+    "hint": {
+      "ko": "농장에 있는 붉은색 건물",
+      "en": "A red building on a farm"
+    },
+    "image": "barn.png",
+    "type": "noun"
+  },
+  {
+    "emoji": "🚌👨‍✈️",
+    "word": {
+      "ko": "버스기사",
+      "en": "bus driver"
+    },
+    "hint": {
+      "ko": "버스를 운전하는 사람",
+      "en": "A person who drives a bus"
+    },
+    "image": "busdriver.png",
+    "type": "noun"
+  },
+  {
+    "emoji": "👨‍🚒",
+    "word": {
+      "ko": "소방관",
+      "en": "firefighter"
+    },
+    "hint": {
+      "ko": "불을 끄는 사람",
+      "en": "A person who puts out fires"
+    },
+    "image": "firefighter.png",
+    "type": "noun"
+  },
+  {
+    "emoji": "👩‍⚕️",
+    "word": {
+      "ko": "간호사",
+      "en": "nurse"
+    },
+    "hint": {
+      "ko": "병원에서 환자를 돌보는 사람",
+      "en": "A person who takes care of patients"
+    },
+    "image": "nurse.png",
+    "type": "noun"
+  },
+  {
+    "emoji": "👶",
+    "word": {
+      "ko": "아기",
+      "en": "baby"
+    },
+    "hint": {
+      "ko": "갓 태어난 작은 아이",
+      "en": "A small newborn child"
+    },
+    "image": "baby.png",
+    "type": "noun"
+  },
+  {
+    "emoji": "🤸",
+    "word": {
+      "ko": "점프",
+      "en": "jump"
+    },
+    "hint": {
+      "ko": "공중으로 뛰는 동작",
+      "en": "An action of jumping in the air"
+    },
+    "image": "jump.png",
+    "type": "verb"
+  },
+  {
+    "emoji": "🆘",
+    "word": {
+      "ko": "도움",
+      "en": "help"
+    },
+    "hint": {
+      "ko": "어려울 때 필요한 것",
+      "en": "Something needed when in trouble"
+    },
+    "image": "help.png",
+    "type": "verb"
+  },
+  {
+    "emoji": "💍",
+    "word": {
+      "ko": "반지",
+      "en": "ring"
+    },
+    "hint": {
+      "ko": "손가락에 끼는 장식품",
+      "en": "Jewelry worn on the finger"
+    },
+    "image": "ring.png",
+    "type": "noun"
+  },
+  {
+    "emoji": "🛁",
+    "word": {
+      "ko": "목욕",
+      "en": "bath"
+    },
+    "hint": {
+      "ko": "욕조에서 몸을 씻는 것",
+      "en": "Washing your body in a tub"
+    },
+    "image": "bath.png",
+    "type": "noun"
+  },
+  {
+    "emoji": "🎵",
+    "word": {
+      "ko": "노래",
+      "en": "song"
+    },
+    "hint": {
+      "ko": "음악과 함께 부르는 것",
+      "en": "Something sung with music"
+    },
+    "image": "song.png",
+    "type": "noun"
+  },
+  {
+    "emoji": "🏃",
+    "word": {
+      "ko": "달리다",
+      "en": "run"
+    },
+    "hint": {
+      "ko": "빠르게 걷는 동작",
+      "en": "Moving fast on foot"
+    },
+    "type": "verb"
+  },
+  {
+    "emoji": "🚶",
+    "word": {
+      "ko": "걷다",
+      "en": "walk"
+    },
+    "hint": {
+      "ko": "발로 이동하는 동작",
+      "en": "Moving on foot"
+    },
+    "type": "verb"
+  },
+  {
+    "emoji": "🍽️",
+    "word": {
+      "ko": "먹다",
+      "en": "eat"
+    },
+    "hint": {
+      "ko": "음식을 섭취하는 동작",
+      "en": "Taking food into your mouth"
+    },
+    "image": "eat.png",
+    "type": "verb"
+  },
+  {
+    "emoji": "🥤",
+    "word": {
+      "ko": "마시다",
+      "en": "drink"
+    },
+    "hint": {
+      "ko": "액체를 삼키는 동작",
+      "en": "Swallowing a liquid"
+    },
+    "type": "verb"
+  },
+  {
+    "emoji": "😴",
+    "word": {
+      "ko": "자다",
+      "en": "sleep"
+    },
+    "hint": {
+      "ko": "눈을 감고 휴식하는 동작",
+      "en": "Closing your eyes and resting"
+    },
+    "type": "verb"
+  },
+  {
+    "emoji": "🎮",
+    "word": {
+      "ko": "놀다",
+      "en": "play"
+    },
+    "hint": {
+      "ko": "재미있게 즐기는 동작",
+      "en": "Having fun and enjoying"
+    },
+    "type": "verb"
+  },
+  {
+    "emoji": "🎤",
+    "word": {
+      "ko": "노래하다",
+      "en": "sing"
+    },
+    "hint": {
+      "ko": "목소리로 음악을 만드는 동작",
+      "en": "Making music with your voice"
+    },
+    "type": "verb"
+  },
+  {
+    "emoji": "💃",
+    "word": {
+      "ko": "춤추다",
+      "en": "dance"
+    },
+    "hint": {
+      "ko": "리듬에 맞춰 몸을 움직이는 동작",
+      "en": "Moving your body to rhythm"
+    },
+    "type": "verb"
+  },
+  {
+    "emoji": "📖",
+    "word": {
+      "ko": "읽다",
+      "en": "read"
+    },
+    "hint": {
+      "ko": "글자를 보고 이해하는 동작",
+      "en": "Looking at words and understanding"
+    },
+    "type": "verb"
+  },
+  {
+    "emoji": "✍️",
+    "word": {
+      "ko": "쓰다",
+      "en": "write"
+    },
+    "hint": {
+      "ko": "글자를 만드는 동작",
+      "en": "Creating words and letters"
+    },
+    "type": "verb"
+  },
+  {
+    "emoji": "🏊",
+    "word": {
+      "ko": "수영하다",
+      "en": "swim"
+    },
+    "hint": {
+      "ko": "물 속에서 움직이는 동작",
+      "en": "Moving in water"
+    },
+    "type": "verb"
+  },
+  {
+    "emoji": "🧗",
+    "word": {
+      "ko": "오르다",
+      "en": "climb"
+    },
+    "hint": {
+      "ko": "위로 올라가는 동작",
+      "en": "Going up"
+    },
+    "type": "verb"
+  },
+  {
+    "emoji": "🚪",
+    "word": {
+      "ko": "열다",
+      "en": "open"
+    },
+    "hint": {
+      "ko": "닫힌 것을 벌리는 동작",
+      "en": "Making something not closed"
+    },
+    "image": "open.png",
+    "type": "verb"
+  },
+  {
+    "emoji": "🚪",
+    "word": {
+      "ko": "닫다",
+      "en": "close"
+    },
+    "hint": {
+      "ko": "열린 것을 막는 동작",
+      "en": "Making something closed"
+    },
+    "image": "close.png",
+    "type": "verb"
+  },
+  {
+    "emoji": "🎨",
+    "word": {
+      "ko": "그리다",
+      "en": "draw"
+    },
+    "hint": {
+      "ko": "그림을 만드는 동작",
+      "en": "Creating a picture"
+    },
+    "type": "verb"
+  },
+  {
+    "emoji": "👨‍🍳",
+    "word": {
+      "ko": "요리하다",
+      "en": "cook"
+    },
+    "hint": {
+      "ko": "음식을 만드는 동작",
+      "en": "Making food"
+    },
+    "type": "verb"
+  },
+  {
+    "emoji": "🧼",
+    "word": {
+      "ko": "씻다",
+      "en": "wash"
+    },
+    "hint": {
+      "ko": "물로 깨끗하게 하는 동작",
+      "en": "Cleaning with water"
+    },
+    "type": "verb"
+  },
+  {
+    "emoji": "🧹",
+    "word": {
+      "ko": "청소하다",
+      "en": "clean"
+    },
+    "hint": {
+      "ko": "더러운 것을 깨끗하게 하는 동작",
+      "en": "Making something not dirty"
+    },
+    "type": "verb"
+  },
+  {
+    "emoji": "💬",
+    "word": {
+      "ko": "말하다",
+      "en": "talk"
+    },
+    "hint": {
+      "ko": "이야기를 나누는 동작",
+      "en": "Speaking with someone"
+    },
+    "type": "verb"
+  },
+  {
+    "emoji": "👂",
+    "word": {
+      "ko": "듣다",
+      "en": "listen"
+    },
+    "hint": {
+      "ko": "소리를 받아들이는 동작",
+      "en": "Receiving sound"
+    },
+    "type": "verb"
+  },
+  {
+    "emoji": "👀",
+    "word": {
+      "ko": "보다",
+      "en": "look"
+    },
+    "hint": {
+      "ko": "눈으로 보는 동작",
+      "en": "Using your eyes to see"
+    },
+    "type": "verb"
+  },
+  {
+    "emoji": "😊",
+    "word": {
+      "ko": "미소짓다",
+      "en": "smile"
+    },
+    "hint": {
+      "ko": "기쁘게 웃는 동작",
+      "en": "Showing happiness with your face"
+    },
+    "type": "verb"
+  },
+  {
+    "emoji": "😢",
+    "word": {
+      "ko": "울다",
+      "en": "cry"
+    },
+    "hint": {
+      "ko": "눈물을 흘리는 동작",
+      "en": "Shedding tears"
+    },
+    "type": "verb"
+  },
+  {
+    "emoji": "🤝",
+    "word": {
+      "ko": "돕다",
+      "en": "help"
+    },
+    "hint": {
+      "ko": "다른 사람을 도와주는 동작",
+      "en": "Assisting someone"
+    },
+    "type": "verb"
+  },
+  {
+    "emoji": "🤲",
+    "word": {
+      "ko": "잡다",
+      "en": "catch"
+    },
+    "hint": {
+      "ko": "손으로 잡는 동작",
+      "en": "Grabbing with your hand"
+    },
+    "type": "verb"
+  },
+  {
+    "emoji": "⚾",
+    "word": {
+      "ko": "던지다",
+      "en": "throw"
+    },
+    "hint": {
+      "ko": "멀리 보내는 동작",
+      "en": "Sending something far away"
+    },
+    "type": "verb"
+  },
+  {
+    "emoji": "🏗️",
+    "word": {
+      "ko": "만들다",
+      "en": "build"
+    },
+    "hint": {
+      "ko": "무언가를 짓는 동작",
+      "en": "Constructing something"
+    },
+    "type": "verb"
+  },
+  {
+    "emoji": "🚴",
+    "word": {
+      "ko": "타다",
+      "en": "ride"
+    },
+    "hint": {
+      "ko": "위에 올라타는 동작",
+      "en": "Sitting on top of something"
+    },
+    "type": "verb"
+  },
+  {
+    "emoji": "🌱",
+    "word": {
+      "ko": "심다",
+      "en": "plant"
+    },
+    "hint": {
+      "ko": "땅에 넣어 기르는 동작",
+      "en": "Putting in the ground to grow"
+    },
+    "type": "verb"
+  },
+  {
+    "emoji": "🪑",
+    "word": {
+      "ko": "의자",
+      "en": "chair"
+    },
+    "hint": {
+      "ko": "앉는 가구",
+      "en": "Furniture to sit on"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🛏️",
+    "word": {
+      "ko": "침대",
+      "en": "bed"
+    },
+    "hint": {
+      "ko": "자는 가구",
+      "en": "Furniture to sleep on"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🪟",
+    "word": {
+      "ko": "창문",
+      "en": "window"
+    },
+    "hint": {
+      "ko": "빛이 들어오는 구멍",
+      "en": "An opening for light"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🚪",
+    "word": {
+      "ko": "문",
+      "en": "door"
+    },
+    "hint": {
+      "ko": "들어가는 통로",
+      "en": "An entrance"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🍳",
+    "word": {
+      "ko": "부엌",
+      "en": "kitchen"
+    },
+    "hint": {
+      "ko": "요리하는 방",
+      "en": "A room for cooking"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🚿",
+    "word": {
+      "ko": "욕실",
+      "en": "bathroom"
+    },
+    "hint": {
+      "ko": "씻는 방",
+      "en": "A room for washing"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🌳",
+    "word": {
+      "ko": "정원",
+      "en": "garden"
+    },
+    "hint": {
+      "ko": "식물을 기르는 곳",
+      "en": "A place to grow plants"
+    },
+    "image": "garden.png",
+    "type": "noun"
+  },
+  {
+    "emoji": "🖼️",
+    "word": {
+      "ko": "그림",
+      "en": "picture"
+    },
+    "hint": {
+      "ko": "그려진 이미지",
+      "en": "A drawn image"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🕐",
+    "word": {
+      "ko": "시계",
+      "en": "clock"
+    },
+    "hint": {
+      "ko": "시간을 보여주는 것",
+      "en": "Something that shows time"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🧴",
+    "word": {
+      "ko": "비누",
+      "en": "soap"
+    },
+    "hint": {
+      "ko": "씻을 때 쓰는 것",
+      "en": "Something used when washing"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🍽️",
+    "word": {
+      "ko": "접시",
+      "en": "plate"
+    },
+    "hint": {
+      "ko": "음식을 담는 그릇",
+      "en": "A dish for food"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🍴",
+    "word": {
+      "ko": "포크",
+      "en": "fork"
+    },
+    "hint": {
+      "ko": "음식을 찌르는 도구",
+      "en": "A tool to stab food"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🥄",
+    "word": {
+      "ko": "숟가락",
+      "en": "spoon"
+    },
+    "hint": {
+      "ko": "음식을 떠먹는 도구",
+      "en": "A tool to scoop food"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "👜",
+    "word": {
+      "ko": "가방",
+      "en": "bag"
+    },
+    "hint": {
+      "ko": "물건을 담는 것",
+      "en": "Something to carry things"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🔑",
+    "word": {
+      "ko": "열쇠",
+      "en": "key"
+    },
+    "hint": {
+      "ko": "문을 여는 도구",
+      "en": "A tool to open doors"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🍞",
+    "word": {
+      "ko": "빵",
+      "en": "bread"
+    },
+    "hint": {
+      "ko": "밀가루로 만든 음식",
+      "en": "Food made from flour"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🧈",
+    "word": {
+      "ko": "버터",
+      "en": "butter"
+    },
+    "hint": {
+      "ko": "노란색 기름",
+      "en": "Yellow fat"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🧀",
+    "word": {
+      "ko": "치즈",
+      "en": "cheese"
+    },
+    "hint": {
+      "ko": "우유로 만든 음식",
+      "en": "Food made from milk"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🥚",
+    "word": {
+      "ko": "계란",
+      "en": "egg"
+    },
+    "hint": {
+      "ko": "닭이 낳는 것",
+      "en": "What a chicken lays"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🥣",
+    "word": {
+      "ko": "시리얼",
+      "en": "cereal"
+    },
+    "hint": {
+      "ko": "아침에 먹는 곡물",
+      "en": "Grain eaten in the morning"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🧃",
+    "word": {
+      "ko": "주스",
+      "en": "juice"
+    },
+    "hint": {
+      "ko": "과일에서 나온 음료",
+      "en": "Drink from fruit"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🍲",
+    "word": {
+      "ko": "수프",
+      "en": "soup"
+    },
+    "hint": {
+      "ko": "국물 음식",
+      "en": "Liquid food"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🥗",
+    "word": {
+      "ko": "샐러드",
+      "en": "salad"
+    },
+    "hint": {
+      "ko": "야채를 섞은 음식",
+      "en": "Mixed vegetables"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🍩",
+    "word": {
+      "ko": "도넛",
+      "en": "donut"
+    },
+    "hint": {
+      "ko": "구멍이 있는 달콤한 빵",
+      "en": "Sweet bread with a hole"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🧁",
+    "word": {
+      "ko": "머핀",
+      "en": "muffin"
+    },
+    "hint": {
+      "ko": "작은 케이크",
+      "en": "A small cake"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🍝",
+    "word": {
+      "ko": "스파게티",
+      "en": "spaghetti"
+    },
+    "hint": {
+      "ko": "긴 면",
+      "en": "Long noodles"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🌭",
+    "word": {
+      "ko": "핫도그",
+      "en": "hotdog"
+    },
+    "hint": {
+      "ko": "소시지 빵",
+      "en": "Sausage in bread"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🥩",
+    "word": {
+      "ko": "스테이크",
+      "en": "steak"
+    },
+    "hint": {
+      "ko": "구운 고기",
+      "en": "Grilled meat"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🦐",
+    "word": {
+      "ko": "새우",
+      "en": "shrimp"
+    },
+    "hint": {
+      "ko": "작은 바다 생물",
+      "en": "A small sea creature"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🥪",
+    "word": {
+      "ko": "샌드위치",
+      "en": "sandwich"
+    },
+    "hint": {
+      "ko": "빵 사이에 넣은 음식",
+      "en": "Food between bread"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🥛",
+    "word": {
+      "ko": "요거트",
+      "en": "yogurt"
+    },
+    "hint": {
+      "ko": "발효된 우유",
+      "en": "Fermented milk"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🍯",
+    "word": {
+      "ko": "꿀",
+      "en": "honey"
+    },
+    "hint": {
+      "ko": "벌이 만든 달콤한 것",
+      "en": "Sweet thing made by bees"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🍯",
+    "word": {
+      "ko": "잼",
+      "en": "jam"
+    },
+    "hint": {
+      "ko": "과일로 만든 달콤한 것",
+      "en": "Sweet thing made from fruit"
+    },
+    "image": "jam.png",
+    "type": "noun"
+  },
+  {
+    "emoji": "🍦",
+    "word": {
+      "ko": "아이스크림",
+      "en": "ice cream"
+    },
+    "hint": {
+      "ko": "차가운 달콤한 디저트",
+      "en": "Cold sweet dessert"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🦊",
+    "word": {
+      "ko": "여우",
+      "en": "fox"
+    },
+    "hint": {
+      "ko": "빨간색 꼬리 동물",
+      "en": "An animal with a red tail"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🐺",
+    "word": {
+      "ko": "늑대",
+      "en": "wolf"
+    },
+    "hint": {
+      "ko": "울부짖는 동물",
+      "en": "An animal that howls"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🦌",
+    "word": {
+      "ko": "사슴",
+      "en": "deer"
+    },
+    "hint": {
+      "ko": "뿔이 있는 동물",
+      "en": "An animal with antlers"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🐵",
+    "word": {
+      "ko": "원숭이",
+      "en": "monkey"
+    },
+    "hint": {
+      "ko": "나무를 타는 동물",
+      "en": "An animal that climbs trees"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🦓",
+    "word": {
+      "ko": "얼룩말",
+      "en": "zebra"
+    },
+    "hint": {
+      "ko": "줄무늬 말",
+      "en": "A striped horse"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🦘",
+    "word": {
+      "ko": "캥거루",
+      "en": "kangaroo"
+    },
+    "hint": {
+      "ko": "주머니가 있는 동물",
+      "en": "An animal with a pouch"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🐨",
+    "word": {
+      "ko": "코알라",
+      "en": "koala"
+    },
+    "hint": {
+      "ko": "나무에 사는 동물",
+      "en": "An animal that lives in trees"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🐬",
+    "word": {
+      "ko": "돌고래",
+      "en": "dolphin"
+    },
+    "hint": {
+      "ko": "똑똑한 바다 동물",
+      "en": "A smart sea animal"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🐋",
+    "word": {
+      "ko": "고래",
+      "en": "whale"
+    },
+    "hint": {
+      "ko": "가장 큰 바다 동물",
+      "en": "The largest sea animal"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🦈",
+    "word": {
+      "ko": "상어",
+      "en": "shark"
+    },
+    "hint": {
+      "ko": "날카로운 이빨의 바다 동물",
+      "en": "A sea animal with sharp teeth"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🐢",
+    "word": {
+      "ko": "거북이",
+      "en": "turtle"
+    },
+    "hint": {
+      "ko": "등껍질이 있는 동물",
+      "en": "An animal with a shell"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🐍",
+    "word": {
+      "ko": "뱀",
+      "en": "snake"
+    },
+    "hint": {
+      "ko": "기어다니는 동물",
+      "en": "An animal that slithers"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🐭",
+    "word": {
+      "ko": "쥐",
+      "en": "mouse"
+    },
+    "hint": {
+      "ko": "작은 설치류",
+      "en": "A small rodent"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🐿️",
+    "word": {
+      "ko": "다람쥐",
+      "en": "squirrel"
+    },
+    "hint": {
+      "ko": "도토리를 좋아하는 동물",
+      "en": "An animal that likes acorns"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🐫",
+    "word": {
+      "ko": "낙타",
+      "en": "camel"
+    },
+    "hint": {
+      "ko": "등에 혹이 있는 동물",
+      "en": "An animal with humps"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🌊",
+    "word": {
+      "ko": "강",
+      "en": "river"
+    },
+    "hint": {
+      "ko": "흐르는 물",
+      "en": "Flowing water"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🏞️",
+    "word": {
+      "ko": "호수",
+      "en": "lake"
+    },
+    "hint": {
+      "ko": "고인 물",
+      "en": "Still water"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🌲",
+    "word": {
+      "ko": "숲",
+      "en": "forest"
+    },
+    "hint": {
+      "ko": "많은 나무가 있는 곳",
+      "en": "A place with many trees"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🏜️",
+    "word": {
+      "ko": "사막",
+      "en": "desert"
+    },
+    "hint": {
+      "ko": "모래가 많은 곳",
+      "en": "A place with lots of sand"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "⛰️",
+    "word": {
+      "ko": "언덕",
+      "en": "hill"
+    },
+    "hint": {
+      "ko": "작은 산",
+      "en": "A small mountain"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🌋",
+    "word": {
+      "ko": "화산",
+      "en": "volcano"
+    },
+    "hint": {
+      "ko": "용암이 나오는 산",
+      "en": "A mountain that erupts lava"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🍃",
+    "word": {
+      "ko": "잎",
+      "en": "leaf"
+    },
+    "hint": {
+      "ko": "나무의 초록 부분",
+      "en": "The green part of a tree"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🪨",
+    "word": {
+      "ko": "돌",
+      "en": "rock"
+    },
+    "hint": {
+      "ko": "단단한 물질",
+      "en": "Hard material"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "💨",
+    "word": {
+      "ko": "바람",
+      "en": "wind"
+    },
+    "hint": {
+      "ko": "공기가 움직이는 것",
+      "en": "Moving air"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "❄️",
+    "word": {
+      "ko": "눈송이",
+      "en": "snowflake"
+    },
+    "hint": {
+      "ko": "눈의 작은 조각",
+      "en": "A small piece of snow"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "⚡",
+    "word": {
+      "ko": "번개",
+      "en": "lightning"
+    },
+    "hint": {
+      "ko": "하늘의 번쩍이는 빛",
+      "en": "Bright light in the sky"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🌪️",
+    "word": {
+      "ko": "폭풍",
+      "en": "storm"
+    },
+    "hint": {
+      "ko": "강한 바람과 비",
+      "en": "Strong wind and rain"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🌊",
+    "word": {
+      "ko": "파도",
+      "en": "wave"
+    },
+    "hint": {
+      "ko": "바다의 움직임",
+      "en": "Movement of the ocean"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🏝️",
+    "word": {
+      "ko": "섬",
+      "en": "island"
+    },
+    "hint": {
+      "ko": "물로 둘러싸인 땅",
+      "en": "Land surrounded by water"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🌾",
+    "word": {
+      "ko": "들판",
+      "en": "field"
+    },
+    "hint": {
+      "ko": "넓은 평지",
+      "en": "A wide flat area"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "👨‍⚕️",
+    "word": {
+      "ko": "의사",
+      "en": "doctor"
+    },
+    "hint": {
+      "ko": "병을 고치는 사람",
+      "en": "A person who treats illness"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "👩‍🏫",
+    "word": {
+      "ko": "선생님",
+      "en": "teacher"
+    },
+    "hint": {
+      "ko": "가르치는 사람",
+      "en": "A person who teaches"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "👨‍🍳",
+    "word": {
+      "ko": "요리사",
+      "en": "chef"
+    },
+    "hint": {
+      "ko": "음식을 만드는 사람",
+      "en": "A person who makes food"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "✈️",
+    "word": {
+      "ko": "조종사",
+      "en": "pilot"
+    },
+    "hint": {
+      "ko": "비행기를 조종하는 사람",
+      "en": "A person who flies planes"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "👨‍🌾",
+    "word": {
+      "ko": "농부",
+      "en": "farmer"
+    },
+    "hint": {
+      "ko": "작물을 기르는 사람",
+      "en": "A person who grows crops"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "👮",
+    "word": {
+      "ko": "경찰관",
+      "en": "police officer"
+    },
+    "hint": {
+      "ko": "법을 지키게 하는 사람",
+      "en": "A person who enforces the law"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "👩‍🔬",
+    "word": {
+      "ko": "과학자",
+      "en": "scientist"
+    },
+    "hint": {
+      "ko": "연구하는 사람",
+      "en": "A person who researches"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🎨",
+    "word": {
+      "ko": "화가",
+      "en": "painter"
+    },
+    "hint": {
+      "ko": "그림을 그리는 사람",
+      "en": "A person who paints"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🎤",
+    "word": {
+      "ko": "가수",
+      "en": "singer"
+    },
+    "hint": {
+      "ko": "노래하는 사람",
+      "en": "A person who sings"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "👨‍🚀",
+    "word": {
+      "ko": "우주비행사",
+      "en": "astronaut"
+    },
+    "hint": {
+      "ko": "우주에 가는 사람",
+      "en": "A person who goes to space"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "📷",
+    "word": {
+      "ko": "카메라",
+      "en": "camera"
+    },
+    "hint": {
+      "ko": "사진을 찍는 기계",
+      "en": "A machine that takes pictures"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🕯️",
+    "word": {
+      "ko": "양초",
+      "en": "candle"
+    },
+    "hint": {
+      "ko": "불을 켜는 것",
+      "en": "Something that gives light"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🔪",
+    "word": {
+      "ko": "칼",
+      "en": "knife"
+    },
+    "hint": {
+      "ko": "자르는 도구",
+      "en": "A tool for cutting"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "📏",
+    "word": {
+      "ko": "자",
+      "en": "ruler"
+    },
+    "hint": {
+      "ko": "길이를 재는 도구",
+      "en": "A tool to measure length"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🧹",
+    "word": {
+      "ko": "빗자루",
+      "en": "broom"
+    },
+    "hint": {
+      "ko": "쓸어내는 도구",
+      "en": "A tool for sweeping"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🪣",
+    "word": {
+      "ko": "병",
+      "en": "bottle"
+    },
+    "hint": {
+      "ko": "액체를 담는 그릇",
+      "en": "A container for liquids"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🧺",
+    "word": {
+      "ko": "바구니",
+      "en": "basket"
+    },
+    "hint": {
+      "ko": "물건을 담는 그릇",
+      "en": "A container for things"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "💡",
+    "word": {
+      "ko": "전구",
+      "en": "lightbulb"
+    },
+    "hint": {
+      "ko": "빛을 내는 것",
+      "en": "Something that gives light"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "📻",
+    "word": {
+      "ko": "라디오",
+      "en": "radio"
+    },
+    "hint": {
+      "ko": "소리를 듣는 기계",
+      "en": "A machine for sound"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🔭",
+    "word": {
+      "ko": "망원경",
+      "en": "telescope"
+    },
+    "hint": {
+      "ko": "먼 곳을 보는 도구",
+      "en": "A tool to see far away"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🗺️",
+    "word": {
+      "ko": "지도",
+      "en": "map"
+    },
+    "hint": {
+      "ko": "길을 찾는 그림",
+      "en": "A picture to find your way"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🪢",
+    "word": {
+      "ko": "밧줄",
+      "en": "rope"
+    },
+    "hint": {
+      "ko": "묶는 줄",
+      "en": "String for tying"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "📐",
+    "word": {
+      "ko": "지우개",
+      "en": "eraser"
+    },
+    "hint": {
+      "ko": "지우는 도구",
+      "en": "A tool for erasing"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🎒",
+    "word": {
+      "ko": "배낭",
+      "en": "backpack"
+    },
+    "hint": {
+      "ko": "등에 메는 가방",
+      "en": "A bag worn on the back"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🔨",
+    "word": {
+      "ko": "망치",
+      "en": "hammer"
+    },
+    "hint": {
+      "ko": "두드리는 도구",
+      "en": "A tool for hitting"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🪜",
+    "word": {
+      "ko": "사다리",
+      "en": "ladder"
+    },
+    "hint": {
+      "ko": "오르는 도구",
+      "en": "A tool for climbing"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🌡️",
+    "word": {
+      "ko": "히터",
+      "en": "heater"
+    },
+    "hint": {
+      "ko": "따뜻하게 하는 기계",
+      "en": "A machine that makes heat"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "📢",
+    "word": {
+      "ko": "스피커",
+      "en": "speaker"
+    },
+    "hint": {
+      "ko": "소리를 내는 기계",
+      "en": "A machine that makes sound"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🪑",
+    "word": {
+      "ko": "탁자",
+      "en": "table"
+    },
+    "hint": {
+      "ko": "물건을 올려놓는 가구",
+      "en": "Furniture to put things on"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🧻",
+    "word": {
+      "ko": "수건",
+      "en": "towel"
+    },
+    "hint": {
+      "ko": "물을 닦는 천",
+      "en": "Cloth to dry water"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "☕",
+    "word": {
+      "ko": "컵",
+      "en": "cup"
+    },
+    "hint": {
+      "ko": "마시는 그릇",
+      "en": "A container for drinking"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🪵",
+    "word": {
+      "ko": "바닥",
+      "en": "floor"
+    },
+    "hint": {
+      "ko": "걷는 곳",
+      "en": "Where you walk"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🧱",
+    "word": {
+      "ko": "벽",
+      "en": "wall"
+    },
+    "hint": {
+      "ko": "막는 구조",
+      "en": "A structure that blocks"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "⛏️",
+    "word": {
+      "ko": "삽",
+      "en": "shovel"
+    },
+    "hint": {
+      "ko": "땅을 파는 도구",
+      "en": "A tool for digging"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🌀",
+    "word": {
+      "ko": "선풍기",
+      "en": "fan"
+    },
+    "hint": {
+      "ko": "바람을 만드는 기계",
+      "en": "A machine that makes wind"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "📦",
+    "word": {
+      "ko": "큰",
+      "en": "big"
+    },
+    "hint": {
+      "ko": "크기가 큰 것",
+      "en": "Large in size"
+    },
+    "type": "adjective"
+  },
+  {
+    "emoji": "🔹",
+    "word": {
+      "ko": "작은",
+      "en": "small"
+    },
+    "hint": {
+      "ko": "크기가 작은 것",
+      "en": "Small in size"
+    },
+    "type": "adjective"
+  },
+  {
+    "emoji": "🏗️",
+    "word": {
+      "ko": "키 큰",
+      "en": "tall"
+    },
+    "hint": {
+      "ko": "높이가 높은 것",
+      "en": "High in height"
+    },
+    "type": "adjective"
+  },
+  {
+    "emoji": "🔻",
+    "word": {
+      "ko": "키 작은",
+      "en": "short"
+    },
+    "hint": {
+      "ko": "높이가 낮은 것",
+      "en": "Low in height"
+    },
+    "type": "adjective"
+  },
+  {
+    "emoji": "➖",
+    "word": {
+      "ko": "긴",
+      "en": "long"
+    },
+    "hint": {
+      "ko": "길이가 긴 것",
+      "en": "Long in length"
+    },
+    "type": "adjective"
+  },
+  {
+    "emoji": "⚡",
+    "word": {
+      "ko": "빠른",
+      "en": "fast"
+    },
+    "hint": {
+      "ko": "속도가 빠른 것",
+      "en": "Fast in speed"
+    },
+    "type": "adjective"
+  },
+  {
+    "emoji": "🐌",
+    "word": {
+      "ko": "느린",
+      "en": "slow"
+    },
+    "hint": {
+      "ko": "속도가 느린 것",
+      "en": "Slow in speed"
+    },
+    "type": "adjective"
+  },
+  {
+    "emoji": "🔥",
+    "word": {
+      "ko": "뜨거운",
+      "en": "hot"
+    },
+    "hint": {
+      "ko": "온도가 높은 것",
+      "en": "High in temperature"
+    },
+    "type": "adjective"
+  },
+  {
+    "emoji": "❄️",
+    "word": {
+      "ko": "차가운",
+      "en": "cold"
+    },
+    "hint": {
+      "ko": "온도가 낮은 것",
+      "en": "Low in temperature"
+    },
+    "image": "cold.png",
+    "type": "adjective"
+  },
+  {
+    "emoji": "☀️",
+    "word": {
+      "ko": "따뜻한",
+      "en": "warm"
+    },
+    "hint": {
+      "ko": "적당히 따뜻한 것",
+      "en": "Moderately warm"
+    },
+    "type": "adjective"
+  },
+  {
+    "emoji": "💨",
+    "word": {
+      "ko": "시원한",
+      "en": "cool"
+    },
+    "hint": {
+      "ko": "적당히 차가운 것",
+      "en": "Moderately cool"
+    },
+    "type": "adjective"
+  },
+  {
+    "emoji": "😄",
+    "word": {
+      "ko": "행복한",
+      "en": "happy"
+    },
+    "hint": {
+      "ko": "기쁜 감정",
+      "en": "Feeling joy"
+    },
+    "type": "adjective"
+  },
+  {
+    "emoji": "😢",
+    "word": {
+      "ko": "슬픈",
+      "en": "sad"
+    },
+    "hint": {
+      "ko": "슬픈 감정",
+      "en": "Feeling sorrow"
+    },
+    "type": "adjective"
+  },
+  {
+    "emoji": "😠",
+    "word": {
+      "ko": "화난",
+      "en": "angry"
+    },
+    "hint": {
+      "ko": "화가 난 감정",
+      "en": "Feeling anger"
+    },
+    "type": "adjective"
+  },
+  {
+    "emoji": "😴",
+    "word": {
+      "ko": "피곤한",
+      "en": "tired"
+    },
+    "hint": {
+      "ko": "힘이 없는 상태",
+      "en": "Feeling without energy"
+    },
+    "type": "adjective"
+  },
+  {
+    "emoji": "🍽️",
+    "word": {
+      "ko": "배고픈",
+      "en": "hungry"
+    },
+    "hint": {
+      "ko": "음식을 원하는 상태",
+      "en": "Wanting food"
+    },
+    "image": "hungry.png",
+    "type": "adjective"
+  },
+  {
+    "emoji": "😋",
+    "word": {
+      "ko": "배부른",
+      "en": "full"
+    },
+    "hint": {
+      "ko": "음식을 충분히 먹은 상태",
+      "en": "Having eaten enough"
+    },
+    "type": "adjective"
+  },
+  {
+    "emoji": "✨",
+    "word": {
+      "ko": "깨끗한",
+      "en": "clean"
+    },
+    "hint": {
+      "ko": "더러움 없는 상태",
+      "en": "Not dirty"
+    },
+    "type": "verb"
+  },
+  {
+    "emoji": "💩",
+    "word": {
+      "ko": "더러운",
+      "en": "dirty"
+    },
+    "hint": {
+      "ko": "더러운 상태",
+      "en": "Not clean"
+    },
+    "type": "adjective"
+  },
+  {
+    "emoji": "💐",
+    "word": {
+      "ko": "예쁜",
+      "en": "pretty"
+    },
+    "hint": {
+      "ko": "아름다운 것",
+      "en": "Beautiful"
+    },
+    "type": "adjective"
+  },
+  {
+    "emoji": "🐰",
+    "word": {
+      "ko": "귀여운",
+      "en": "cute"
+    },
+    "hint": {
+      "ko": "사랑스러운 것",
+      "en": "Lovable"
+    },
+    "type": "adjective"
+  },
+  {
+    "emoji": "😄",
+    "word": {
+      "ko": "재미있는",
+      "en": "funny"
+    },
+    "hint": {
+      "ko": "웃긴 것",
+      "en": "Making you laugh"
+    },
+    "image": "funny.png",
+    "type": "adjective"
+  },
+  {
+    "emoji": "🔊",
+    "word": {
+      "ko": "시끄러운",
+      "en": "noisy"
+    },
+    "hint": {
+      "ko": "소리가 큰 것",
+      "en": "Loud sound"
+    },
+    "type": "adjective"
+  },
+  {
+    "emoji": "🔇",
+    "word": {
+      "ko": "조용한",
+      "en": "quiet"
+    },
+    "hint": {
+      "ko": "소리가 작은 것",
+      "en": "Small sound"
+    },
+    "type": "adjective"
+  },
+  {
+    "emoji": "💡",
+    "word": {
+      "ko": "밝은",
+      "en": "bright"
+    },
+    "hint": {
+      "ko": "빛이 강한 것",
+      "en": "Strong light"
+    },
+    "type": "adjective"
+  },
+  {
+    "emoji": "🌙",
+    "word": {
+      "ko": "어두운",
+      "en": "dark"
+    },
+    "hint": {
+      "ko": "빛이 없는 것",
+      "en": "No light"
+    },
+    "type": "adjective"
+  },
+  {
+    "emoji": "💪",
+    "word": {
+      "ko": "강한",
+      "en": "strong"
+    },
+    "hint": {
+      "ko": "힘이 센 것",
+      "en": "Having power"
+    },
+    "type": "adjective"
+  },
+  {
+    "emoji": "🪶",
+    "word": {
+      "ko": "약한",
+      "en": "weak"
+    },
+    "hint": {
+      "ko": "힘이 약한 것",
+      "en": "Not having much power"
+    },
+    "type": "adjective"
+  },
+  {
+    "emoji": "🆕",
+    "word": {
+      "ko": "새로운",
+      "en": "new"
+    },
+    "hint": {
+      "ko": "최근에 생긴 것",
+      "en": "Recently made"
+    },
+    "type": "adjective"
+  },
+  {
+    "emoji": "🏛️",
+    "word": {
+      "ko": "오래된",
+      "en": "old"
+    },
+    "hint": {
+      "ko": "오래 전에 생긴 것",
+      "en": "Made long ago"
+    },
+    "type": "adjective"
+  }
 ]

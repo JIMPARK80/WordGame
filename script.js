@@ -6,7 +6,8 @@ let gameState = {
     questions: [],
     currentAnswer: '',
     hintShown: false,
-    stageNumber: 1
+    stageNumber: 1,
+    stageGoal: 10  // Default goal, will be set from stages.json
 };
 
 // Timer state
@@ -22,6 +23,9 @@ let gameMode = 'multiple'; // 'typing' or 'multiple'
 
 // Picture-words database (loaded from JSON)
 let pictureDatabase = [];
+
+// Stages database (loaded from JSON)
+let stagesDatabase = {};
 
 // Emoji auto-generation mapping (단어 의미에 따른 이모지 자동 매칭)
 const emojiMapping = {
@@ -162,6 +166,29 @@ function assignEmojiIfMissing(wordData) {
 
 // Sound effects
 let soundEnabled = true;
+
+// TTS (Text-to-Speech) function
+function speak(text) {
+    if (!text) return;
+    
+    try {
+        // Check if SpeechSynthesis is available
+        if ('speechSynthesis' in window) {
+            // Cancel any ongoing speech
+            window.speechSynthesis.cancel();
+            
+            const utter = new SpeechSynthesisUtterance(text);
+            utter.lang = "en-US"; // 영어 단어 읽기
+            utter.rate = 0.9; // Slightly slower for clarity
+            utter.pitch = 1.0;
+            utter.volume = 1.0;
+            
+            window.speechSynthesis.speak(utter);
+        }
+    } catch (error) {
+        console.log('TTS not supported:', error);
+    }
+}
 
 // Play sound effect
 function playSound(type) {
@@ -336,7 +363,8 @@ const translations = {
         options: '옵션',
         exitGame: '게임 종료',
         backToStart: '시작 화면으로',
-        backToGame: '게임 화면으로'
+        backToGame: '게임 화면으로',
+        goal: '목표'
     },
     en: {
         gameTitle: '🎨 Picture Word Game',
@@ -379,7 +407,8 @@ const translations = {
         options: 'Options',
         exitGame: 'Exit Game',
         backToStart: 'Back to Start',
-        backToGame: 'Back to Game'
+        backToGame: 'Back to Game',
+        goal: 'Goal'
     }
 };
 
@@ -555,11 +584,116 @@ async function loadWordsDatabase() {
     }
 }
 
+/**
+ * Get words by type (noun, verb, adjective)
+ * @param {string} type - 'noun', 'verb', or 'adjective'
+ * @returns {Array} Array of word objects with the specified type
+ * 
+ * @example
+ * // Get all nouns
+ * const nouns = getWordsByType('noun');
+ * 
+ * // Get all verbs
+ * const verbs = getWordsByType('verb');
+ * 
+ * // Get all adjectives
+ * const adjectives = getWordsByType('adjective');
+ */
+function getWordsByType(type) {
+    if (!pictureDatabase || pictureDatabase.length === 0) {
+        return [];
+    }
+    return pictureDatabase.filter(wordData => {
+        return wordData.type === type;
+    });
+}
+
+/**
+ * Get nouns only
+ * @returns {Array} Array of noun word objects
+ * 
+ * @example
+ * const nouns = getNouns();
+ * console.log(`Total nouns: ${nouns.length}`);
+ */
+function getNouns() {
+    return getWordsByType('noun');
+}
+
+/**
+ * Get verbs only
+ * @returns {Array} Array of verb word objects
+ * 
+ * @example
+ * const verbs = getVerbs();
+ * console.log(`Total verbs: ${verbs.length}`);
+ */
+function getVerbs() {
+    return getWordsByType('verb');
+}
+
+/**
+ * Get adjectives only
+ * @returns {Array} Array of adjective word objects
+ * 
+ * @example
+ * const adjectives = getAdjectives();
+ * console.log(`Total adjectives: ${adjectives.length}`);
+ */
+function getAdjectives() {
+    return getWordsByType('adjective');
+}
+
+/**
+ * Get words by multiple types
+ * @param {string|Array} types - Single type string or array of types ['noun', 'verb', 'adjective']
+ * @returns {Array} Array of word objects matching any of the specified types
+ * 
+ * @example
+ * // Get both nouns and verbs
+ * const nounsAndVerbs = getWordsByTypes(['noun', 'verb']);
+ * 
+ * // Get single type (same as getWordsByType)
+ * const nouns = getWordsByTypes('noun');
+ */
+function getWordsByTypes(types) {
+    if (!pictureDatabase || pictureDatabase.length === 0) {
+        return [];
+    }
+    if (!Array.isArray(types)) {
+        types = [types];
+    }
+    return pictureDatabase.filter(wordData => {
+        return types.includes(wordData.type);
+    });
+}
+
+// Load stages from JSON file
+async function loadStagesDatabase() {
+    try {
+        const response = await fetch('stages.json');
+        if (!response.ok) {
+            throw new Error('Failed to load stages.json');
+        }
+        stagesDatabase = await response.json();
+        return stagesDatabase;
+    } catch (error) {
+        console.error('Error loading stages database:', error);
+        showMessage(t('loadError'), 'error');
+        return {};
+    }
+}
+
 // Initialize game
 async function initGame() {
     // Load words database if not loaded
     if (pictureDatabase.length === 0) {
         await loadWordsDatabase();
+    }
+    
+    // Load stages database if not loaded
+    if (Object.keys(stagesDatabase).length === 0) {
+        await loadStagesDatabase();
     }
     
     if (pictureDatabase.length === 0) {
@@ -581,13 +715,38 @@ async function initGame() {
         gameArea.style.display = 'block';
     }
     
-    // Shuffle and select 10 random questions
-    const shuffled = [...pictureDatabase].sort(() => Math.random() - 0.5);
-    gameState.questions = shuffled.slice(0, 10);
+    // Get current stage data
+    const currentStage = stagesDatabase[gameState.stageNumber.toString()];
+    
+    if (!currentStage) {
+        showMessage(currentLanguage === 'ko' ? '스테이지 데이터를 찾을 수 없습니다.' : 'Stage data not found.', 'error');
+        return;
+    }
+    
+    // Get words for current stage
+    const stageWords = currentStage.words || [];
+    
+    // Filter pictureDatabase to only include words from current stage
+    const stageQuestions = pictureDatabase.filter(wordData => {
+        const wordEn = typeof wordData.word === 'object' ? wordData.word.en : wordData.word;
+        return stageWords.includes(wordEn.toLowerCase());
+    });
+    
+    if (stageQuestions.length === 0) {
+        showMessage(currentLanguage === 'ko' ? '스테이지 단어를 찾을 수 없습니다.' : 'Stage words not found.', 'error');
+        return;
+    }
+    
+    // Shuffle and select all questions for the stage
+    const shuffled = [...stageQuestions].sort(() => Math.random() - 0.5);
+    gameState.questions = shuffled;
     gameState.currentQuestion = 0;
     // Don't reset score and stage number - keep them for next stage
     // gameState.score = 0; // Keep score across stages
     gameState.correctCount = 0; // Reset correct count for new stage
+    
+    // Store current stage goal
+    gameState.stageGoal = currentStage.goal || stageQuestions.length;
     
     loadQuestion();
     updateDisplay();
@@ -696,6 +855,14 @@ function handleTimeUp() {
 
 // Auto-advance to next question
 function autoNextQuestion() {
+    // Check if stage goal is reached
+    const stageGoal = gameState.stageGoal || gameState.questions.length;
+    if (gameState.correctCount >= stageGoal) {
+        // Stage clear - end game
+        endGame();
+        return;
+    }
+    
     gameState.currentQuestion++;
     if (gameState.currentQuestion >= gameState.questions.length) {
         endGame();
@@ -878,6 +1045,8 @@ function selectChoice(selectedWord, isUserAction = true) {
         showMessage(t('pointsMsg', { points: 10 }), 'success');
         celebrate(); // Fireworks effect
         playSound('correct'); // Success sound
+        // TTS: Speak the correct word
+        speak(gameState.currentAnswer);
     } else {
         feedback.textContent = t('wrongMsg', { word: gameState.currentAnswer });
         feedback.className = 'feedback incorrect';
@@ -938,6 +1107,8 @@ function checkAnswer() {
         showMessage(t('pointsMsg', { points: 10 }), 'success');
         celebrate(); // Fireworks effect
         playSound('correct'); // Success sound
+        // TTS: Speak the correct word
+        speak(gameState.currentAnswer);
     } else {
         feedback.textContent = t('wrongMsg', { word: gameState.currentAnswer });
         feedback.className = 'feedback incorrect';
@@ -1056,7 +1227,14 @@ function updateDisplay() {
     
     document.getElementById('score').textContent = gameState.score;
     document.getElementById('stageNumber').textContent = gameState.stageNumber;
-    document.getElementById('correctCount').textContent = gameState.correctCount;
+    
+    // Display correct count with goal
+    const stageGoal = gameState.stageGoal || gameState.questions.length;
+    const correctCountElement = document.getElementById('correctCount');
+    if (correctCountElement) {
+        correctCountElement.textContent = `${gameState.correctCount} / ${stageGoal}`;
+    }
+    
     document.getElementById('questionNumber').textContent = `${gameState.currentQuestion + 1} / ${gameState.questions.length}`;
     
     // Trigger animations when values change
@@ -1099,11 +1277,12 @@ function endGame() {
         ? Math.round((gameState.correctCount / gameState.questions.length) * 100) 
         : 0;
     
-    // Check if all questions were answered correctly (10/10)
-    const isPerfectScore = gameState.correctCount === gameState.questions.length;
+    // Check if stage goal is reached (goal 개수만큼 맞추면 클리어)
+    const stageGoal = gameState.stageGoal || gameState.questions.length;
+    const isStageClear = gameState.correctCount >= stageGoal;
     
-    // Increment stage number if perfect score
-    if (isPerfectScore) {
+    // Increment stage number if stage clear
+    if (isStageClear) {
         gameState.stageNumber++;
     }
     
@@ -1112,33 +1291,39 @@ function endGame() {
     stageClearScreen.style.display = 'flex';
     
     // Update Stage Clear screen content based on score
-    if (isPerfectScore) {
-        // All correct - Stage Clear!
+    if (isStageClear) {
+        // Goal reached - Stage Clear!
         document.getElementById('stageClearTitle').textContent = t('stageClear');
     } else {
-        // Not all correct - Stage Again!
+        // Goal not reached - Stage Again!
         document.getElementById('stageClearTitle').textContent = t('stageAgain');
     }
     
+    // Update stage info
+    const currentStageNum = isStageClear ? gameState.stageNumber - 1 : gameState.stageNumber;
+    const stageInfoElement = document.getElementById('stageClearStageInfo');
+    if (stageInfoElement) {
+        stageInfoElement.textContent = `${t('stage')} ${currentStageNum}`;
+    }
+    
+    // Update stats
     document.getElementById('finalScore').textContent = gameState.score;
     document.getElementById('finalCorrect').textContent = `${gameState.correctCount} / ${gameState.questions.length}`;
+    document.getElementById('finalGoal').textContent = `${stageGoal}`;
     document.getElementById('finalAccuracy').textContent = `${accuracy}%`;
-    
-    // Update accuracy label
-    document.querySelector('.stat-item:last-child .stat-label').textContent = t('accuracy');
     
     // Update button text based on score
     const nextStageBtn = document.getElementById('stageClearNextStageBtn');
     if (nextStageBtn) {
-        if (isPerfectScore) {
+        if (isStageClear) {
             nextStageBtn.textContent = t('nextStage');
         } else {
             nextStageBtn.textContent = t('tryAgain');
         }
     }
     
-    // Celebrate with confetti only if perfect score
-    if (isPerfectScore) {
+    // Celebrate with confetti only if stage clear
+    if (isStageClear) {
         celebrate();
         playSound('correct');
     } else {
@@ -1491,7 +1676,7 @@ document.getElementById('wordInput').addEventListener('keypress', (e) => {
 });
 
 // Initialize on load
-loadWordsDatabase().then(() => {
+Promise.all([loadWordsDatabase(), loadStagesDatabase()]).then(() => {
     // Initialize game mode UI (default: multiple choice)
     changeGameMode('multiple');
     updateUILanguage();

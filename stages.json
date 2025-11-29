@@ -1,0 +1,83 @@
+{
+  "1": {
+    "words": ["cat", "dog", "apple"],
+    "goal": 3
+  },
+  "2": {
+    "words": ["pencil", "orange", "chair"],
+    "goal": 3
+  },
+  "3": {
+    "words": ["mountain", "star", "moon"],
+    "goal": 3
+  },
+  "4": {
+    "words": ["house", "school", "car"],
+    "goal": 3
+  },
+  "5": {
+    "words": ["elephant", "giraffe", "tiger"],
+    "goal": 3
+  },
+  "6": {
+    "words": ["pizza", "hamburger", "cake", "ice cream", "coffee"],
+    "goal": 5
+  },
+  "7": {
+    "words": ["hospital", "convenience store", "department store", "tree", "flower"],
+    "goal": 5
+  },
+  "8": {
+    "words": ["firefighter", "nurse", "teacher", "doctor", "chef"],
+    "goal": 5
+  },
+  "9": {
+    "words": ["ocean", "mountain", "beach", "forest", "river"],
+    "goal": 5
+  },
+  "10": {
+    "words": ["smartphone", "laptop", "camera", "guitar", "piano"],
+    "goal": 5
+  },
+  "11": {
+    "words": ["banana", "grape", "strawberry", "watermelon", "peach", "cherry", "kiwi", "pineapple", "orange", "apple"],
+    "goal": 10
+  },
+  "12": {
+    "words": ["bus", "taxi", "ambulance", "fire truck", "police car", "bicycle", "airplane", "ship", "train", "car"],
+    "goal": 10
+  },
+  "13": {
+    "words": ["lion", "panda", "rabbit", "bear", "frog", "pig", "cow", "horse", "chicken", "duck"],
+    "goal": 10
+  },
+  "14": {
+    "words": ["chick", "penguin", "bird", "owl", "bee", "cloud", "thunderstorm", "rainbow", "snow", "umbrella"],
+    "goal": 10
+  },
+  "15": {
+    "words": ["pilot", "farmer", "police officer", "scientist", "painter", "singer", "astronaut", "doctor", "teacher", "chef"],
+    "goal": 10
+  },
+  "16": {
+    "words": ["balloon", "gift", "christmas tree", "soccer ball", "basketball", "tennis ball", "volleyball", "microphone", "watch", "book"],
+    "goal": 10
+  },
+  "17": {
+    "words": ["palette", "mask", "glasses", "shirt", "pants", "sneakers", "crown", "hat", "french fries", "taco"],
+    "goal": 10
+  },
+  "18": {
+    "words": ["ramen", "bento box", "rice ball", "sushi", "cookie", "chocolate", "candy", "tea", "milk", "barn"],
+    "goal": 10
+  },
+  "19": {
+    "words": ["bus driver", "baby", "ring", "bath", "song", "bed", "window", "door", "kitchen", "bathroom"],
+    "goal": 10
+  },
+  "20": {
+    "words": ["garden", "picture", "clock", "soap", "plate", "fork", "spoon", "bag", "key", "bread"],
+    "goal": 10
+  }
+}
+

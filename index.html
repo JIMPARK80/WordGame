@@ -148,6 +148,7 @@
             <div class="stage-clear-screen" id="stageClearScreen" style="display: none;">
                 <div class="stage-clear-content">
                     <div class="stage-clear-icon">🎉</div>
+                    <div class="stage-clear-stage-info" id="stageClearStageInfo">Stage 1</div>
                     <h2 class="stage-clear-title" id="stageClearTitle">Stage Clear!</h2>
                     <div class="stage-clear-stats">
                         <div class="stat-item">
@@ -156,10 +157,14 @@
                         </div>
                         <div class="stat-item">
                             <span class="stat-label" data-i18n="correct">Correct</span>
-                            <span class="stat-value" id="finalCorrect">0</span>
+                            <span class="stat-value" id="finalCorrect">0 / 0</span>
                         </div>
                         <div class="stat-item">
-                            <span class="stat-label">Accuracy</span>
+                            <span class="stat-label" data-i18n="goal">Goal</span>
+                            <span class="stat-value" id="finalGoal">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label" data-i18n="accuracy">Accuracy</span>
                             <span class="stat-value" id="finalAccuracy">0%</span>
                         </div>
                     </div>

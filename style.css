@@ -1335,6 +1335,16 @@ header h1 {
     animation: bounce 1s ease infinite;
 }
 
+.stage-clear-stage-info {
+    color: var(--color-primary);
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-bottom: 10px;
+    opacity: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
 .stage-clear-title {
     color: var(--color-primary);
     font-size: 3em;
@@ -1618,6 +1628,11 @@ header h1 {
     .stage-clear-icon {
         font-size: 4.5em;
         margin-bottom: 15px;
+    }
+
+    .stage-clear-stage-info {
+        font-size: 1.2em;
+        margin-bottom: 8px;
     }
 
     .stage-clear-stats {
