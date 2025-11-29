@@ -1428,12 +1428,15 @@ header h1 {
 
 .message {
     position: fixed;
-    top: var(--spacing-lg);
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
     padding: var(--spacing-md) var(--spacing-xl);
     border-radius: 10px;
     font-weight: 600;
+    font-size: 1.2em;
+    min-width: 200px;
+    text-align: center;
     z-index: var(--z-message);
     animation: fadeInOut 2s ease;
 }
@@ -1451,11 +1454,11 @@ header h1 {
 @keyframes fadeInOut {
     0%, 100% {
         opacity: 0;
-        transform: translateX(-50%) translateY(-20px);
+        transform: translate(-50%, -50%) scale(0.8);
     }
     10%, 90% {
         opacity: 1;
-        transform: translateX(-50%) translateY(0);
+        transform: translate(-50%, -50%) scale(1);
     }
 }
 
@@ -1706,5 +1709,11 @@ header h1 {
 
     .stat-label {
         font-size: 0.9em;
+    }
+
+    .message {
+        font-size: 1em;
+        padding: var(--spacing-sm) var(--spacing-md);
+        min-width: 150px;
     }
 }
