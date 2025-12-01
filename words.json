@@ -3222,5 +3222,53 @@
       "en": "Made long ago"
     },
     "type": "adjective"
+  },
+  {
+    "emoji": "⚖️",
+    "word": {
+      "ko": "보다",
+      "en": "than"
+    },
+    "hint": {
+      "ko": "두 대상을 비교할 때 사용하는 단어",
+      "en": "Used when comparing two things"
+    },
+    "type": "other"
+  },
+  {
+    "emoji": "⏭️",
+    "word": {
+      "ko": "그러고 나서",
+      "en": "then"
+    },
+    "hint": {
+      "ko": "다음 단계나 순서를 나타내는 단어",
+      "en": "Shows the next step or sequence"
+    },
+    "type": "other"
+  },
+  {
+    "emoji": "🐞",
+    "word": {
+      "ko": "벌레",
+      "en": "bug"
+    },
+    "hint": {
+      "ko": "작은 곤충",
+      "en": "A small insect"
+    },
+    "type": "noun"
+  },
+  {
+    "emoji": "🍳",
+    "word": {
+      "ko": "굽다",
+      "en": "bake"
+    },
+    "hint": {
+      "ko": "후라이팬에서 음식을 굽는 동작",
+      "en": "Cooking food in a frying pan"
+    },
+    "type": "verb"
   }
 ]

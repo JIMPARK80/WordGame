@@ -7,7 +7,7 @@ let gameState = {
     currentAnswer: '',
     hintShown: false,
     stageNumber: 1,
-    stageGoal: 10,  // Default goal, will be set from stages.json
+    stageGoal: 10,  // Default goal, will be set based on level
     level: 1,  // Current level (starts at 1)
     perfectCount: 0,  // Current perfect count for level up
     perfectGoal: 5  // Perfect clears needed for level up (will be set based on level)
@@ -118,9 +118,6 @@ let gameMode = 'multiple'; // 'typing' or 'multiple'
 
 // Picture-words database (loaded from JSON)
 let pictureDatabase = [];
-
-// Stages database (loaded from JSON)
-let stagesDatabase = {};
 
 // Words by level database (loaded from JSON)
 let wordsByLevelDatabase = {};
@@ -840,21 +837,6 @@ function getWordsByTypes(types) {
 }
 
 // Load stages from JSON file
-async function loadStagesDatabase() {
-    try {
-        const response = await fetch('stages.json');
-        if (!response.ok) {
-            throw new Error('Failed to load stages.json');
-        }
-        stagesDatabase = await response.json();
-        return stagesDatabase;
-    } catch (error) {
-        console.error('Error loading stages database:', error);
-        showMessage(t('loadError'), 'error');
-        return {};
-    }
-}
-
 // Load words by level from JSON file
 async function loadWordsByLevelDatabase() {
     try {
@@ -876,11 +858,6 @@ async function initGame() {
     // Load words database if not loaded
     if (pictureDatabase.length === 0) {
         await loadWordsDatabase();
-    }
-    
-    // Load stages database if not loaded
-    if (Object.keys(stagesDatabase).length === 0) {
-        await loadStagesDatabase();
     }
     
     // Load words by level database if not loaded
@@ -1133,10 +1110,29 @@ function loadQuestion() {
     
     // Display picture
     const imageDisplay = document.getElementById('imageDisplay');
+    
+    // 이미지 교체 필요 단어 목록 (이모지 대신 텍스트 표시)
+    const wordsNeedingImage = [
+        'floor', 'kitchen', 'garden',
+        'wind', 'wave', 'river',
+        'clean', 'cry', 'build',
+        'big', 'small', 'tall', 'long', 'cool', 'happy', 'sad', 'tired', 'cute', 'bright', 'dark',
+        'broom', 'lightbulb', 'cup', 'plate',
+        'chef', 'pilot', 'painter', 'singer',
+        'milk', 'drink'
+    ];
+    
+    const wordEn = typeof question.word === 'object' ? question.word.en : question.word;
+    const needsImageReplacement = wordsNeedingImage.includes(wordEn.toLowerCase());
+    
     if (question.image) {
         // Use image file if available (from images folder)
         const imagePath = question.image.startsWith('assets/images/') ? question.image : (question.image.startsWith('images/') ? `assets/${question.image}` : `assets/images/${question.image}`);
         imageDisplay.innerHTML = `<img src="${imagePath}" alt="${word}" class="game-image" onerror="this.parentElement.innerHTML='<div class=\\'emoji\\'>${question.emoji || generateEmoji(word)}</div>'">`;
+    } else if (needsImageReplacement) {
+        // 이미지 교체 필요 단어는 텍스트 문구 표시
+        const wordText = typeof question.word === 'object' ? question.word[currentLanguage] : question.word;
+        imageDisplay.innerHTML = `<div class="word-text-display">${wordText}</div>`;
     } else {
         // Use emoji as fallback (자동 생성된 이모지 사용)
         const emojiToDisplay = question.emoji || generateEmoji(word);
@@ -2173,7 +2169,7 @@ document.getElementById('wordInput').addEventListener('keypress', (e) => {
 });
 
 // Initialize on load
-Promise.all([loadWordsDatabase(), loadStagesDatabase(), loadWordsByLevelDatabase()]).then(() => {
+Promise.all([loadWordsDatabase(), loadWordsByLevelDatabase()]).then(() => {
     // Load saved max level
     const savedMaxLevel = getMaxLevel();
     gameState.level = savedMaxLevel;

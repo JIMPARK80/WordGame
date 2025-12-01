@@ -874,6 +874,24 @@ header h1 {
     transform: scale(1.02);
 }
 
+.image-display .word-text-display {
+    font-size: 4em;
+    font-weight: 700;
+    color: var(--color-primary);
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    line-height: 1.2;
+}
+
 .image-display .emoji {
     font-size: 12em;
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
@@ -1845,6 +1863,12 @@ header h1 {
     .image-display {
         padding: 35px 25px;
         min-height: 240px;
+    }
+
+    .image-display .word-text-display {
+        font-size: 3em;
+        min-height: 150px;
+        padding: 15px;
     }
 
     .image-display .emoji {

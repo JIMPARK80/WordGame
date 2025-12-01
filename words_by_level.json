@@ -5,7 +5,7 @@
       "apple", "banana", "grape", "strawberry", "peach", "cherry", "watermelon",
       "milk", "cookie", "candy", "honey", "jam", "ice cream",
       "car", "book", "cup", "spoon", "fork", "key", "bag",
-      "bed", "chair", "table", "towel", "door", "window", "plate", "soap"
+      "bed", "chair", "table", "towel", "door", "window", "plate", "soap", "bug"
     ],
     "2": [
       "panda", "lion", "horse", "turtle",
@@ -46,7 +46,7 @@
       "run", "walk", "eat", "drink", "sleep", "play", "sing", "dance", "jump", "smile"
     ],
     "2": [
-      "read", "write", "swim", "climb", "open", "close", "draw"
+      "read", "write", "swim", "climb", "open", "close", "draw", "bake"
     ],
     "3": [
       "wash", "clean", "look", "listen", "catch", "throw", "help"
@@ -73,6 +73,11 @@
     ],
     "5": [
       "warm", "cool", "new", "old"
+    ]
+  },
+  "others": {
+    "1": [
+      "than", "then"
     ]
   }
 }
