@@ -1163,6 +1163,7 @@
       "ko": "마시는 것",
       "en": "Something to drink"
     },
+    "image": "drink.png",
     "type": "verb"
   },
   {
@@ -1175,6 +1176,7 @@
       "ko": "하얀 음료",
       "en": "A white drink"
     },
+    "image": "milk.png",
     "type": "noun"
   },
   {
@@ -1536,6 +1538,7 @@
       "ko": "더러운 것을 깨끗하게 하는 동작",
       "en": "Making something not dirty"
     },
+    "image": "clean.png",
     "type": "verb"
   },
   {
@@ -1596,6 +1599,7 @@
       "ko": "눈물을 흘리는 동작",
       "en": "Shedding tears"
     },
+    "image": "cry.png",
     "type": "verb"
   },
   {
@@ -1644,6 +1648,7 @@
       "ko": "무언가를 짓는 동작",
       "en": "Constructing something"
     },
+    "image": "build.png",
     "type": "verb"
   },
   {
@@ -1728,6 +1733,7 @@
       "ko": "요리하는 방",
       "en": "A room for cooking"
     },
+    "image": "kitchen.png",
     "type": "noun"
   },
   {
@@ -1801,6 +1807,7 @@
       "ko": "음식을 담는 그릇",
       "en": "A dish for food"
     },
+    "image": "plate.png",
     "type": "noun"
   },
   {
@@ -2270,6 +2277,7 @@
       "ko": "흐르는 물",
       "en": "Flowing water"
     },
+    "image": "river.png",
     "type": "noun"
   },
   {
@@ -2366,6 +2374,7 @@
       "ko": "공기가 움직이는 것",
       "en": "Moving air"
     },
+    "image": "wind.png",
     "type": "noun"
   },
   {
@@ -2414,6 +2423,7 @@
       "ko": "바다의 움직임",
       "en": "Movement of the ocean"
     },
+    "image": "wave.png",
     "type": "noun"
   },
   {
@@ -2474,6 +2484,7 @@
       "ko": "음식을 만드는 사람",
       "en": "A person who makes food"
     },
+    "image": "chef.png",
     "type": "noun"
   },
   {
@@ -2486,6 +2497,7 @@
       "ko": "비행기를 조종하는 사람",
       "en": "A person who flies planes"
     },
+    "image": "pilot.png",
     "type": "noun"
   },
   {
@@ -2534,6 +2546,7 @@
       "ko": "그림을 그리는 사람",
       "en": "A person who paints"
     },
+    "image": "painter.png",
     "type": "noun"
   },
   {
@@ -2546,6 +2559,7 @@
       "ko": "노래하는 사람",
       "en": "A person who sings"
     },
+    "image": "singer.png",
     "type": "noun"
   },
   {
@@ -2618,6 +2632,7 @@
       "ko": "쓸어내는 도구",
       "en": "A tool for sweeping"
     },
+    "image": "broom.png",
     "type": "noun"
   },
   {
@@ -2654,6 +2669,7 @@
       "ko": "빛을 내는 것",
       "en": "Something that gives light"
     },
+    "image": "lightbulb.png",
     "type": "noun"
   },
   {
@@ -2810,6 +2826,7 @@
       "ko": "마시는 그릇",
       "en": "A container for drinking"
     },
+    "image": "cup.png",
     "type": "noun"
   },
   {
@@ -2822,6 +2839,7 @@
       "ko": "걷는 곳",
       "en": "Where you walk"
     },
+    "image": "floor.png",
     "type": "noun"
   },
   {
@@ -2870,6 +2888,7 @@
       "ko": "크기가 큰 것",
       "en": "Large in size"
     },
+    "image": "big.png",
     "type": "adjective"
   },
   {
@@ -2882,6 +2901,7 @@
       "ko": "크기가 작은 것",
       "en": "Small in size"
     },
+    "image": "small.png",
     "type": "adjective"
   },
   {
@@ -2894,6 +2914,7 @@
       "ko": "높이가 높은 것",
       "en": "High in height"
     },
+    "image": "tall.png",
     "type": "adjective"
   },
   {
@@ -2991,6 +3012,7 @@
       "ko": "적당히 차가운 것",
       "en": "Moderately cool"
     },
+    "image": "cool.png",
     "type": "adjective"
   },
   {
@@ -3003,6 +3025,7 @@
       "ko": "기쁜 감정",
       "en": "Feeling joy"
     },
+    "image": "happy.png",
     "type": "adjective"
   },
   {
@@ -3015,6 +3038,7 @@
       "ko": "슬픈 감정",
       "en": "Feeling sorrow"
     },
+    "image": "sad.png",
     "type": "adjective"
   },
   {
@@ -3039,6 +3063,7 @@
       "ko": "힘이 없는 상태",
       "en": "Feeling without energy"
     },
+    "image": "tired.png",
     "type": "adjective"
   },
   {
@@ -3161,6 +3186,7 @@
       "ko": "빛이 강한 것",
       "en": "Strong light"
     },
+    "image": "bright.png",
     "type": "adjective"
   },
   {
@@ -3173,6 +3199,7 @@
       "ko": "빛이 없는 것",
       "en": "No light"
     },
+    "image": "dark.png",
     "type": "adjective"
   },
   {
