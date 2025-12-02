@@ -904,7 +904,16 @@ header h1 {
     border-radius: var(--radius-lg);
     box-shadow: 0 8px var(--spacing-lg) rgba(0, 0, 0, 0.3);
     object-fit: contain;
-    animation: fadeIn var(--transition-slow);
+    animation: fadeIn var(--transition-slow), imageFloat 3s ease-in-out infinite;
+}
+
+@keyframes imageFloat {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-8px) scale(1.02);
+    }
 }
 
 @keyframes fadeIn {
