@@ -1126,8 +1126,26 @@ function loadQuestion() {
     const needsImageReplacement = wordsNeedingImage.includes(wordEn.toLowerCase());
     
     if (question.image) {
-        // Use image file if available (from images folder)
-        const imagePath = question.image.startsWith('assets/images/') ? question.image : (question.image.startsWith('images/') ? `assets/${question.image}` : `assets/images/${question.image}`);
+        // Use image file if available (from category folders: nouns/, verbs/, adjectives/)
+        let imagePath;
+        if (question.image.startsWith('assets/images/')) {
+            imagePath = question.image;
+        } else if (question.image.startsWith('images/')) {
+            imagePath = `assets/${question.image}`;
+        } else {
+            // 카테고리별 폴더에서 이미지 찾기
+            const imageFileName = question.image;
+            const wordType = question.type || 'noun'; // 기본값: noun
+            let categoryFolder = 'nouns'; // 기본값
+            
+            if (wordType === 'verb') {
+                categoryFolder = 'verbs';
+            } else if (wordType === 'adjective') {
+                categoryFolder = 'adjectives';
+            }
+            
+            imagePath = `assets/images/${categoryFolder}/${imageFileName}`;
+        }
         imageDisplay.innerHTML = `<img src="${imagePath}" alt="${word}" class="game-image" onerror="this.parentElement.innerHTML='<div class=\\'emoji\\'>${question.emoji || generateEmoji(word)}</div>'">`;
     } else if (needsImageReplacement) {
         // 이미지 교체 필요 단어는 텍스트 문구 표시
