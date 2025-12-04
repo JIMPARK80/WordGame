@@ -68,6 +68,7 @@ body {
     justify-content: center;
     align-items: center;
     padding: var(--spacing-lg);
+    font-size: 16px; /* Base font size for desktop */
 }
 
 .container {
@@ -77,6 +78,137 @@ body {
     max-width: 600px;
     width: 100%;
     padding: var(--spacing-xl);
+}
+
+/* Tablet styles (601px - 1024px) */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .container {
+        max-width: 800px;
+        padding: var(--spacing-lg);
+    }
+
+    header h1 {
+        font-size: 2.2em;
+    }
+
+    .level-icon-large {
+        font-size: 2em;
+    }
+
+    .level-text {
+        font-size: 2.1em;
+    }
+
+    .info-icon {
+        font-size: 2em;
+    }
+
+    .info-value {
+        font-size: 1.65em;
+    }
+
+    .progress-icon {
+        font-size: 2.4em;
+    }
+
+    .progress-text {
+        font-size: 2.2em;
+    }
+
+    .image-display {
+        padding: 40px 35px;
+        min-height: 260px;
+    }
+
+    .image-display .word-text-display {
+        font-size: 3.5em;
+        min-height: 180px;
+    }
+
+    .image-display .emoji {
+        font-size: 11em;
+    }
+
+    .image-display .game-image {
+        max-height: 350px;
+    }
+
+    .choice-btn {
+        font-size: 1.4em;
+        padding: 16px var(--spacing-md);
+    }
+
+    .word-input {
+        font-size: 1.1em;
+    }
+
+    .btn {
+        font-size: 1.05em;
+    }
+
+    .btn-new-game {
+        font-size: 1.9em;
+    }
+
+    .btn-next {
+        font-size: 1.35em;
+    }
+
+    .feedback {
+        font-size: 1.1em;
+    }
+
+    .hint-text {
+        font-size: 1.1em;
+    }
+
+    .stage-clear-content {
+        padding: 45px 35px;
+        max-width: 600px;
+    }
+
+    .stage-clear-title {
+        font-size: 2.4em;
+    }
+
+    .stage-clear-icon {
+        font-size: 6em;
+    }
+
+    .stage-clear-stage-info {
+        font-size: 1.35em;
+    }
+
+    .stat-value {
+        font-size: 1.65em;
+    }
+
+    .stat-item#perfectStatItem .stat-value,
+    .stat-item#levelUpStatItem .stat-value {
+        font-size: 1.4em;
+    }
+
+    .start-screen-content {
+        padding: 50px 40px;
+        max-width: 85%;
+    }
+
+    .start-screen-title {
+        font-size: 2.7em;
+    }
+
+    .btn-start,
+    .btn-load {
+        font-size: 1.6em;
+    }
+
+    .btn-options {
+        font-size: 1.5em;
+    }
+
+    .btn-exit {
+        font-size: 1.4em;
+    }
 }
 
 header {
@@ -1196,18 +1328,22 @@ header h1 {
     gap: 30px;
 }
 
-.btn-start {
+.btn-start,
+.btn-load {
     width: 80%;
     font-size: 2em;
     padding: var(--spacing-lg) var(--spacing-xl);
     font-weight: 700;
-    background: var(--gradient-primary);
-    color: white;
     border: none;
     border-radius: var(--radius-lg);
     cursor: pointer;
     transition: all var(--transition-normal);
     box-shadow: var(--shadow-md);
+    color: white;
+}
+
+.btn-start {
+    background: var(--gradient-primary);
 }
 
 .btn-start:hover {
@@ -1216,17 +1352,7 @@ header h1 {
 }
 
 .btn-load {
-    width: 80%;
-    font-size: 2em;
-    padding: var(--spacing-lg) var(--spacing-xl);
-    font-weight: 700;
     background: linear-gradient(135deg, #51CF66 0%, #40C057 100%);
-    color: white;
-    border: none;
-    border-radius: var(--radius-lg);
-    cursor: pointer;
-    transition: all var(--transition-normal);
-    box-shadow: var(--shadow-md);
 }
 
 .btn-load:hover {
@@ -1238,7 +1364,7 @@ header h1 {
     width: 80%;
     font-size: 2em;
     padding: 18px var(--spacing-xl);
-    font-weight: 600;
+    font-weight: 700;
     background: var(--gradient-pink);
     color: white;
     border: none;
@@ -1255,9 +1381,9 @@ header h1 {
 
 .btn-exit {
     width: 80%;
-    font-size: 2.0em;
+    font-size: 2em;
     padding: 16px var(--spacing-xl);
-    font-weight: 600;
+    font-weight: 700;
     background: var(--gradient-danger);
     color: white;
     border: none;
@@ -1272,34 +1398,69 @@ header h1 {
     box-shadow: 0 6px var(--spacing-lg) rgba(255, 107, 107, 0.6);
 }
 
+/* Tablet - Start Screen */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .start-screen-content {
+        padding: 50px 40px;
+        max-width: 85%;
+    }
+
+    .start-screen-title {
+        font-size: 2.7em;
+        margin-bottom: 45px;
+    }
+
+    .start-screen-buttons {
+        gap: 20px;
+    }
+
+    .btn-start,
+    .btn-load {
+        font-size: 1.6em;
+        padding: 20px 30px;
+    }
+
+    .btn-options {
+        font-size: 1.6em;
+        padding: 18px 30px;
+    }
+
+    .btn-exit {
+        font-size: 1.6em;
+        padding: 16px 30px;
+    }
+}
+
+/* Mobile - Start Screen */
 @media (max-width: 600px) {
     .start-screen-content {
-        padding: 40px 30px;
+        padding: 35px 25px;
         max-width: 90%;
     }
 
     .start-screen-title {
-        font-size: 2.5em;
-        margin-bottom: 40px;
+        font-size: 2.2em;
+        margin-bottom: 35px;
     }
 
     .start-screen-buttons {
-        gap: 15px;
+        gap: 12px;
     }
 
-    .btn-start {
-        font-size: 1.3em;
-        padding: 18px 25px;
+    .btn-start,
+    .btn-load {
+        font-size: 1.2em;
+        padding: 16px 20px;
     }
 
     .btn-options {
         font-size: 1.2em;
-        padding: 16px 25px;
+        padding: 14px 20px;
     }
 
     .btn-exit {
-        font-size: 1.1em;
-        padding: 14px 25px;
+        font-size: 1.2em;
+        padding: 12px 20px;
     }
 }
 
@@ -1581,6 +1742,28 @@ header h1 {
     color: #999;
 }
 
+/* Tablet - Options Modal */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .options-modal-content {
+        max-width: 500px;
+        width: 85%;
+        max-height: 75vh;
+    }
+
+    .options-modal-title {
+        font-size: 1.56em;
+    }
+
+    .options-modal-body {
+        padding: var(--spacing-md);
+    }
+
+    .options-modal-body .menu-section {
+        font-size: 1.2em;
+    }
+}
+
+/* Mobile - Options Modal */
 @media (max-width: 600px) {
     .options-modal-content {
         width: 90%;
@@ -1592,11 +1775,15 @@ header h1 {
     }
 
     .options-modal-title {
-        font-size: 1.44em;
+        font-size: 1.32em;
     }
 
     .options-modal-body {
         padding: 12px;
+    }
+
+    .options-modal-body .menu-section {
+        font-size: 1.1em;
     }
 }
 
@@ -1769,14 +1956,17 @@ header h1 {
     }
 }
 
+/* Mobile styles (max-width: 600px) */
 @media (max-width: 600px) {
     body {
         padding: 10px;
+        font-size: 14px; /* Base font size for mobile */
     }
 
     .container {
         padding: var(--spacing-sm);
         border-radius: var(--radius-lg);
+        max-width: 100%;
     }
 
     .desktop-only {
@@ -1875,17 +2065,17 @@ header h1 {
     }
 
     .image-display .word-text-display {
-        font-size: 3em;
-        min-height: 150px;
-        padding: 15px;
+        font-size: 2.5em;
+        min-height: 120px;
+        padding: 12px;
     }
 
     .image-display .emoji {
-        font-size: 10em;
+        font-size: 8em;
     }
 
     .image-display .game-image {
-        max-height: 300px;
+        max-height: 250px;
     }
 
     /* Legacy score-board (hidden) */
@@ -1962,7 +2152,7 @@ header h1 {
     }
 
     .hint-text {
-        font-size: 20px;
+        font-size: 0.95em;
         line-height: 1.4;
         white-space: nowrap;
         overflow: hidden;
@@ -1987,16 +2177,16 @@ header h1 {
     }
 
     .choice-btn {
-        padding: 18px var(--spacing-sm);
-        font-size: 1.5em;
-        min-height: 60px;
+        padding: 16px var(--spacing-sm);
+        font-size: 1.3em;
+        min-height: 55px;
         border-radius: var(--radius-md);
         border-width: 2px;
     }
 
     .word-input {
-        font-size: 1em;
-        padding: 16px 18px;
+        font-size: 0.95em;
+        padding: 14px 16px;
         border-width: 2px;
         border-radius: var(--radius-md);
     }
@@ -2012,23 +2202,23 @@ header h1 {
     }
 
     .btn-new-game {
-        font-size: 1.8em;
-        padding: 16px var(--spacing-lg);
-        min-height: 56px;
+        font-size: 1.6em;
+        padding: 14px var(--spacing-lg);
+        min-height: 52px;
     }
 
     .btn-next {
-        font-size: 1.3em;
-        padding: 16px var(--spacing-lg);
-        min-height: 52px;
+        font-size: 1.2em;
+        padding: 14px var(--spacing-lg);
+        min-height: 48px;
     }
 
     .feedback {
         padding: var(--spacing-sm);
-        font-size: 20px;
+        font-size: 0.95em;
         margin-bottom: 0;
         border-radius: var(--radius-md);
-        min-height: 45px;
+        min-height: 42px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -2051,18 +2241,18 @@ header h1 {
     }
 
     .stage-clear-title {
-        font-size: 1.8em;
-        margin-bottom: 20px;
+        font-size: 1.6em;
+        margin-bottom: 18px;
     }
 
     .stage-clear-icon {
-        font-size: 4.5em;
-        margin-bottom: 15px;
+        font-size: 4em;
+        margin-bottom: 12px;
     }
 
     .stage-clear-stage-info {
-        font-size: 1.2em;
-        margin-bottom: 8px;
+        font-size: 1.1em;
+        margin-bottom: 6px;
     }
 
     .stage-clear-stats {
@@ -2078,12 +2268,12 @@ header h1 {
     }
 
     .stat-value {
-        font-size: 1.5em;
+        font-size: 1.4em;
     }
 
     .stat-item#perfectStatItem .stat-value,
     .stat-item#levelUpStatItem .stat-value {
-        font-size: 1.3em;
+        font-size: 1.2em;
     }
 
     .stat-item#levelUpStatItem {
@@ -2095,8 +2285,15 @@ header h1 {
     }
 
     .message {
-        font-size: 1em;
+        font-size: 0.9em;
         padding: var(--spacing-sm) var(--spacing-md);
-        min-width: 150px;
+        min-width: 140px;
+    }
+}
+
+/* Desktop styles (min-width: 1025px) - default styles apply */
+@media (min-width: 1025px) {
+    .container {
+        max-width: 600px;
     }
 }
